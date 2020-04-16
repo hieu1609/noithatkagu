@@ -133,6 +133,26 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'username' => [
+            'required' => 'users_name_required',
+            'min' => 'users_name_min',
+            'max' => 'users_name_max',
+            'string' => 'username_string',
+        ],
+        'email' => [
+            'required' => 'users_email_required',
+            'required_without' => 'users_email_required_without',
+            'unique' => 'users_email_unique',
+            'string' => 'users_email_string',
+            'regex' => 'users_email_regex',
+        ],
+        'password' => [
+            'required' => 'users_password_required',
+            'min' => 'users_password_min',
+            'max' => 'users_password_max',
+            'incorrect' => 'users_password_incorrect',
+            'string' => 'users_password_string'
+        ],
     ],
 
     /*
