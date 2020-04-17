@@ -16,8 +16,6 @@ $ApiErrorMessages = array(
 
     // Validator Errors Message /
     'users_not_found' => 'The user is not found.',
-    'id_not_found' => 'The id user is not found.',
-    'that_is_your_id' => 'The id user is your id.',
     'users_not_create' => 'The user is not create.',
     'users_name_required' => 'The name is required.',
     'users_name_min' => 'The name must be at least 3 characters',
@@ -31,6 +29,33 @@ $ApiErrorMessages = array(
     'users_password_max' => 'The password may not be greater than 16 characters.',
     'users_password_incorrect' => 'The password is incorrect.',
     'users_password_string' => 'The password must be a string.',
+    'users_newPassword_required' => 'The new password is required.',
+    'users_newPassword_min' => 'The new password must be at least 6 characters.',
+    'users_newPassword_max' => 'The new password may not be greater than 16 characters.',
+    'users_newPassword_string' => 'The new password must be a string.',
+    'users_confirmNewPassword_required' => 'The confirm new password again is required.',
+    'users_confirmNewPassword_min' => 'The confirm new password again must be at least 6 characters.',
+    'users_confirmNewPassword_max' => 'The confirm new password again may not be greater than 16 characters.',
+    'users_confirmNewPassword_string' => 'The confirm new password again must be a string.',
+    'users_confirmNewPassword_same' => 'The confirm new password and new password must match.',
+    'users_confirmPassword_required' => 'The confirm password again is required.',
+    'users_confirmPassword_min' => 'The confirm password again must be at least 6 characters.',
+    'users_confirmPassword_max' => 'The confirm password again may not be greater than 16 characters.',
+    'users_confirmPassword_string' => 'The confirm password again must be a string.',
+    'users_confirmPassword_same' => 'The confirm password and password must match.',
+    'users_currentPassword_required' => 'The current password is required.',
+    'users_currentPassword_min' => 'The current password must be at least 6 characters.',
+    'users_currentPassword_incorrect' => 'The current password is incorrect',
+    'users_currentPassword_max' => 'The current password may not be greater than 16 characters.',
+    'users_currentPassword_string' => 'The current password must be a string.',
+    'user_email_or_password_incorrect' => 'The email or password is incorrect',
+    'name_required' => 'The name is required.',
+    'name_string' => 'The name must be string.',
+    'phone_required' => 'The phone number is required.',
+    'phone_string' => 'The phone number must be string.',
+    'phone_regex' => 'The phone number format is invalid.',
+    'address_required' => 'The address is required.',
+    'address_string' => 'The email must be string.',
 
     // Token Errors Message /
     'tokens_not_found' => 'The token is not found.',
@@ -48,6 +73,10 @@ $ApiErrorMessages = array(
     'tokens_reset_password_invalid_credentials' => 'The token is invalid credentials',
 
     'tokens_create_user_invalid' => 'The token is invalid. Please check email again',
+
+    //custom error
+    'email_password_invalid' => 'The email or password are invalid',
+    'user_password_invalid' => 'The password is invalid', //when enter current password in change password
  
 );
 
@@ -80,6 +109,33 @@ $ApiErrorCodes = array(
     'users_password_max' => 2042,
     'users_password_incorrect' => 2043,
     'users_password_string' => 2044,
+    'users_newPassword_required' => 2050,
+    'users_newPassword_min' => 2051,
+    'users_newPassword_max' => 2052,
+    'users_newPassword_string' => 2053,
+    'users_confirmNewPassword_min' => 2061,
+    'users_confirmNewPassword_max' => 2062,
+    'users_confirmNewPassword_string' => 2063,
+    'users_confirmNewPassword_required' => 2064,
+    'users_confirmNewPassword_same' => 2065,
+    'users_confirmPassword_min' => 2066,
+    'users_confirmPassword_max' => 2067,
+    'users_confirmPassword_string' => 2068,
+    'users_confirmPassword_required' => 2069,
+    'users_confirmPassword_same' => 2070,
+    'users_currentPassword_required' => 2071,
+    'users_currentPassword_min' => 2072,
+    'users_currentPassword_max' => 2073,
+    'users_currentPassword_string' => 2074,
+    'users_currentPassword_incorrect' => 2075,
+    'user_email_or_password_incorrect' => 2076,
+    'name_required' => 2077,
+    'name_string' => 2078,
+    'phone_required' => 2079,
+    'phone_string' => 2080,
+    'phone_regex' => 2081,
+    'address_required' => 2082,
+    'address_string' => 2038,
 
     // Token Errors code: using 30xx /
     'tokens_not_found' => 3000,
@@ -97,6 +153,10 @@ $ApiErrorCodes = array(
     'tokens_reset_password_invalid_credentials' => 3055,
 
     'tokens_create_user_invalid' => 3056,
+
+    //custom error
+    'email_password_invalid' => 8000,
+    'user_password_invalid' => 8001,
 
 );
 

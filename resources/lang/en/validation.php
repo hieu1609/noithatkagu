@@ -153,6 +153,45 @@ return [
             'incorrect' => 'users_password_incorrect',
             'string' => 'users_password_string'
         ],
+        'newPassword' => [
+            'required' => 'users_newPassword_required',
+            'min' => 'users_newPassword_min',
+            'max' => 'users_newPassword_max',
+            'string' => 'users_newPassword_string'
+        ],
+        'confirmNewPassword' => [
+            'required' => 'users_confirmNewPassword_required',
+            'min' => 'users_confirmNewPassword_min',
+            'max' => 'users_confirmNewPassword_max',
+            'string' => 'users_confirmNewPasswordn_string',
+            'same' => 'users_confirmNewPassword_same',
+        ],
+        'currentPassword' => [
+            'required' => 'users_currentPassword_required',
+            'min' => 'users_currentPassword_min',
+            'max' => 'users_currentPassword_max',
+            'string' => 'users_currentPassword_string'
+        ],
+        'confirmPassword' => [
+            'required' => 'users_confirmPassword_required',
+            'min' => 'users_confirmPassword_min',
+            'max' => 'users_confirmPassword_max',
+            'string' => 'users_confirmPassword_string',
+            'same' => 'users_confirmPassword_same',
+        ],
+        'name' => [
+            'required' => 'name_required',
+            'string' => 'name_string',
+        ],
+        'phone' => [
+            'required' => 'phone_required',
+            'string' => 'phone_string',
+            'regex' => 'phone_regex',
+        ],
+        'address' => [
+            'required' => 'address_required',
+            'string' => 'address_string',
+        ],
     ],
 
     /*

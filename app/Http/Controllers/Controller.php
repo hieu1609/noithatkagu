@@ -14,14 +14,12 @@ class Controller extends BaseController
 
 /**
  * @SWG\Swagger(
- *      schemes={"http", "https"},
- *      @SWG\Info(
- *          version="1.0.0",
- *          title="L5 Swagger API",
- *          description="L5 Swagger API description",
- *          @SWG\Contact(
- *              email="darius@matulionis.lt"
- *          ),
- *      )
- *  )
+ *     basePath="/api",
+ *     schemes={"http", "https"},
+ *     host="localhost:800/noithatkagu/public",
+ *     @SWG\Info(
+ *         version="1.0.0",
+ *         title="L5 Swagger API"
+ *     )
+ * )
  */

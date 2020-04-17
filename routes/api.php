@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+//Route Authentication
+Route::group(['prefix' => 'auth'], function () {
+    Route::post('login', 'AuthController@login');
+    Route::post('register', 'AuthController@register');
+    Route::post('request/reset-password', 'AuthController@requestResetPassword');
+    Route::post('accept/reset-password', 'AuthController@acceptResetPassword');
+    Route::group(['middleware' => ['jwt']], function () {
+        Route::put('change-password', 'AuthController@changePassword');
+        Route::post('logout', 'AuthController@logout');
+    });
 });
