@@ -25,7 +25,7 @@ class ProductTableSeeder extends Seeder
                 
                 – Kiểu dáng sang trọng, mẫu đẹp, khung giường to khỏe. Đầu giường với thiết kế cong mềm mại mang lại chỗ dựa thoải mái cho người sử dụng.',
                 'cat_id' => 1,
-                'rating' => 5,
+                'rating' => 0,
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -40,7 +40,7 @@ class ProductTableSeeder extends Seeder
                 – Gỗi sồi tự nhiên, chắc bền, đẹp
                 - kiểu dáng độc đáo, mẫu mã đẹp, tạo cảm giác ấm cúng, tiện lợi cho người sử dụng.',
                 'cat_id' => 1,
-                'rating' => 5,
+                'rating' => 0,
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
