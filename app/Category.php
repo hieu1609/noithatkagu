@@ -16,7 +16,7 @@ class Category extends BaseModel
     );
 
     public static function getProductCategory() {
-        return ProductCategory::orderBy('id')
+        return Category::orderBy('cat_id')
         ->get();
     }
 }

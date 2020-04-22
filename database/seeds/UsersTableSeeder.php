@@ -15,6 +15,16 @@ class UsersTableSeeder extends Seeder
     {
         $users = [
             [
+                "email"=> "admin@gmail.com",
+                'password' => bcrypt('string'),
+                "name"=> "Admin",
+                'phone' => '0123123123',
+                'address' => 'Trường ĐH CNTT, Thủ Đức, Thành phố HCM',
+                'admin' => 1,
+                "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
+                "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
                 "email"=> "duc@gmail.com",
                 'password' => bcrypt('string'),
                 "name"=> "Đức",
@@ -75,6 +85,7 @@ class UsersTableSeeder extends Seeder
                 "name" => "giahieua2",
                 'phone' => '0868393039',
                 'address' => 'Hà Đông, Hà Nội',
+                'admin' => 1,
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ]
