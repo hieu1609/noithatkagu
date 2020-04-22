@@ -17,8 +17,8 @@ class CreateProductTable extends Migration
             $table->increments('product_id')->unique();
             $table->string('product_name', 255);
             $table->decimal('product_price', 15, 2);
-            $table->string('product_image', 500);
             $table->string('infor', 1500);
+            $table->string('tag', 1000);
             $table->integer('cat_id')->unsigned()->index();
             $table->float('rating', 8, 2)->default(0);
             $table->timestamps();
