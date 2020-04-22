@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoryTable extends Migration
+class CreateSlideShowTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('category', function (Blueprint $table) {
-            $table->increments('cat_id')->unique();
-            $table->string('cat_name', 255);
-            $table->string('cat_image', 500);
-            $table->string('cat_image_description', 200);
+        Schema::create('slide_show', function (Blueprint $table) {
+            $table->increments('id')->unique();
+            $table->string('image', 500);
+            $table->string('title', 200);
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category');
+        Schema::dropIfExists('slide_show');
     }
 }
