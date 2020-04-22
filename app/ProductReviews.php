@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Admin extends BaseModel
+class ProductReviews extends BaseModel
 {
-    protected $table = 'admin';
+    protected $table = 'product_reviews';
     protected $fillable = [
-        'email', 'password', 'name',
+        'user_id', 'product_id', 'rating', 'comment',
     ];
 
     public static $rules = array(

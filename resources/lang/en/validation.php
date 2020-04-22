@@ -192,6 +192,14 @@ return [
             'required' => 'address_required',
             'string' => 'address_string',
         ],
+        'categoryId' => [
+            'required' => 'categoryId_required',
+            'integer' => 'categoryId_integer',
+        ],
+        'page' => [
+            'required' => 'page_required',
+            'integer' => 'page_integer',
+        ],
     ],
 
     /*

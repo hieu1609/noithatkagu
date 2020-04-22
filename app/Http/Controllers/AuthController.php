@@ -12,6 +12,7 @@ use App\Notifications\ResetPasswordRequest;
 use App\Notifications\ResetPasswordSuccess;
 use App\PasswordReset;
 use App\User;
+use App\Admin;
 use Carbon\Carbon;
 use JWTFactory;
 use JWTAuth;
@@ -63,7 +64,14 @@ class AuthController extends BaseApiController
                 return $this->responseErrorCustom("user_email_or_password_incorrect", 401);
             }
 
-            $credentials = $request->only('email', 'password');
+            if ($request->admin) {
+                if (!$user->admin) {
+                    return $this->responseErrorCustom("user_priority", 403);
+                }
+                $credentials = $request->only('email', 'password', 'admin');
+            } else {
+                $credentials = $request->only('email', 'password');
+            }
 
             //create token
             $token = JWTAuth::attempt($credentials);

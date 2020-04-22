@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('name', 50);
             $table->string('phone', 50);
             $table->string('address', 255);
+            $table->boolean('admin')->default(0);
             $table->timestamps();
         });
     }

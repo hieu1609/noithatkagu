@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Admin;
+use App\ProductNumber;
 use Carbon\Carbon;
 
-class AdminTableSeeder extends Seeder
+class ProductNumberTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,26 +13,24 @@ class AdminTableSeeder extends Seeder
      */
     public function run()
     {
-        $admins = [
+        $numbers = [
             [
-                "email"=> "admin@gmail.com",
-                'password' => bcrypt('string'),
-                "name"=> "Admin",
+                'product_id' => 1,
+                'product_number' => 15,
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
-                "email"=> "giahieua2ltv@gmail.com",
-                'password' => bcrypt('string'),
-                "name"=> "giahieua2ltv",
+                'product_id' => 2,
+                'product_number' => 20,
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
+            ],
 
-            ]
         ];
         
-        foreach ($admins as $key => $admin) {
-            Admin::create($admin);
+        foreach ($numbers as $key => $number) {
+            ProductNumber::create($number);
         }
     }
 }

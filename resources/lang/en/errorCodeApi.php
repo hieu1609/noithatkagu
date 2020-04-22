@@ -77,6 +77,11 @@ $ApiErrorMessages = array(
     //custom error
     'email_password_invalid' => 'The email or password are invalid',
     'user_password_invalid' => 'The password is invalid', //when enter current password in change password
+    'categoryId_required' => 'The category id is required.',
+    'categoryId_integer' => 'The category id must be integer.',
+    'category_id_not_found' => 'The category id is not found.',
+    'page_required' => 'The page is required.',
+    'page_integer' => 'The page must be integer.',
  
 );
 
@@ -157,6 +162,12 @@ $ApiErrorCodes = array(
     //custom error
     'email_password_invalid' => 8000,
     'user_password_invalid' => 8001,
+    'categoryId_required' => 8002,
+    'categoryId_integer' => 8003,
+    'category_id_not_found' => 8004,
+    'page_required' => 8005,
+    'page_integer' => 8006,
+    
 
 );
 
