@@ -178,7 +178,7 @@ class ProductTableSeeder extends Seeder
                 Chất liệu: gỗ cao su, mặt bàn mdf.
                 Màu sắc : vàng, trắng, đen, nâu
                 Phù hợp : bếp ăn gia đình, nhà hàng, quán ăn."',
-                'tag' => 'bàn, bàn ăn, 4 ghế',
+                'tag' => 'bàn, bàn ăn, 4 ghế, banan',
                 'cat_id' => 2,
                 'rating' => 0,
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),

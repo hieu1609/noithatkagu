@@ -200,6 +200,22 @@ return [
             'required' => 'page_required',
             'integer' => 'page_integer',
         ],
+        'productId' => [
+            'required' => 'productId_required',
+            'integer' => 'productId_integer',
+        ],
+        'rating' => [
+            'required' => 'rating_required',
+            'integer' => 'rating_integer',
+        ],
+        'keyword' => [
+            'required' => 'keyword_required',
+            'string' => 'keyword_string',
+        ],
+        'sort' => [
+            'required' => 'sort_required',
+            'integer' => 'sort_integer',
+        ],
     ],
 
     /*
