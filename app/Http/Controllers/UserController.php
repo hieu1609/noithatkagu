@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Feedback;
 use Illuminate\Http\Request;
 use App\User;
-use App\ProductReviews;
 use App\Product;
-use App\OrderDetail;
-use App\OrderTable;
+use App\ProductReviews;
+use App\Order;
+use App\Transaction;
 use App\Notification;
-
 class UserController extends BaseApiController
 {
     /**
@@ -113,7 +113,7 @@ class UserController extends BaseApiController
             if($request->rating > 5 or $request->rating < 1) {
                 return $this->responseErrorCustom("rating_incorrect", 403);
             }
-            $checkProduct = Product::where([['id', $request->productId]])->first();
+            $checkProduct = Product::where([['product_id', $request->productId]])->first();
             if (!$checkProduct){
                 return $this->responseErrorCustom("product_id_not_found", 404);
             }
@@ -135,6 +135,57 @@ class UserController extends BaseApiController
                 $checkProduct->save();
             }
             return $this->responseSuccess($checkProduct);
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    public function sendFeedback(Request $request)
+    {
+        /**
+         * @SWG\Post(
+         *     path="/user/send-feedback",
+         *     description="Send feedback for admin",
+         *     tags={"User"},
+         *     summary="Send feedback",
+         *     security={{"jwt":{}}},
+         *
+         *      @SWG\Parameter(
+         *          name="body",
+         *          description="Send feedback for admin",
+         *          required=true,
+         *          in="body",
+         *          @SWG\Schema(
+         *              @SWG\property(
+         *                  property="title",
+         *                  type="string",
+         *              ),
+         *              @SWG\property(
+         *                  property="content",
+         *                  type="string",
+         *              ),
+         *          ),
+         *      ),
+         *      @SWG\Response(response=200, description="Successful operation"),
+         *      @SWG\Response(response=401, description="Unauthorized"),
+         *      @SWG\Response(response=403, description="Forbidden"),
+         *      @SWG\Response(response=422, description="Unprocessable Entity"),
+         *      @SWG\Response(response=500, description="Internal Server Error"),
+         * )
+         */
+
+        try {
+            $validator = Feedback::validate($request->all(), 'Send_Feedback');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            
+            $feedback = new Feedback();
+            $feedback->user_id = $request->user->id;
+            $feedback->title = $request->title;
+            $feedback->content = $request->content;
+            $feedback->save();
+            return $this->responseSuccess("Thanks for your feedback!");
+
         } catch (\Exception $exception) {
             return $this->responseErrorException($exception->getMessage(), 99999, 500);
         }

@@ -28,18 +28,18 @@ Route::group(['prefix' => 'auth'], function () {
 
 //Route Data
 Route::group(['prefix' => 'data'], function () {
-    //Product
+    //Search
+    Route::post('search-product', 'DataController@searchProduct');
+
+    //Home page
+    Route::get('get-slide-show', 'DataController@getSlideShow');
     Route::get('get-product-category', 'DataController@getProductCategory');
     Route::post('get-product-by-category-id', 'DataController@getProductByCategoryId');
     Route::get('get-new-product', 'DataController@getNewProduct');
     Route::post('getCommentByProductId', 'DataController@getCommentByProductId');
 
-    //Order
-    Route::post('postInforUser', 'DataController@postInforUser');
-    Route::post('postOrderDetail', 'DataController@postOrderDetail');
-
-    //Slide show
-    Route::get('getSlideShow', 'DataController@getSlideShow');
+    //Detail page
+    Route::post('get-comment-product', 'DataController@getCommentByProductId');
 });
 //Route User
 Route::group(['prefix' => 'user'], function () {
@@ -49,18 +49,8 @@ Route::group(['prefix' => 'user'], function () {
 
         //Review
         Route::post('post-review', 'UserController@postReview');
-
-        //Purchases
-        Route::post('getAllPurchases', 'UserController@getAllPurchases');
-        Route::post('getPurchasesReceived', 'UserController@getPurchasesReceived');
-        Route::post('getPurchasesConfirm', 'UserController@getPurchasesConfirm');
-        Route::post('getPurchasesShipping', 'UserController@getPurchasesShipping');
-        Route::post('getPurchasesCompleted', 'UserController@getPurchasesCompleted');
-        Route::delete('cancelorder/{orderId}', 'UserController@CancelOrder');
-
-        //Notification
-        Route::post('getNotifications', 'UserController@getNotifications');
-        Route::post('postFeedback', 'UserController@postFeedback');
-        Route::put('seenNotification', 'UserController@seenNotification');
+        
+        //Feedback
+        Route::post('send-feedback', 'UserController@sendFeedback');
     });
 });

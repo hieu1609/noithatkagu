@@ -282,6 +282,26 @@
                 }
             }
         },
+        "/data/get-slide-show": {
+            "get": {
+                "tags": [
+                    "Data"
+                ],
+                "summary": "get slide show",
+                "description": "get slide show",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
         "/data/get-product-category": {
             "get": {
                 "tags": [
@@ -322,6 +342,9 @@
                                 },
                                 "page": {
                                     "type": "integer"
+                                },
+                                "sort": {
+                                    "type": "integer"
                                 }
                             }
                         }
@@ -359,6 +382,94 @@
                     },
                     "401": {
                         "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/data/get-comment-product": {
+            "post": {
+                "tags": [
+                    "Data"
+                ],
+                "summary": "Get comment by product id",
+                "description": "Get comment by product id",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Get comment by product id",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "productId": {
+                                    "type": "integer"
+                                },
+                                "page": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/data/search-product": {
+            "post": {
+                "tags": [
+                    "Data"
+                ],
+                "summary": "Search product by name or tag",
+                "description": "Search product by name or tag",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Search product by name or tag",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "keyword": {
+                                    "type": "string"
+                                },
+                                "page": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
                     },
                     "500": {
                         "description": "Internal Server Error"
@@ -443,6 +554,55 @@
                                     "type": "integer"
                                 },
                                 "comment": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/user/send-feedback": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Send feedback",
+                "description": "Send feedback for admin",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Send feedback for admin",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "title": {
+                                    "type": "string"
+                                },
+                                "content": {
                                     "type": "string"
                                 }
                             }
