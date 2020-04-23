@@ -28,16 +28,12 @@ Route::group(['prefix' => 'auth'], function () {
 
 //Route Data
 Route::group(['prefix' => 'data'], function () {
-    //Product
+    //Home page
+    Route::get('get-slide-show', 'DataController@getSlideShow');
     Route::get('get-product-category', 'DataController@getProductCategory');
     Route::post('get-product-by-category-id', 'DataController@getProductByCategoryId');
     Route::get('get-new-product', 'DataController@getNewProduct');
-    Route::post('getCommentByProductId', 'DataController@getCommentByProductId');
-
-    //Order
-    Route::post('postInforUser', 'DataController@postInforUser');
-    Route::post('postOrderDetail', 'DataController@postOrderDetail');
-
-    //Slide show
-    Route::get('getSlideShow', 'DataController@getSlideShow');
+    
+    //Detail page
+    Route::post('get-comment-product', 'DataController@getCommentByProductId');
 });

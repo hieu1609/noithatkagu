@@ -15,4 +15,9 @@ class SlideShow extends BaseModel
 
     );
 
+    public static function getSlideShow() {
+        return SlideShow::orderBy('id', 'desc')
+        ->limit(5)
+        ->get();
+    }
 }

@@ -82,7 +82,11 @@ $ApiErrorMessages = array(
     'category_id_not_found' => 'The category id is not found.',
     'page_required' => 'The page is required.',
     'page_integer' => 'The page must be integer.',
- 
+    'productId_required' => 'The product id is required.',
+    'productId_integer' => 'The product id must be integer.',
+    'rating_incorrect' => 'The rating incorrect.',
+    'rating_required' => 'The rating is required.',
+    'rating_integer' => 'The rating must be integer.',
 );
 
 $ApiErrorCodes = array(
@@ -167,7 +171,11 @@ $ApiErrorCodes = array(
     'category_id_not_found' => 8004,
     'page_required' => 8005,
     'page_integer' => 8006,
-    
+    'productId_required' => 8007,
+    'productId_integer' => 8008,
+    'rating_incorrect' => 8009,
+    'rating_required' => 8010,
+    'rating_integer' => 8011,
 
 );
 
