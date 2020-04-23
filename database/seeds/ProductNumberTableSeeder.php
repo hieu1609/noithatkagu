@@ -26,6 +26,27 @@ class ProductNumberTableSeeder extends Seeder
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
+            [
+                'product_id' => 3,
+                'product_number' => 20,
+                "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
+                "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
+            ],
+
+            [
+                'product_id' => 4,
+                'product_number' => 20,
+                "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
+                "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
+            ],
+
+            [
+                'product_id' => 5,
+                'product_number' => 20,
+                "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
+                "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
+            ],
+
 
         ];
         

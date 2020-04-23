@@ -41,3 +41,26 @@ Route::group(['prefix' => 'data'], function () {
     //Slide show
     Route::get('getSlideShow', 'DataController@getSlideShow');
 });
+//Route User
+Route::group(['prefix' => 'user'], function () {
+    Route::group(['middleware' => ['jwt']], function () {
+        //Profile
+        Route::put('edit-user-profile', 'UserController@editUserProfile');
+
+        //Review
+        Route::post('post-review', 'UserController@postReview');
+
+        //Purchases
+        Route::post('getAllPurchases', 'UserController@getAllPurchases');
+        Route::post('getPurchasesReceived', 'UserController@getPurchasesReceived');
+        Route::post('getPurchasesConfirm', 'UserController@getPurchasesConfirm');
+        Route::post('getPurchasesShipping', 'UserController@getPurchasesShipping');
+        Route::post('getPurchasesCompleted', 'UserController@getPurchasesCompleted');
+        Route::delete('cancelorder/{orderId}', 'UserController@CancelOrder');
+
+        //Notification
+        Route::post('getNotifications', 'UserController@getNotifications');
+        Route::post('postFeedback', 'UserController@postFeedback');
+        Route::put('seenNotification', 'UserController@seenNotification');
+    });
+});
