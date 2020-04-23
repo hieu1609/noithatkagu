@@ -208,6 +208,10 @@ return [
             'required' => 'rating_required',
             'integer' => 'rating_integer',
         ],
+        'keyword' => [
+            'required' => 'keyword_required',
+            'string' => 'keyword_string',
+        ],
     ],
 
     /*

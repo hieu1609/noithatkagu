@@ -18,6 +18,10 @@ class Product extends BaseModel
             'categoryId' => 'required|integer',
             'page' => 'required|integer'
         ],
+        'Search_Product' => [
+            'keyword' => 'required|string',
+            'page' => 'required|integer'
+        ],
         'Add_Product' => [
             'productName' => 'required|string',
             'productPrice' => 'required|integer',
@@ -66,6 +70,13 @@ class Product extends BaseModel
         return $data;
     }
 
+    public static function searchProduct($keyword, $page) {
+        $data = Product::where('product_name', 'like', "%{$keyword}%")
+        ->orWhere('tag', 'like', "%{$keyword}%")
+        ->get();
+        return $data;
+    }
+    
     public static function getProductAdmin($page) {
         $limit = 10;
         $space = ($page - 1) * $limit;

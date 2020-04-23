@@ -166,4 +166,48 @@ class DataController extends BaseApiController
             return $this->responseErrorException($exception->getMessage(), $exception->getCode(), 500);
         }
     }
+
+    /**
+     * @SWG\Post(
+     *     path="/data/search-product",
+     *     description="Search product by name or tag",
+     *     tags={"Data"},
+     *     summary="Search product by name or tag",
+     *
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Search product by name or tag",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\property(
+     *                  property="keyword",
+     *                  type="string",
+     *              ),
+     *              @SWG\property(
+     *                  property="page",
+     *                  type="integer",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful operation"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+    public function searchProduct(Request $request)
+    {
+        try {
+            $validator = Product::validate($request->all(), 'Search_Product');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $data = Product::searchProduct($request->keyword, $request->page);
+            return $this->responseSuccess($data);
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), $exception->getCode(), 500);
+        }
+    }
 }

@@ -28,6 +28,9 @@ Route::group(['prefix' => 'auth'], function () {
 
 //Route Data
 Route::group(['prefix' => 'data'], function () {
+    //Search
+    Route::post('search-product', 'DataController@searchProduct');
+
     //Home page
     Route::get('get-slide-show', 'DataController@getSlideShow');
     Route::get('get-product-category', 'DataController@getProductCategory');
