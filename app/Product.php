@@ -8,6 +8,7 @@ use App\ProductReviews;
 
 class Product extends BaseModel
 {
+    protected $primaryKey = 'product_id';
     protected $table = 'product';
     protected $fillable = [
         'product_id', 'product_name', 'product_price', 'infor', 'tag', 'cat_id', 'rating',
@@ -49,8 +50,8 @@ class Product extends BaseModel
 
     public static function getProductByCategoryId($categoryId, $page, $sort) {
         //0|1|2|3 = id|new|price: ascending|decrease
-        $orderBy1;
-        $orderBy2;
+        $orderBy1 = 'product_id';
+        $orderBy2 = 'asc';
         switch ($sort) {
             case 1:
                 $orderBy1 = 'product_id';
@@ -95,8 +96,8 @@ class Product extends BaseModel
 
     public static function searchProduct($keyword, $page, $sort) {
         //0|1|2|3 = id|new|price: ascending|decrease
-        $orderBy1;
-        $orderBy2;
+        $orderBy1 = 'product_id';
+        $orderBy2 = 'asc';
         switch ($sort) {
             case 1:
                 $orderBy1 = 'product_id';

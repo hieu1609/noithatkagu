@@ -40,3 +40,16 @@ Route::group(['prefix' => 'data'], function () {
     //Detail page
     Route::post('get-comment-product', 'DataController@getCommentByProductId'); //1
 });
+//Route User
+Route::group(['prefix' => 'user'], function () {
+    Route::group(['middleware' => ['jwt']], function () {
+        //Profile
+        Route::put('edit-user-profile', 'UserController@editUserProfile');
+
+        //Review
+        Route::post('post-review', 'UserController@postReview');
+        
+        //Feedback
+        Route::post('send-feedback', 'UserController@sendFeedback');
+    });
+});

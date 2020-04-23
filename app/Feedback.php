@@ -12,7 +12,12 @@ class Feedback extends BaseModel
     ];
 
     public static $rules = array(
-
+    'Send_Feedback' => [
+        'title' => 'required|string|max:100',
+        'content' => 'required|string|max:2000'
+    ],
     );
+    public static function getUserFeedback(){
 
+    }
 }

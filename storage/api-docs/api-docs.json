@@ -344,7 +344,10 @@
                                     "type": "integer"
                                 },
                                 "sort": {
+<<<<<<< HEAD
+=======
                                     "description": "1|2|3 = new|price: ascending|decrease",
+>>>>>>> 8e59aa530dd2f7c1277ba3a0c0750e28a0892efd
                                     "type": "integer"
                                 }
                             }
@@ -480,6 +483,162 @@
                         "description": "Internal Server Error"
                     }
                 }
+            }
+        },
+        "/user/edit-user-profile": {
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Edit profile",
+                "description": "Edit your profile",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Edit your profile",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "phone": {
+                                    "type": "string"
+                                },
+                                "address": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/user/post-review": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Post review product",
+                "description": "Post review product",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Post review product",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "productId": {
+                                    "type": "integer"
+                                },
+                                "rating": {
+                                    "type": "integer"
+                                },
+                                "comment": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/user/send-feedback": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Send feedback",
+                "description": "Send feedback for admin",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Send feedback for admin",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "title": {
+                                    "type": "string"
+                                },
+                                "content": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
             }
         }
     },
