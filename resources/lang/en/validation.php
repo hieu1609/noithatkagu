@@ -212,6 +212,10 @@ return [
             'required' => 'keyword_required',
             'string' => 'keyword_string',
         ],
+        'sort' => [
+            'required' => 'sort_required',
+            'integer' => 'sort_integer',
+        ],
     ],
 
     /*

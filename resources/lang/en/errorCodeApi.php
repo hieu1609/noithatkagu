@@ -89,6 +89,8 @@ $ApiErrorMessages = array(
     'rating_integer' => 'The rating must be integer.',
     'keyword_required' => 'The keyword is required.',
     'keyword_string' => 'The keyword must be string.',
+    'sort_required' => 'The sort is required.',
+    'sort_integer' => 'The sort must be integer.',
 );
 
 $ApiErrorCodes = array(
@@ -180,6 +182,8 @@ $ApiErrorCodes = array(
     'rating_integer' => 8011,
     'keyword_required' => 8012,
     'keyword_string' => 8013,
+    'sort_required' => 8014,
+    'sort_integer' => 8015,
 );
 
 $ApiCodes['ApiErrorMessages'] = $ApiErrorMessages;

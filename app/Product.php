@@ -16,11 +16,13 @@ class Product extends BaseModel
     public static $rules = array(
         'Get_Product' => [
             'categoryId' => 'required|integer',
-            'page' => 'required|integer'
+            'page' => 'required|integer',
+            'sort' => 'required|integer'
         ],
         'Search_Product' => [
             'keyword' => 'required|string',
-            'page' => 'required|integer'
+            'page' => 'required|integer',
+            'sort' => 'required|integer'
         ],
         'Add_Product' => [
             'productName' => 'required|string',
@@ -74,6 +76,10 @@ class Product extends BaseModel
         $data = Product::where('product_name', 'like', "%{$keyword}%")
         ->orWhere('tag', 'like', "%{$keyword}%")
         ->get();
+        foreach ($data as $key => $value) {
+            $data[$key]['image'] = ProductImage::where('product_image.product_id', $value['product_id'])->get();
+            $data[$key]['commentNumber'] = ProductReviews::where('product_reviews.product_id', $value['product_id'])->count();
+        }
         return $data;
     }
     

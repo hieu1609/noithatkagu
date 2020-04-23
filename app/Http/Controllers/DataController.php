@@ -74,6 +74,10 @@ class DataController extends BaseApiController
      *                  property="page",
      *                  type="integer",
      *              ),
+     *              @SWG\property(
+     *                  property="sort",
+     *                  type="integer",
+     *              ),
      *          ),
      *      ),
      *      @SWG\Response(response=200, description="Successful operation"),
