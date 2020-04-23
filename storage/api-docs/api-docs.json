@@ -342,6 +342,10 @@
                                 },
                                 "page": {
                                     "type": "integer"
+                                },
+                                "sort": {
+                                    "description": "1|2|3 = new|price: ascending|decrease",
+                                    "type": "integer"
                                 }
                             }
                         }
@@ -449,6 +453,10 @@
                                     "type": "string"
                                 },
                                 "page": {
+                                    "type": "integer"
+                                },
+                                "sort": {
+                                    "description": "1|2|3 = new|price: ascending|decrease",
                                     "type": "integer"
                                 }
                             }

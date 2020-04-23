@@ -32,11 +32,11 @@ Route::group(['prefix' => 'data'], function () {
     Route::post('search-product', 'DataController@searchProduct');
 
     //Home page
-    Route::get('get-slide-show', 'DataController@getSlideShow');
-    Route::get('get-product-category', 'DataController@getProductCategory');
-    Route::post('get-product-by-category-id', 'DataController@getProductByCategoryId');
-    Route::get('get-new-product', 'DataController@getNewProduct');
+    Route::get('get-slide-show', 'DataController@getSlideShow'); //0
+    Route::get('get-product-category', 'DataController@getProductCategory'); //0
+    Route::get('get-new-product', 'DataController@getNewProduct'); //0
+    Route::post('get-product-by-category-id', 'DataController@getProductByCategoryId'); //1
     
     //Detail page
-    Route::post('get-comment-product', 'DataController@getCommentByProductId');
+    Route::post('get-comment-product', 'DataController@getCommentByProductId'); //1
 });

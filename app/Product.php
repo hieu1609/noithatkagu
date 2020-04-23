@@ -47,10 +47,31 @@ class Product extends BaseModel
         ],
     );
 
-    public static function getProductByCategoryId($categoryId, $page) {
+    public static function getProductByCategoryId($categoryId, $page, $sort) {
+        //0|1|2|3 = id|new|price: ascending|decrease
+        $orderBy1;
+        $orderBy2;
+        switch ($sort) {
+            case 1:
+                $orderBy1 = 'product_id';
+                $orderBy2 = 'desc';
+                break;
+            case 2:
+                $orderBy1 = 'product_price';
+                $orderBy2 = 'asc';
+                break;
+            case 3:
+                $orderBy1 = 'product_price';
+                $orderBy2 = 'desc';
+                break;
+            default:
+                $orderBy1 = 'product_id';
+                $orderBy2 = 'asc';
+        }
         $limit = 6;
         $space = ($page - 1) * $limit;
         $data = Product::where('cat_id', $categoryId)
+        ->orderBy($orderBy1, $orderBy2)
         ->limit($limit)
         ->offset($space)
         ->get();
@@ -72,10 +93,36 @@ class Product extends BaseModel
         return $data;
     }
 
-    public static function searchProduct($keyword, $page) {
+    public static function searchProduct($keyword, $page, $sort) {
+        //0|1|2|3 = id|new|price: ascending|decrease
+        $orderBy1;
+        $orderBy2;
+        switch ($sort) {
+            case 1:
+                $orderBy1 = 'product_id';
+                $orderBy2 = 'desc';
+                break;
+            case 2:
+                $orderBy1 = 'product_price';
+                $orderBy2 = 'asc';
+                break;
+            case 3:
+                $orderBy1 = 'product_price';
+                $orderBy2 = 'desc';
+                break;
+            default:
+                $orderBy1 = 'product_id';
+                $orderBy2 = 'asc';
+        }
+        $limit = 6;
+        $space = ($page - 1) * $limit;
         $data = Product::where('product_name', 'like', "%{$keyword}%")
         ->orWhere('tag', 'like', "%{$keyword}%")
+        ->orderBy($orderBy1, $orderBy2)
+        ->limit($limit)
+        ->offset($space)
         ->get();
+        
         foreach ($data as $key => $value) {
             $data[$key]['image'] = ProductImage::where('product_image.product_id', $value['product_id'])->get();
             $data[$key]['commentNumber'] = ProductReviews::where('product_reviews.product_id', $value['product_id'])->count();
