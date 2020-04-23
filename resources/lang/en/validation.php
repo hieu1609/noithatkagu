@@ -216,6 +216,16 @@ return [
             'required' => 'sort_required',
             'integer' => 'sort_integer',
         ],
+        'title' => [
+            'required' => 'title_required',
+            'integer' => 'title_integer',
+            'max' => 'title_max',
+        ],
+        'content' => [
+            'required' => 'content_required',
+            'integer' => 'content_integer',
+            'max' => 'content_max',
+        ],
     ],
 
     /*

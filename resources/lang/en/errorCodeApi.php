@@ -91,6 +91,12 @@ $ApiErrorMessages = array(
     'keyword_string' => 'The keyword must be string.',
     'sort_required' => 'The sort is required.',
     'sort_integer' => 'The sort must be integer.',
+    'title_required' => 'The title is required.',
+    'title_integer' => 'The title must be integer.',
+    'title_max' => 'The title may not be greater than 100 characters.',
+    'content_required' => 'The content is required.',
+    'content_integer' => 'The content must be integer.',
+    'content_max' => 'The content may not be greater than 2000 characters.',
 );
 
 $ApiErrorCodes = array(
@@ -184,6 +190,12 @@ $ApiErrorCodes = array(
     'keyword_string' => 8013,
     'sort_required' => 8014,
     'sort_integer' => 8015,
+    'title_required' => 8016,
+    'title_integer' => 8017,
+    'title_max' => 8018,
+    'content_required' => 8019,
+    'content_integer' => 8020,
+    'content_max' => 8021,
 );
 
 $ApiCodes['ApiErrorMessages'] = $ApiErrorMessages;
