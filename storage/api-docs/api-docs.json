@@ -285,7 +285,7 @@
         "/data/get-slide-show": {
             "get": {
                 "tags": [
-                    "Data"
+                    "Home page"
                 ],
                 "summary": "get slide show",
                 "description": "get slide show",
@@ -305,7 +305,7 @@
         "/data/get-product-category": {
             "get": {
                 "tags": [
-                    "Data"
+                    "Home page"
                 ],
                 "summary": "get category",
                 "description": "get category",
@@ -344,10 +344,7 @@
                                     "type": "integer"
                                 },
                                 "sort": {
-<<<<<<< HEAD
-=======
                                     "description": "1|2|3 = new|price: ascending|decrease",
->>>>>>> 8e59aa530dd2f7c1277ba3a0c0750e28a0892efd
                                     "type": "integer"
                                 }
                             }
@@ -376,7 +373,7 @@
         "/data/get-new-product": {
             "get": {
                 "tags": [
-                    "Data"
+                    "Home page"
                 ],
                 "summary": "get new product",
                 "description": "get new product",
@@ -393,10 +390,51 @@
                 }
             }
         },
+        "/data/get-product-detail": {
+            "post": {
+                "tags": [
+                    "Product detail"
+                ],
+                "summary": "Get product detail by product id",
+                "description": "Get product detail by product id",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Get product detail by product id",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "productId": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
         "/data/get-comment-product": {
             "post": {
                 "tags": [
-                    "Data"
+                    "Product detail"
                 ],
                 "summary": "Get comment by product id",
                 "description": "Get comment by product id",
@@ -437,10 +475,51 @@
                 }
             }
         },
+        "/data/get-related-products": {
+            "post": {
+                "tags": [
+                    "Product detail"
+                ],
+                "summary": "Get related products by product id",
+                "description": "Get related products by product id",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Get related products by product id",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "productId": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
         "/data/search-product": {
             "post": {
                 "tags": [
-                    "Data"
+                    "Home page"
                 ],
                 "summary": "Search product by name or tag",
                 "description": "Search product by name or tag",

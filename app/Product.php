@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\ProductImage;
 use App\ProductReviews;
+use App\ProductNumber;
 
 class Product extends BaseModel
 {
@@ -19,6 +20,12 @@ class Product extends BaseModel
             'categoryId' => 'required|integer',
             'page' => 'required|integer',
             'sort' => 'required|integer'
+        ],
+        'Get_Product_Detail' => [
+            'productId' => 'required|integer',
+        ],
+        'Get_Related_Products' => [
+            'productId' => 'required|integer',
         ],
         'Search_Product' => [
             'keyword' => 'required|string',
@@ -130,7 +137,29 @@ class Product extends BaseModel
         }
         return $data;
     }
-    
+
+    public static function getProductDetail($productId) {
+        $data = Product::where('product_id', $productId)
+        ->get();
+        $data[0]['image'] = ProductImage::where('product_image.product_id', $data[0]['product_id'])->get();
+        $data[0]['commentNumber'] = ProductReviews::where('product_reviews.product_id', $data[0]['product_id'])->count();
+        $productNumber = ProductNumber::where('product_number.product_id', $data[0]['product_id'])->get('product_number');
+        $data[0]['productNumber'] = $productNumber[0]['product_number'];
+        return $data;
+    }
+
+    public static function getRelatedProducts($productId, $cat_id) {
+        $data = Product::where([['cat_id', '=', $cat_id], ['product_id', '<>', $productId]])
+        ->inRandomOrder()
+        ->limit(4)
+        ->get();
+        foreach ($data as $key => $value) {
+            $data[$key]['image'] = ProductImage::where('product_image.product_id', $value['product_id'])->get();
+            $data[$key]['commentNumber'] = ProductReviews::where('product_reviews.product_id', $value['product_id'])->count();
+        }
+        return $data;
+    }
+
     public static function getProductAdmin($page) {
         $limit = 10;
         $space = ($page - 1) * $limit;

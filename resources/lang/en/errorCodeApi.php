@@ -97,6 +97,7 @@ $ApiErrorMessages = array(
     'content_required' => 'The content is required.',
     'content_integer' => 'The content must be integer.',
     'content_max' => 'The content may not be greater than 2000 characters.',
+    'product_id_not_found' => 'The product id is not found.',
 );
 
 $ApiErrorCodes = array(
@@ -196,6 +197,7 @@ $ApiErrorCodes = array(
     'content_required' => 8019,
     'content_integer' => 8020,
     'content_max' => 8021,
+    'product_id_not_found' => 8022,
 );
 
 $ApiCodes['ApiErrorMessages'] = $ApiErrorMessages;
