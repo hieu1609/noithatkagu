@@ -38,7 +38,9 @@ Route::group(['prefix' => 'data'], function () {
     Route::post('get-product-by-category-id', 'DataController@getProductByCategoryId'); //1
     
     //Detail page
+    Route::post('get-product-detail', 'DataController@getProductDetail'); //1
     Route::post('get-comment-product', 'DataController@getCommentByProductId'); //1
+    Route::post('get-related-products', 'DataController@getRelatedProducts'); //1
 });
 //Route User
 Route::group(['prefix' => 'user'], function () {
