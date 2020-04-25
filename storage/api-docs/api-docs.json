@@ -344,10 +344,7 @@
                                     "type": "integer"
                                 },
                                 "sort": {
-<<<<<<< HEAD
-=======
                                     "description": "1|2|3 = new|price: ascending|decrease",
->>>>>>> 8e59aa530dd2f7c1277ba3a0c0750e28a0892efd
                                     "type": "integer"
                                 }
                             }
