@@ -17,6 +17,9 @@ class CreateProductTable extends Migration
             $table->increments('product_id')->unique();
             $table->string('product_name', 255);
             $table->decimal('product_price', 15, 2);
+            $table->string('material', 250)->nullable();
+            $table->string('size', 250)->nullable();
+            $table->string('color', 250)->nullable();
             $table->string('infor', 1500);
             $table->string('tag', 1000);
             $table->integer('cat_id')->unsigned()->index();

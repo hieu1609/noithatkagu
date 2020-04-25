@@ -226,6 +226,14 @@ return [
             'integer' => 'content_integer',
             'max' => 'content_max',
         ],
+        'totalPrice' => [
+            'required' => 'total_price_required',
+            'integer' => 'total_price_integer',
+        ],
+        'paymentMethod' => [
+            'required' => 'payment_method_required',
+            'string' => 'payment_method_string',
+        ],
     ],
 
     /*

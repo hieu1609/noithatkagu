@@ -55,3 +55,17 @@ Route::group(['prefix' => 'user'], function () {
         Route::post('send-feedback', 'UserController@sendFeedback');
     });
 });
+
+//Route Cart
+Route::group(['prefix' => 'cart'], function () {
+    Route::post('post-user-infor', 'CartController@postUserInfor');
+    Route::post('post-order-detail', 'CartController@postOrderDetail');
+});
+
+//Route Paypal
+Route::group(['prefix' => 'payment'], function () {
+    Route::post('create-payment', 'PaymentController@createPayment');
+    Route::get('get-payment-list', 'PaymentController@getPaymentList');
+    Route::get('get-payment-details', 'PaymentController@getPaymentDetails');
+});
+
