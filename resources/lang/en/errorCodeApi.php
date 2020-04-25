@@ -97,6 +97,13 @@ $ApiErrorMessages = array(
     'content_required' => 'The content is required.',
     'content_integer' => 'The content must be integer.',
     'content_max' => 'The content may not be greater than 2000 characters.',
+    'product_id_not_found' => 'The product id is not found.',
+    'total_price_required' => 'The total price is required',
+    'total_price_integer' => 'The total price must be integer',
+    'payment_method_required' => 'The payment method is required',
+    'payment_method_string' => 'The payment method must be string',
+    'notification_required' => 'The notification is required',
+    'notification_string' => 'The payment method must be string',
 );
 
 $ApiErrorCodes = array(
@@ -196,6 +203,13 @@ $ApiErrorCodes = array(
     'content_required' => 8019,
     'content_integer' => 8020,
     'content_max' => 8021,
+    'product_id_not_found' => 8022,
+    'total_price_required' => 8023,
+    'total_price_integer' => 8024,
+    'payment_method_required' => 8025,
+    'payment_method_string' => 8026,
+    'notification_required' => 8027,
+    'notification_string' => 8028,
 );
 
 $ApiCodes['ApiErrorMessages'] = $ApiErrorMessages;

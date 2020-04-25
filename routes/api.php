@@ -38,7 +38,9 @@ Route::group(['prefix' => 'data'], function () {
     Route::post('get-product-by-category-id', 'DataController@getProductByCategoryId'); //1
     
     //Detail page
+    Route::post('get-product-detail', 'DataController@getProductDetail'); //1
     Route::post('get-comment-product', 'DataController@getCommentByProductId'); //1
+    Route::post('get-related-products', 'DataController@getRelatedProducts'); //1
 });
 //Route User
 Route::group(['prefix' => 'user'], function () {
@@ -51,5 +53,22 @@ Route::group(['prefix' => 'user'], function () {
         
         //Feedback
         Route::post('send-feedback', 'UserController@sendFeedback');
+        //Notification
+        Route::post('get-notifications', 'UserController@getNotifications');
+        Route::put('seen-notification', 'UserController@seenNotification');
     });
 });
+
+//Route Cart
+Route::group(['prefix' => 'cart'], function () {
+    Route::post('post-user-infor', 'CartController@postUserInfor');
+    Route::post('post-order-detail', 'CartController@postOrderDetail');
+});
+
+//Route Paypal
+Route::group(['prefix' => 'payment'], function () {
+    Route::post('create-payment', 'PaymentController@createPayment');
+    Route::get('get-payment-list', 'PaymentController@getPaymentList');
+    Route::get('get-payment-details', 'PaymentController@getPaymentDetails');
+});
+

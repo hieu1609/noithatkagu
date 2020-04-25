@@ -282,10 +282,122 @@
                 }
             }
         },
+        "/cart/post-user-infor": {
+            "post": {
+                "tags": [
+                    "Cart"
+                ],
+                "summary": "Post user information",
+                "description": "Post user information",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Post user information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "userId": {
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "phone": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "address": {
+                                    "type": "string"
+                                },
+                                "totalPrice": {
+                                    "type": "integer"
+                                },
+                                "paymentMethod": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/cart/post-order-detail": {
+            "post": {
+                "tags": [
+                    "Cart"
+                ],
+                "summary": "Post order detail",
+                "description": "Post order detail",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Post order detail",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "orderId": {
+                                    "type": "integer"
+                                },
+                                "productId": {
+                                    "type": "integer"
+                                },
+                                "productName": {
+                                    "type": "string"
+                                },
+                                "productPrice": {
+                                    "type": "integer"
+                                },
+                                "quantity": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
         "/data/get-slide-show": {
             "get": {
                 "tags": [
-                    "Data"
+                    "Home page"
                 ],
                 "summary": "get slide show",
                 "description": "get slide show",
@@ -305,7 +417,7 @@
         "/data/get-product-category": {
             "get": {
                 "tags": [
-                    "Data"
+                    "Home page"
                 ],
                 "summary": "get category",
                 "description": "get category",
@@ -373,7 +485,7 @@
         "/data/get-new-product": {
             "get": {
                 "tags": [
-                    "Data"
+                    "Home page"
                 ],
                 "summary": "get new product",
                 "description": "get new product",
@@ -390,10 +502,51 @@
                 }
             }
         },
+        "/data/get-product-detail": {
+            "post": {
+                "tags": [
+                    "Product detail"
+                ],
+                "summary": "Get product detail by product id",
+                "description": "Get product detail by product id",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Get product detail by product id",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "productId": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
         "/data/get-comment-product": {
             "post": {
                 "tags": [
-                    "Data"
+                    "Product detail"
                 ],
                 "summary": "Get comment by product id",
                 "description": "Get comment by product id",
@@ -434,10 +587,51 @@
                 }
             }
         },
+        "/data/get-related-products": {
+            "post": {
+                "tags": [
+                    "Product detail"
+                ],
+                "summary": "Get related products by product id",
+                "description": "Get related products by product id",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Get related products by product id",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "productId": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
         "/data/search-product": {
             "post": {
                 "tags": [
-                    "Data"
+                    "Home page"
                 ],
                 "summary": "Search product by name or tag",
                 "description": "Search product by name or tag",
@@ -475,6 +669,87 @@
                     },
                     "422": {
                         "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/payment/create-payment": {
+            "post": {
+                "tags": [
+                    "Payment"
+                ],
+                "summary": "create payment",
+                "description": "create payment",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Create payment",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "orderId": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/payment/get-payment-list": {
+            "get": {
+                "tags": [
+                    "Payment"
+                ],
+                "summary": "get payment list",
+                "description": "get payment list",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/payment/get-payment-details": {
+            "get": {
+                "tags": [
+                    "Payment"
+                ],
+                "summary": "get payment details",
+                "description": "get payment details",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
                     },
                     "500": {
                         "description": "Internal Server Error"
@@ -609,6 +884,92 @@
                                 },
                                 "content": {
                                     "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/user/get-notifications": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get notifications",
+                "description": "Get notifications",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Get notifications",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "page": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/user/seen-notification": {
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Seen notification",
+                "description": "Seen notification",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Seen notification",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "notificationId": {
+                                    "type": "integer"
                                 }
                             }
                         }

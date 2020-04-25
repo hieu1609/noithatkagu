@@ -14,7 +14,7 @@ class DataController extends BaseApiController
      * @SWG\Get(
      *     path="/data/get-slide-show",
      *     description="get slide show",
-     *     tags={"Data"},
+     *     tags={"Home page"},
      *     summary="get slide show",
      *
      *      @SWG\Response(response=200, description="Successful operation"),
@@ -36,7 +36,7 @@ class DataController extends BaseApiController
      * @SWG\Get(
      *     path="/data/get-product-category",
      *     description="get category",
-     *     tags={"Data"},
+     *     tags={"Home page"},
      *     summary="get category",
      *
      *      @SWG\Response(response=200, description="Successful operation"),
@@ -110,7 +110,7 @@ class DataController extends BaseApiController
      * @SWG\Get(
      *     path="/data/get-new-product",
      *     description="get new product",
-     *     tags={"Data"},
+     *     tags={"Home page"},
      *     summary="get new product",
      *
      *      @SWG\Response(response=200, description="Successful operation"),
@@ -130,9 +130,52 @@ class DataController extends BaseApiController
 
     /**
      * @SWG\Post(
+     *     path="/data/get-product-detail",
+     *     description="Get product detail by product id",
+     *     tags={"Product detail"},
+     *     summary="Get product detail by product id",
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Get product detail by product id",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\property(
+     *                  property="productId",
+     *                  type="integer",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful operation"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+    public function getProductDetail(Request $request)
+    {
+        try {
+            $validator = Product::validate($request->all(), 'Get_Product_Detail');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $checkProductId = Product::where([['product_id', $request->productId]])->first();
+            if (!$checkProductId) {
+                return $this->responseErrorCustom("product_id_not_found", 404);
+            }
+            $product = Product::getProductDetail($request->productId);
+            return $this->responseSuccess($product);
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+
+    /**
+     * @SWG\Post(
      *     path="/data/get-comment-product",
      *     description="Get comment by product id",
-     *     tags={"Data"},
+     *     tags={"Product detail"},
      *     summary="Get comment by product id",
      *
      *      @SWG\Parameter(
@@ -174,9 +217,52 @@ class DataController extends BaseApiController
 
     /**
      * @SWG\Post(
+     *     path="/data/get-related-products",
+     *     description="Get related products by product id",
+     *     tags={"Product detail"},
+     *     summary="Get related products by product id",
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Get related products by product id",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\property(
+     *                  property="productId",
+     *                  type="integer",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful operation"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+    public function getRelatedProducts(Request $request)
+    {
+        try {
+            $validator = Product::validate($request->all(), 'Get_Related_Products');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $checkProductId = Product::where([['product_id', $request->productId]])->first();
+            if (!$checkProductId) {
+                return $this->responseErrorCustom("product_id_not_found", 404);
+            }
+            $product = Product::getRelatedProducts($request->productId, $checkProductId->cat_id);
+            return $this->responseSuccess($product);
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+
+    /**
+     * @SWG\Post(
      *     path="/data/search-product",
      *     description="Search product by name or tag",
-     *     tags={"Data"},
+     *     tags={"Home page"},
      *     summary="Search product by name or tag",
      *
      *      @SWG\Parameter(

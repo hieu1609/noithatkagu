@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTransactionTable extends Migration
+class CreateOrderUserInforTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,16 @@ class CreateTransactionTable extends Migration
      */
     public function up()
     {
-        Schema::create('transaction', function (Blueprint $table) {
-            $table->increments('id')->unique();
-            $table->integer('user_id')->unsigned()->nullable()->index();
+        Schema::create('order_user_infor', function (Blueprint $table) {
+            $table->increments('order_id')->unique();
+            $table->integer('user_id')->unsigned()->nullable()->index(); //null nếu không đăng nhập 
             $table->string('name', 50);
             $table->string('phone', 50);
             $table->string('email', 50);
             $table->string('address', 255);
             $table->decimal('total_price', 15, 2);
-            $table->string('payment', 100);
-            $table->string('payment_infor', 100);
-            $table->string('user_request', 100);
-            $table->string('security', 100);
+            $table->string('payment_method'); //cash|paypal
+            $table->boolean('paid')->default(0);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
         });
@@ -37,6 +35,6 @@ class CreateTransactionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaction');
+        Schema::dropIfExists('order_user_infor');
     }
 }
