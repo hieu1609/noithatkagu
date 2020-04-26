@@ -386,6 +386,21 @@ class ProductTableSeeder extends Seeder
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
+                'product_name' => 'Sofa giường gỗ',
+                'product_price' => 10000000,
+                'infor' => 'Sofa giường gỗ là sản phẩm kết hợp hài hoà giữa ghế sofa và giường ngủ, với chất liệu được làm hoàn toàn từ gỗ tự nhiên với thiết kế lưng tựa và mê ngồi bằng thanh chắn thông thoáng, đẹp mắt, dễ dàng vệ sinh khi lau dọn. 
+                Với Sofa Bed này Quý Khách có thể đặt ở phòng khách dùng để tiếp khách hay cùng đồng nghiệp, bạn bè, hàng xóm cùng ngồi xuống uống chén trà đàm đạo.... Bên cạnh đó Quý Khách có thể làm giường ngủ gỗ cho khách lưu lại qua đêm.Với thiết kế đẹp mắt gọn gàng nhằm tiết kiệm được không gian trong nhà bạn. Đặc biệt được làm từ gỗ tự nhiên bền chắc theo thời gian.',
+                'size' =>'Kích thước phủ bì: 218cm (Rộng) X 83cm (Sâu) X 81cm (Cao)
+                Kích thước khi kéo ra thành giường: 194cm (Rộng) X 134cm (Sâu) X 28cm (Cao)',
+                'material' => 'gỗ tần bì',       
+                'color' => 'màu gỗ tự nhiên',
+                'tag' => 'Sofa, giường ngủ, sang trọng, hiện đại',
+                'cat_id' => 3,
+                'rating' => 0,
+                "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
+                "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
                 'product_name' => 'Sofa giường ngủ Kagu',
                 'product_price' => 10000000,
                 'infor' => '"Bạn đang muốn tìm kiếm món đồ nội thất để xây dựng cho mình một không gian đa năng vừa làm việc, vừa tiếp khách, rồi nghỉ ngơi trong căn phòng nhỏ của riêng mình sao cho thật tiện lợi, gọn gàng thì sofa giường gỗ chính là giải pháp hữu ích cho bạn. Nội thất Kagu xin giới thiệu cho quý khách hàng mẫu sofa giường gỗ Kagu tiện lợi và sang trọng.
@@ -679,6 +694,19 @@ class ProductTableSeeder extends Seeder
                 'material' => 'Gỗ MDF có khả năng chống mối mọt, bề mặt phủ melamine chống trầy xước, va đập.',       
                 'color' => 'Màu gỗ tần bì (Ash)',
                 'tag' => 'kệ, kệ tivi, mdf',
+                'cat_id' => 5,
+                'rating' => 0,
+                "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
+                "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+                'product_name' => 'Kệ trang trí gõ',
+                'product_price' => 10000000,
+                'infor' => '"Ngày nay, kệ sách gỗ đẹp là món đồ nội thất không thể thiếu trong không gian đọc sách. Những chiếc kệ gỗ hiện đại không chỉ dùng để lưu trữ sách mà còn có thể lưu trữ những đồ vật, đồ trang trí đẹp mắt khác. Với thiết kế đơn giản của mẫu kệ, người dùng có thể sắp xếp nhiều kệ với nhau để tăng không gian lưu trữ sách. Đối với phòng có diện tích hạn chế bạn nên lựa chọn những góc tường để xóa bỏ góc chết của tường nhà. Sản phẩm có nhiều màu sắc đẹp mắt sẽ là ý tưởng sang tạo mới cho không gian gia đình.',
+                'size' =>'D 2400 x S 240 x C 1700(mm)',
+                'material' => 'Gỗ công nghiệp MDF phủ melamine đẹp',       
+                'color' => 'Đen, trắng, vàng gỗ, đỏ.',
+                'tag' => 'kệ, gỗ, thông, kệ sách, kệ rượu, kệ trưng bày',
                 'cat_id' => 5,
                 'rating' => 0,
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
