@@ -21,4 +21,9 @@ class OrderDetail extends BaseModel
         ],
     );
 
+    public static function getOrderDetail($OrderId) {
+        return OrderDetail::where('order_id', $OrderId)
+        ->get();
+    }
+
 }

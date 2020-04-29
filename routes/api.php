@@ -65,7 +65,7 @@ Route::group(['prefix' => 'cart'], function () {
 //Route Paypal
 Route::group(['prefix' => 'payment'], function () {
     Route::post('create-payment', 'PaymentController@createPayment');
-    Route::get('get-payment-list', 'PaymentController@getPaymentList');
-    Route::get('get-payment-details', 'PaymentController@getPaymentDetails');
+    Route::post('execute-payment', 'PaymentController@executePayment');
+    Route::get('payment-details/{paypalId}', 'PaymentController@getPaymentDetails');
 });
 

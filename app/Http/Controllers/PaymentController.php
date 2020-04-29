@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
 use PayPal\Rest\ApiContext;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Api\Amount;
@@ -13,14 +14,25 @@ use PayPal\Api\Payer;
 use PayPal\Api\Payment;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
+use PayPal\Api\ExecutePayment;
+use PayPal\Api\PaymentExecution;
 use App\Services\PayPalService;
+use App\TransactionPaypal;
+use App\OrderDetail;
+use App\OrderUserInfor;
 
 class PaymentController extends BaseApiController
 {
-    private $apiContext;
-
     public function __construct()
     {
+        $this->result = [
+            'error' => false,
+            'data' => null,
+            'errors' => []
+        ];
+        $this->statusCode = 200;
+        $this->apiError = Lang::get('errorCodeApi');
+
         $paypalConfigs = config('paypal');
 
         $this->apiContext = new ApiContext(
@@ -61,35 +73,47 @@ class PaymentController extends BaseApiController
     public function createPayment(Request $request)
     {
         try {
-            //join 2 bảng để lấy dữ liệu product
-            return $request->orderId;
+            $validator = TransactionPaypal::validate($request->all(), 'Create_Payment');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $checkOrderId = OrderUserInfor::where(['order_id' => $request->orderId])->first();
+            if (!$checkOrderId) {
+                return $this->responseErrorCustom("order_id_not_found", 404);
+            }
+            if ($checkOrderId->payment_method != "paypal") {
+                return $this->responseErrorCustom("payment_method_not_valid", 403);
+            }
+            if ($checkOrderId->paid == 1) {
+                return $this->responseErrorCustom("the_order_has_been_paid", 403);
+            }
+            $orderDetail = OrderDetail::getOrderDetail($request->orderId);
+
             $payer = new Payer();
             $payer->setPaymentMethod("paypal");
 
-            $item1 = new Item();
-            $item1->setName('Ground Coffee 40 oz')
-                ->setCurrency('USD')
-                ->setQuantity(1)
-                ->setSku("123123") // Similar to `item_number` in Classic API
-                ->setPrice(7.5);
-            $item2 = new Item();
-            $item2->setName('Granola bars')
-                ->setCurrency('USD')
-                ->setQuantity(5)
-                ->setSku("321321") // Similar to `item_number` in Classic API
-                ->setPrice(2);
-
+            $subtotal = 0.0;
+            $shipping = 1;
             $itemList = new ItemList();
-            $itemList->setItems(array($item1, $item2));
+            foreach ($orderDetail as $value) {
+                $item = new Item();
+                $item->setName(TransactionPaypal::utf8convert($value->product_name));
+                $item->setCurrency('USD');
+                $item->setQuantity($value->quantity);
+                $item->setPrice($value->product_price/23463);
+                $itemList->addItem($item);
+                $subtotal += ($value->quantity) * ($value->product_price/23463);
+            }
+
+            $subtotal = round ($subtotal , 2);
 
             $details = new Details();
-            $details->setShipping(1.2)
-                ->setTax(1.3)
-                ->setSubtotal(17.50);
+            $details->setShipping($shipping)
+                ->setSubtotal($subtotal);
 
             $amount = new Amount();
             $amount->setCurrency("USD")
-                ->setTotal(20)
+                ->setTotal($subtotal + $shipping)
                 ->setDetails($details);
 
             $transaction = new Transaction();
@@ -97,9 +121,8 @@ class PaymentController extends BaseApiController
                 ->setItemList($itemList)
                 ->setDescription("Payment description")
                 ->setInvoiceNumber(uniqid());
-
-            // $baseUrl = getBaseUrl();
-            $baseUrl = "http://localhost/";
+            
+            $baseUrl = "http://localhost:800";
             $redirectUrls = new RedirectUrls();
             $redirectUrls->setReturnUrl("$baseUrl/ExecutePayment.php?success=true")
                 ->setCancelUrl("$baseUrl/ExecutePayment.php?success=false");
@@ -109,11 +132,90 @@ class PaymentController extends BaseApiController
                 ->setPayer($payer)
                 ->setRedirectUrls($redirectUrls)
                 ->setTransactions(array($transaction));
+            
+            $payment->create($this->apiContext);
+            return $payment;
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), $exception->getCode(), 500);
+        }
+    }
 
-            $request = clone $payment;
+    /**
+     * @SWG\Post(
+     *     path="/payment/execute-payment",
+     *     description="execute payment",
+     *     tags={"Payment"},
+     *     summary="execute payment",
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="execute payment",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\property(
+     *                  property="orderId",
+     *                  type="integer",
+     *              ),
+     *              @SWG\property(
+     *                  property="paypalId",
+     *                  type="string",
+     *              ),
+     *              @SWG\property(
+     *                  property="payerId",
+     *                  type="string",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful operation"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function executePayment(Request $request)
+    {
+        try {
+            $validator = TransactionPaypal::validate($request->all(), 'Execute_Payment');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $checkOrderId = OrderUserInfor::where(['order_id' => $request->orderId])->first();
+            if (!$checkOrderId) {
+                return $this->responseErrorCustom("order_id_not_found", 404);
+            }
+
+            $checkPaypalId = TransactionPaypal::where(['paypal_id' => $request->paypalId])->first();
+            if ($checkPaypalId) {
+                return $this->responseErrorCustom("the_order_has_been_paid", 403);
+            }
+
+            $paypalId = $request->paypalId;
+            $payment = Payment::get($paypalId, $this->apiContext);
+            $payerId = $request->payerId;
+
+            $execution = new PaymentExecution();
+            $execution->setPayerId($payerId);
             try {
-                $payment->create($this->apiContext);
-                return $payment;
+                $result = $payment->execute($execution, $this->apiContext);
+
+                $transactionInfor =  new TransactionPaypal;
+                $transactionInfor->order_id = $request->orderId;
+                $transactionInfor->total_price = $result->transactions[0]->amount->total;
+                $transactionInfor->currency = $result->transactions[0]->amount->currency;
+                $transactionInfor->paypal_id = $result->id;
+                $transactionInfor->payer_id = $result->payer->payer_info->payer_id;
+                $transactionInfor->invoice_number = $result->transactions[0]->invoice_number;
+                $transactionInfor->save();
+
+                $checkOrderId->paid = 1;
+                $checkOrderId->save();
+
+                return $result;
+            } 
+            catch (PayPal\Exception\PayPalConnectionException $ex) {
+                return $ex;
             } catch (Exception $ex) {
                 return $ex;
             }
@@ -122,57 +224,42 @@ class PaymentController extends BaseApiController
         }
     }
 
-    /**
-     * @SWG\Get(
-     *     path="/payment/get-payment-list",
-     *     description="get payment list",
-     *     tags={"Payment"},
-     *     summary="get payment list",
-     *
-     *      @SWG\Response(response=200, description="Successful operation"),
-     *      @SWG\Response(response=401, description="Unauthorized"),
-     *      @SWG\Response(response=500, description="Internal Server Error"),
-     * )
-     */
-    public function getPaymentList(Request $request)
-    {
-        $limit = 10;
-        $offset = 0;
-        $params = [
-            'count' => $limit,
-            'start_index' => $offset
-        ];
-
-        try {
-            $payments = Payment::all($params, $this->apiContext);
-        } catch (\PayPal\Exception\PPConnectionException $paypalException) {
-            throw new \Exception($paypalException->getMessage());
-        }
-
-        return $payments;
-    }
 
     /**
      * @SWG\Get(
-     *     path="/payment/get-payment-details",
-     *     description="get payment details",
+     *     path="/payment/payment-details/{paypalId}",
+     *     description="Get payment details",
      *     tags={"Payment"},
-     *     summary="get payment details",
-     *
-     *      @SWG\Response(response=200, description="Successful operation"),
+     *     summary="Get payment details",
+     *     @SWG\Parameter(
+     *         description="Paypal id",
+     *         in="path",
+     *         name="paypalId",
+     *         required=true,
+     *         type="string",
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
      *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
      *      @SWG\Response(response=500, description="Internal Server Error"),
      * )
      */
+
     public function getPaymentDetails(Request $request)
     {
         try {
-            $paymentId = "PAYID-L2RQQGA3N630959R7680973W";
-            $paymentDetails = Payment::get($paymentId, $this->apiContext);
-        } catch (\PayPal\Exception\PPConnectionException $paypalException) {
-            throw new \Exception($paypalException->getMessage());
-        }
+            $validator = TransactionPaypal::validate(['paypalId' => $request->paypalId], 'Payment_Details');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $paypalId = $request->paypalId;
+            $payment = Payment::get($paypalId, $this->apiContext);
+            return $payment;
 
-        return $paymentDetails;
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), $exception->getCode(), 500);
+        }
     }
 }
