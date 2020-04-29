@@ -102,6 +102,8 @@ $ApiErrorMessages = array(
     'total_price_integer' => 'The total price must be integer',
     'payment_method_required' => 'The payment method is required',
     'payment_method_string' => 'The payment method must be string',
+    'notification_required' => 'The notification is required',
+    'notification_string' => 'The payment method must be string',
     'order_id_not_found' => 'The order id not found.',
     'product_name_required' => 'The product name is required',
     'product_name_string' => 'The product name must be string',
@@ -236,6 +238,8 @@ $ApiErrorCodes = array(
     'paypal_id_string' => 8039,
     'payer_id_required' => 8040,
     'payer_id_string' => 8041,
+    'notification_required' => 8042,
+    'notification_string' => 8043,
 );
 
 $ApiCodes['ApiErrorMessages'] = $ApiErrorMessages;

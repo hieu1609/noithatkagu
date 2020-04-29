@@ -190,5 +190,92 @@ class UserController extends BaseApiController
             return $this->responseErrorException($exception->getMessage(), 99999, 500);
         }
     }
+    
+    public function getNotifications(Request $request)
+    {
+        /**
+         * @SWG\Post(
+         *     path="/user/get-notifications",
+         *     description="Get notifications",
+         *     tags={"User"},
+         *     summary="Get notifications",
+         *     security={{"jwt":{}}},
+         *     @SWG\Parameter(
+         *          name="body",
+         *          description="Get notifications",
+         *          required=true,
+         *          in="body",
+         *          @SWG\Schema(
+         *              @SWG\property(
+         *                  property="page",
+         *                  type="integer",
+         *              ),
+         *          ),
+         *      ),
+         *      @SWG\Response(response=200, description="Successful operation"),
+         *      @SWG\Response(response=401, description="Unauthorized"),
+         *      @SWG\Response(response=500, description="Internal Server Error"),
+         * )
+         */
+
+        try {
+            $validator = Notification::validate($request->all(), 'Get_Notifications');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $result = Notification::getNotifications($request->user->id, $request->page);
+            return $this->responseSuccess($result);
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), $exception->getCode(), 500);
+        }
+    }
+    public function seenNotification(Request $request)
+    {
+        /**
+         * @SWG\Put(
+         *     path="/user/seen-notification",
+         *     description="Seen notification",
+         *     tags={"User"},
+         *     summary="Seen notification",
+         *     security={{"jwt":{}}},
+         *
+         *      @SWG\Parameter(
+         *          name="body",
+         *          description="Seen notification",
+         *          required=true,
+         *          in="body",
+         *          @SWG\Schema(
+         *              @SWG\property(
+         *                  property="notificationId",
+         *                  type="integer",
+         *              ),
+         *          ),
+         *      ),
+         *      @SWG\Response(response=200, description="Successful operation"),
+         *      @SWG\Response(response=401, description="Unauthorized"),
+         *      @SWG\Response(response=403, description="Forbidden"),
+         *      @SWG\Response(response=422, description="Unprocessable Entity"),
+         *      @SWG\Response(response=500, description="Internal Server Error"),
+         * )
+         */
+
+        try {
+            $validator = Notification::validate($request->all(), 'Seen_Notification');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $checkNotificationId = Notification::where([['user_id_receive', $request->user->id],['id', $request->notificationId]])->first();
+            if (!$checkNotificationId) {
+                return $this->responseErrorCustom("notification_id_not_found", 404);
+            }
+            else {
+                $checkNotificationId->update(['seen' => true]);
+                return $this->responseSuccess("Seen notification successfully");
+            }
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+
 
 }

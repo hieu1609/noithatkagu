@@ -53,6 +53,9 @@ Route::group(['prefix' => 'user'], function () {
         
         //Feedback
         Route::post('send-feedback', 'UserController@sendFeedback');
+        //Notification
+        Route::post('get-notifications', 'UserController@getNotifications');
+        Route::put('seen-notification', 'UserController@seenNotification');
     });
 });
 

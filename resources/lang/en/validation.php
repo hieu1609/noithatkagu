@@ -234,6 +234,10 @@ return [
             'required' => 'payment_method_required',
             'string' => 'payment_method_string',
         ],
+        'notificationId' => [
+            'required' => 'notification_required',
+            'string' => 'notification_string',
+        ],
         'productName' => [
             'required' => 'product_name_required',
             'string' => 'product_name_string',
