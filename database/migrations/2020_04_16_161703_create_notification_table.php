@@ -18,7 +18,6 @@ class CreateNotificationTable extends Migration
             $table->integer('user_id_receive')->unsigned()->default(1)->index();
             $table->string('title', 50);
             $table->string('content', 2000);
-            $table->boolean('seen')->default(0);
             $table->timestamps();
             $table->foreign('user_id_receive')->references('id')->on('users');
         });

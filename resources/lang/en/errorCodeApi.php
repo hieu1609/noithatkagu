@@ -56,6 +56,7 @@ $ApiErrorMessages = array(
     'phone_regex' => 'The phone number format is invalid.',
     'address_required' => 'The address is required.',
     'address_string' => 'The email must be string.',
+    'user_priority' => 'Permission denied',
 
     // Token Errors Message /
     'tokens_not_found' => 'The token is not found.',
@@ -119,6 +120,8 @@ $ApiErrorMessages = array(
     'paypal_id_string' => 'The paypal id must be string',
     'payer_id_required' => 'The payer id is required',
     'payer_id_string' => 'The payer id must be string',
+    'id_required' => 'The id is required',
+    'id_integer' => 'The id must be integer',
 );
 
 $ApiErrorCodes = array(
@@ -176,7 +179,8 @@ $ApiErrorCodes = array(
     'phone_string' => 2080,
     'phone_regex' => 2081,
     'address_required' => 2082,
-    'address_string' => 2038,
+    'address_string' => 2083,
+    'user_priority' => 2100,
 
     // Token Errors code: using 30xx /
     'tokens_not_found' => 3000,
@@ -240,6 +244,8 @@ $ApiErrorCodes = array(
     'payer_id_string' => 8041,
     'notification_required' => 8042,
     'notification_string' => 8043,
+    'id_required' => 8044,
+    'id_integer' =>8045,
 );
 
 $ApiCodes['ApiErrorMessages'] = $ApiErrorMessages;

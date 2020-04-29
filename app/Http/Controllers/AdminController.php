@@ -3,8 +3,654 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\OrderUserInfor;
+use App\ProductReviews;
+use App\Notification;
+use App\Feedback;
+use App\OrderDetail;
+use App\TransactionPaypal;
+use App\TopProducts;
 
 class AdminController extends BaseApiController
 {
-    //
+    /**
+     * @SWG\Post(
+     *     path="/admin/get-user-admin",
+     *     description="Get user",
+     *     tags={"Admin"},
+     *     summary="Get user",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Get user",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\property(
+     *                  property="page",
+     *                  type="integer",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful operation"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+    public function getUserAdmin(Request $request)
+    {
+        try {
+            $validator = User::validate($request->all(), 'Get_User_Admin');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $result['data'] = User::getUserAdmin($request->page);
+            $result['numPage'] = ceil(User::count()/5);
+            $result['total'] = User::count();
+            return $this->responseSuccess($result);
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), $exception->getCode(), 500);
+        }
+    }
+    /**
+     * @SWG\Post(
+     *     path="/admin/add-user",
+     *     description="Add user",
+     *     tags={"Admin"},
+     *     summary="Add user",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Add user",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="email",
+     *                  type="string",
+     *              ),
+     *              @SWG\property(
+     *                  property="password",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="name",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="phone",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="address",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="admin",
+     *                  type="boolean",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function addUser(Request $request)
+    {
+
+        try {
+            $validator = User::validate($request->all(), 'Rule_AddUser');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+
+            $user = new User;
+            $user->email = $request->email;
+            $user->password = bcrypt($request->password);
+            $user->name = $request->name;
+            $user->phone = $request->phone;
+            $user->address = $request->address;
+            $user->admin = $request->admin;
+            $user->save();
+            return $this->responseSuccess("Add User successfully");
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Put(
+     *     path="/admin/{id}",
+     *     description="Edit user",
+     *     tags={"Admin"},
+     *     summary="Edit user",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *         description="ID user to edit",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         type="integer",
+     *         format="int64"
+     *     ),
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Edit user",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="name",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="phone",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="address",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="admin",
+     *                  type="boolean",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function editUser(Request $request)
+    {
+        try {
+            $input = $request->all();
+            $input['userId'] = $request->id;
+
+            $validator = User::validate($input, 'Rule_EditUser');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+
+            $userId = $request->id;
+            $user = User::where(['id' => $userId])->first();
+            if (!$user) {
+                return $this->responseErrorCustom("users_not_found", 404);
+            }
+
+            $countAdmin = User::where(['admin' => 1])->count();
+            if ($countAdmin <= 1 && $request->admin == false && $user->admin == true) {
+                return $this->responseErrorCustom("can_not_edit_user", 403); //min number of admin is 1
+            }
+
+            $request->admin ?  $user->admin = 1 : $user->admin = 0;
+            $user->name = $request->name;
+            $user->phone = $request->phone;
+            $user->address = $request->address;
+            $user->save();
+            return $this->responseSuccess($user);
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Delete(
+     *     path="/admin/{id}",
+     *     description="Delete user",
+     *     tags={"Admin"},
+     *     summary="Delete user",
+     *     security={{"jwt":{}}},
+     *     @SWG\Parameter(
+     *         description="ID user to delete",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         type="integer",
+     *         format="int64"
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+    public function deleteUser(Request $request)
+    {
+
+        try {
+            $validator = User::validate(["userId" => $request->id], 'Rule_DeleteUser');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+
+            $userId = $request->id; //only for easy to under what is $request->id.
+            $user = User::where(['id' => $userId])->first();
+            if (!$user) {
+                return $this->responseErrorCustom("users_not_found", 404);
+            }
+
+            $orderTable = OrderUserInfor::where(['user_id' => $userId])->first();
+            if ($orderTable) {
+                return $this->responseErrorCustom("already_in_orderuserinfor_table", 403);
+                //delete user order infor
+            }
+
+            $productReview = ProductReviews::where(['user_id' => $userId])->first();
+            if ($productReview) {
+                return $this->responseErrorCustom("already_in_product_reviews_table", 403);
+            }
+
+            $notifications = Feedback::where(['user_id' => $userId])->first();
+            if ($notifications) {
+                return $this->responseErrorCustom("already_in_feedback_table", 403);
+            }
+
+            $notificationr = Notification::where(['user_id_receive' => $userId])->first();
+            if ($notificationr) {
+                return $this->responseErrorCustom("already_in_notification_table", 403);
+            }
+            $countAdmin = User::where(['admin' => 1])->count();
+            if ($countAdmin <= 1 && $user->admin == true) {
+                return $this->responseErrorCustom("can_not_delete_user", 403); //Forbidden
+            }
+
+            $user->delete();
+            return $this->responseSuccess("Delete user successfully");
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Delete(
+     *     path="/admin/order/{id}",
+     *     description="Delete purchases admin",
+     *     tags={"Admin"},
+     *     summary="Delete purchases admin",
+     *     security={{"jwt":{}}},
+     *     @SWG\Parameter(
+     *         description="ID purchases to delete",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         type="integer",
+     *         format="int64"
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+    public function deletePurchasesAdmin(Request $request)
+    {
+        try {
+            $input['id'] = $request->id;
+            $validator = OrderUserInfor::validate($input, 'Delete_Purchases_Admin');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $checkOrderUserInfor = OrderUserInfor::where(['order_id' => $request->id])->first();
+            if (!$checkOrderUserInfor) {
+                return $this->responseErrorCustom("order_id_not_found", 404);
+            }
+            $checkTransaction = TransactionPaypal::where(['order_id' => $request->id])->first();
+            if ($checkTransaction){
+                $checkTransaction->delete();
+            }
+            while (OrderDetail::where(['order_id' => $request->id])->first())
+            {
+                $checkOrderDetail = OrderDetail::where(['order_id' => $request->id])->first();
+                $oldProductId = $checkOrderDetail->product_id;
+                $checkOrderDetail->delete();
+                $totalProduct = OrderDetail::getTotalProductsById($oldProductId);
+                TopProducts::updateOrCreate(
+                    [
+                        'product_id' => $oldProductId,
+                    ],
+                    [
+                        'product_id' => $oldProductId,
+                        'total_products' => $totalProduct,
+                    ]
+                );
+            }
+            $checkOrderUserInfor->delete();
+            
+            return $this->responseSuccess("Delete successfully");
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+        /**
+     * @SWG\Post(
+     *     path="/admin/get-feedback-admin",
+     *     description="Get feedback",
+     *     tags={"Admin"},
+     *     summary="Get feedback",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Get feedback",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\property(
+     *                  property="page",
+     *                  type="integer",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful operation"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+    public function getFeedbackAdmin(Request $request)
+    {
+        try {
+            $validator = Feedback::validate($request->all(), 'Get_Feedback_Admin');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $total = Feedback::count();
+            $result['data'] = Feedback::getFeedbackAdmin($request->page);
+            $result['numPage'] = ceil($total/10);
+            $result['total'] = $total;
+            return $this->responseSuccess($result);
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), $exception->getCode(), 500);
+        }
+    }
+    /**
+     * @SWG\Post(
+     *     path="/admin/get-notifications-admin",
+     *     description="Get notifications",
+     *     tags={"Admin"},
+     *     summary="Get notifications",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Get notifications",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\property(
+     *                  property="page",
+     *                  type="integer",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful operation"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+    public function getNotificationsAdmin(Request $request)
+    {
+
+        try {
+            $validator = Notification::validate($request->all(), 'Get_Notifications_Admin');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $total = Notification::where(['user_id_receive' => 1])->count();
+            $result['data'] = Notification::getNotificationsAdmin($request->page);
+            $result['numPage'] = ceil($total/10);
+            $result['total'] = $total;
+            return $this->responseSuccess($result);
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), $exception->getCode(), 500);
+        }
+    }
+
+        /**
+     * @SWG\Post(
+     *     path="/admin/send-notification",
+     *     description="Send notification for user",
+     *     tags={"Admin"},
+     *     summary="Send notification",
+     *     security={{"jwt":{}}},
+     *
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Send notification for user",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\property(
+     *                  property="userId",
+     *                  type="integer",
+     *              ),
+     *              @SWG\property(
+     *                  property="notificationTitle",
+     *                  type="string",
+     *              ),
+     *              @SWG\property(
+     *                  property="notificationContent",
+     *                  type="string",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful operation"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function sendNotification(Request $request)
+    {
+
+        try {
+            $validator = Notification::validate($request->all(), 'Send_Notification');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            
+            $checkId = User::where(['id' => $request->userId])->first();
+            if (!$checkId) {
+                return $this->responseErrorCustom("id_not_found", 404);
+            }
+
+            if ($request->userId === $request->user->id) {
+                return $this->responseErrorCustom("that_is_your_id", 403);
+            }
+            $notification = new Notification;
+            $notification->user_id_receive = $request->userId;
+            $notification->title = $request->notificationTitle;
+            $notification->content = $request->notificationContent;
+            $notification->save();
+            return $this->responseSuccess("Send notification successfully");
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Post(
+     *     path="/admin/send-notification-for-all-users",
+     *     description="Send notification for all users",
+     *     tags={"Admin"},
+     *     summary="Send notification",
+     *     security={{"jwt":{}}},
+     *
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Send notification for all users",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\property(
+     *                  property="notificationTitle",
+     *                  type="string",
+     *              ),
+     *              @SWG\property(
+     *                  property="notificationContent",
+     *                  type="string",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful operation"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function sendNotificationForAllUsers(Request $request)
+    {
+
+        try {
+            $validator = Notification::validate($request->all(), 'Send_Notification_All_Users');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $allUserId = User::getUserId();
+            for ($i = 0; $i < count($allUserId); $i++) {
+                $notification = new Notification;
+                $notification->user_id_receive = $allUserId[$i]->id;
+                $notification->title = $request->notificationTitle;
+                $notification->content = $request->notificationContent;
+                $notification->save();
+            }
+            return $this->responseSuccess("Send notification for all users successfully");
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Put(
+     *     path="/admin/notification/{notificationId}",
+     *     description="Edit notification",
+     *     tags={"Admin"},
+     *     summary="Edit notification",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *         description="ID notification to edit",
+     *         in="path",
+     *         name="notificationId",
+     *         required=true,
+     *         type="integer",
+     *         format="int64"
+     *     ),
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Edit notification",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="userIdReceive",
+     *                  type="integer",
+     *              ),
+     *              @SWG\Property(
+     *                  property="notificationTitle",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="notificationContent",
+     *                  type="string",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+    public function editNotification(Request $request)
+    {
+
+        try {
+            $input = $request->all();
+            $input['notificationId'] = $request->notificationId;
+            $validator = Notification::validate($input, 'Edit_Notification');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $checkUserIdReceive = User::where(['id' => $request->userIdReceive])->first();
+            if (!$checkUserIdReceive) {
+                return $this->responseErrorCustom("user_id_receive_not_found", 404);
+            }
+            
+            $checkNotification = Notification::where(['id' => $request->notificationId])->first();
+            if (!$checkNotification) {
+                return $this->responseErrorCustom("notification_id_not_found", 404);
+            }
+            $checkNotification->user_id_receive = $request->userIdReceive;
+            $checkNotification->title = $request->notificationTitle;
+            $checkNotification->content = $request->notificationContent;
+            $checkNotification->save();
+            return $this->responseSuccess($checkNotification);
+
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Delete(
+     *     path="/admin/notification/{notificationId}",
+     *     description="Delete notification",
+     *     tags={"Admin"},
+     *     summary="Delete notification",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *         description="ID notification to delete",
+     *         in="path",
+     *         name="notificationId",
+     *         required=true,
+     *         type="integer",
+     *         format="int64"
+     *     ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function deleteNotification(Request $request)
+    {
+        try {
+            $input['notificationId'] = $request->notificationId;
+            $validator = Notification::validate($input, 'Delete_Notification');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $checkNotification = Notification::where(['id' => $request->notificationId])->first();
+            if (!$checkNotification) {
+                return $this->responseErrorCustom("notification_id_not_found", 404);
+            }
+
+            $checkNotification->delete();
+            return $this->responseSuccess("Delete notification successfully");
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
 }
