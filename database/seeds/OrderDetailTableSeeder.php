@@ -20,6 +20,7 @@ class OrderDetailTableSeeder extends Seeder
                 'product_name' => 'Bộ bàn ăn chân gỗ sồi',
                 'product_price' => 5000000,
                 'quantity' => 1,
+                'status' => 'finished',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -29,6 +30,7 @@ class OrderDetailTableSeeder extends Seeder
                 'product_name' => 'Giường gia đình gỗ sồi',
                 'product_price' => 5500000,
                 'quantity' => 1,
+                'status' => 'finished',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -38,6 +40,7 @@ class OrderDetailTableSeeder extends Seeder
                 'product_name' => 'Bộ bàn ăn 6 ghế màu tự nhiên',
                 'product_price' => 7000000,
                 'quantity' => 2,
+                'status' => 'finished',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],

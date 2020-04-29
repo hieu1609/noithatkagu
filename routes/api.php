@@ -55,7 +55,6 @@ Route::group(['prefix' => 'user'], function () {
         Route::post('send-feedback', 'UserController@sendFeedback');
         //Notification
         Route::post('get-notifications', 'UserController@getNotifications');
-        Route::put('seen-notification', 'UserController@seenNotification');
     });
 });
 
@@ -72,3 +71,23 @@ Route::group(['prefix' => 'payment'], function () {
     Route::get('payment-details/{paypalId}', 'PaymentController@getPaymentDetails');
 });
 
+//Route Admin
+Route::group(['prefix' => 'admin'], function () {
+    Route::middleware(['jwt', 'admin'])->group(function () {
+        //User
+        Route::post('get-user-admin', 'AdminController@getUserAdmin');
+        Route::post('add-user', 'AdminController@addUser');
+        Route::put('/{id}', 'AdminController@editUser');
+        Route::delete('/{id}', 'AdminController@deleteUser');
+        //Order
+        Route::delete('order/{id}', 'AdminController@deletePurchasesAdmin');;
+        //Feedback
+        Route::post('get-feedback-admin', 'AdminController@getFeedbackAdmin');
+        //Notifications
+        Route::post('get-notifications-admin', 'AdminController@getNotificationsAdmin');
+        Route::post('send-notification', 'AdminController@sendNotification');
+        Route::post('send-notification-for-all-users', 'AdminController@sendNotificationForAllUsers');
+        Route::put('notification/{notificationId}', 'AdminController@editNotification');
+        Route::delete('notification/{notificationId}', 'AdminController@deleteNotification');
+    });
+});

@@ -25,5 +25,10 @@ class OrderDetail extends BaseModel
         return OrderDetail::where('order_id', $OrderId)
         ->get();
     }
+    public static function getTotalProductsById($productId) {
+        return OrderDetail::where('product_id', $productId)
+        ->where('status', 'finished')
+        ->sum('quantity');
+    }
 
 }

@@ -18,9 +18,12 @@ class OrderUserInfor extends BaseModel
             'phone' => 'required|string|regex:/^[0-9\-\+]{9,15}$/',
             'address' => 'required|string',
             'email' => 'required|regex:/^[a-z][a-z0-9_\.]{2,}@[a-z0-9]{2,}(\.[a-z0-9]{2,}){1,2}$/',
-            'totalPrice' => 'required|integer   ',
+            'totalPrice' => 'required|integer',
             'paymentMethod' => 'required|string',
         ],
+        'Delete_Purchases_Admin' => [
+            'id' => 'required|integer',
+        ]
 
     );
 
