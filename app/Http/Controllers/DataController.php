@@ -79,6 +79,11 @@ class DataController extends BaseApiController
      *                  type="integer",
      *                  description="1|2|3 = new|price: ascending|decrease",
      *              ),
+     *              @SWG\property(
+     *                  property="filter",
+     *                  type="integer",
+     *                  description="1|2 = rating|price",
+     *              ),
      *          ),
      *      ),
      *      @SWG\Response(response=200, description="Successful operation"),
