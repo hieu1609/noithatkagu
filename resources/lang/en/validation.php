@@ -234,6 +234,30 @@ return [
             'required' => 'payment_method_required',
             'string' => 'payment_method_string',
         ],
+        'productName' => [
+            'required' => 'product_name_required',
+            'string' => 'product_name_string',
+        ],
+        'productPrice' => [
+            'required' => 'product_price_required',
+            'integer' => 'product_price_integer',
+        ],
+        'quantity' => [
+            'required' => 'quantity_required',
+            'integer' => 'quantity_integer',
+        ],
+        'orderId' => [
+            'required' => 'order_id_required',
+            'integer' => 'order_id_integer',
+        ],
+        'paypalId' => [
+            'required' => 'paypal_id_required',
+            'string' => 'paypal_id_string',
+        ],
+        'payerId' => [
+            'required' => 'payer_id_required',
+            'string' => 'payer_id_string',
+        ],
     ],
 
     /*
