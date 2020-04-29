@@ -717,19 +717,46 @@
                 }
             }
         },
-        "/payment/get-payment-list": {
-            "get": {
+        "/payment/execute-payment": {
+            "post": {
                 "tags": [
                     "Payment"
                 ],
-                "summary": "get payment list",
-                "description": "get payment list",
+                "summary": "execute payment",
+                "description": "execute payment",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "execute payment",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "orderId": {
+                                    "type": "integer"
+                                },
+                                "paypalId": {
+                                    "type": "string"
+                                },
+                                "payerId": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation"
                     },
                     "401": {
                         "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
                     },
                     "500": {
                         "description": "Internal Server Error"
@@ -737,19 +764,37 @@
                 }
             }
         },
-        "/payment/get-payment-details": {
+        "/payment/payment-details/{paypalId}": {
             "get": {
                 "tags": [
                     "Payment"
                 ],
-                "summary": "get payment details",
-                "description": "get payment details",
+                "summary": "Get payment details",
+                "description": "Get payment details",
+                "parameters": [
+                    {
+                        "name": "paypalId",
+                        "in": "path",
+                        "description": "Paypal id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "Successful operation"
+                        "description": "Successful"
                     },
                     "401": {
                         "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
                     },
                     "500": {
                         "description": "Internal Server Error"
