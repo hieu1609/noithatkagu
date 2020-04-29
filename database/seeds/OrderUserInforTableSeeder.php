@@ -33,7 +33,7 @@ class OrderUserInforTableSeeder extends Seeder
                 'address' => 'Hà Nội',
                 'total_price' => 14000000,
                 'payment_method' => 'cash',
-                'paid' => 0,
+                'paid' => 1,
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],

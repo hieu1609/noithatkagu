@@ -8,7 +8,7 @@ class Notification extends BaseModel
 {
     protected $table = 'notification';
     protected $fillable = [
-        'user_id_receive', 'title', 'content', 'seen'
+        'user_id_receive', 'title', 'content'
     ];
 
     public static $rules = array(
@@ -21,20 +21,15 @@ class Notification extends BaseModel
             'notificationTitle' => 'required|string|max:50',
             'notificationContent' => 'required|string|max:2000'
         ],
-        'Seen_Notification' => [
-            'notificationId' => 'required|integer'
-        ],
         'Send_Notification_All_Users' => [
             'notificationTitle' => 'required|string|max:50',
             'notificationContent' => 'required|string|max:2000'
         ],
         'Edit_Notification' => [
             'notificationId' => 'required|integer',
-            'userIdSend' => 'required|integer',
             'userIdReceive' => 'required|integer',
             'notificationTitle' => 'required|string|max:50',
             'notificationContent' => 'required|string|max:2000',
-            'seen' => 'required|boolean'
         ],
         'Delete_Notification' => [
             'notificationId' => 'required|integer'
@@ -52,18 +47,6 @@ class Notification extends BaseModel
         $space = ($page - 1) * $limit;
         return Notification::join('users', 'notification.user_id_receive', '=', 'users.id')
         ->orderBy('notification.id', 'desc')
-        ->where('notification.user_id_send', 1)
-        ->limit($limit)
-        ->offset($space)
-        ->get(['notification.*', 'users.name', 'users.admin']);
-    }
-
-    public static function getFeedbackAdmin($page) {
-        $limit = 10;
-        $space = ($page - 1) * $limit;
-        return Notification::join('users', 'notification.user_id_send', '=', 'users.id')
-        ->orderBy('notification.seen', 'asc')
-        ->where('notification.user_id_receive', 1)
         ->limit($limit)
         ->offset($space)
         ->get(['notification.*', 'users.name', 'users.admin']);

@@ -262,6 +262,10 @@ return [
             'required' => 'payer_id_required',
             'string' => 'payer_id_string',
         ],
+        'id' => [
+            'required' => 'id_required',
+            'integer' => 'id_integer',
+        ],
     ],
 
     /*

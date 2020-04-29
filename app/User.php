@@ -107,7 +107,7 @@ class User extends BaseModel  implements JWTSubject, Authenticatable
     );
 
     public static function getUserAdmin($page) {
-        $limit = 10;
+        $limit = 5;
         $space = ($page - 1) * $limit;
         return User::orderBy('id', 'asc')
         ->limit($limit)
