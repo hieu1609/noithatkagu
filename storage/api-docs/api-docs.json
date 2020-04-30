@@ -1016,8 +1016,17 @@
                                     "type": "integer"
                                 },
                                 "sort": {
-                                    "description": "1|2|3 = new|price: ascending|decrease",
+                                    "description": "0|1|2|3 = new|price: ascending|decrease",
                                     "type": "integer"
+                                },
+                                "rating": {
+                                    "type": "integer"
+                                },
+                                "minPrice": {
+                                    "type": "string"
+                                },
+                                "maxPrice": {
+                                    "type": "string"
                                 }
                             }
                         }

@@ -19,7 +19,10 @@ class Product extends BaseModel
         'Get_Product' => [
             'categoryId' => 'required|integer',
             'page' => 'required|integer',
-            'sort' => 'required|integer'
+            'sort' => 'required|integer',
+            'rating' => 'required|integer',
+            'minPrice' => 'required|string',
+            'maxPrice' => 'required|string'
         ],
         'Get_Product_Detail' => [
             'productId' => 'required|integer',
@@ -54,9 +57,8 @@ class Product extends BaseModel
             'page' => 'required|integer'
         ],
     );
-
-    public static function getProductByCategoryId($categoryId, $page, $sort) {
-        //0|1|2|3 = id|new|price: ascending|decrease
+    public static function getProductByCategoryId($categoryId, $page, $sort, $rating, $minPrice, $maxPrice) {
+        //$sort = 0|1|2|3 = id|new|price: ascending|decrease
         $orderBy1 = 'product_id';
         $orderBy2 = 'asc';
         switch ($sort) {
@@ -78,11 +80,36 @@ class Product extends BaseModel
         }
         $limit = 6;
         $space = ($page - 1) * $limit;
-        $data = Product::where('cat_id', $categoryId)
+        $data = Product::where([['cat_id', $categoryId]])
         ->orderBy($orderBy1, $orderBy2)
         ->limit($limit)
         ->offset($space)
         ->get();
+
+        if ($rating != 0) {
+            foreach ($data as $key => $value) {
+                if($value['rating'] >= $rating)
+                $data1[$key] = $value;
+            }
+            $data = $data1;
+        }
+
+        if ($minPrice != 0) {
+            foreach ($data as $key => $value) {
+                if($value['product_price'] >= $minPrice)
+                $data2[$key] = $value;
+            }
+            $data = $data2;
+        }
+
+        if ($maxPrice != 0) {
+            foreach ($data as $key => $value) {
+                if($value['product_price'] <= $maxPrice)
+                $data3[$key] = $value;
+            }
+            $data = $data3;
+        }
+
         foreach ($data as $key => $value) {
             $data[$key]['image'] = ProductImage::where('product_image.product_id', $value['product_id'])->get();
             $data[$key]['commentNumber'] = ProductReviews::where('product_reviews.product_id', $value['product_id'])->count();
