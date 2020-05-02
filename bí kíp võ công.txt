@@ -1,0 +1,65 @@
+﻿Sử dụng API noithatkagu
+I)Home
+​1. /data​/get-slide-show
+
+2. ​/data​/get-product-category
+
+3. /data/get-new-product
+II)Search && Get product by category id
+1. /data/search-product
+  "keyword": "string",
+  "page": 0,
+  "sort": 0,
+  "rating": 0, -> không dùng gửi 0
+  "minPrice": "string", -> không dùng gửi 0 (kiểu string do số lớn quá)
+  "maxPrice": "string" -> không dùng gửi 0
+2. /data/get-product-by-category-id
+  "categoryId": 0,
+  "page": 0,
+  "sort": 0,
+  "rating": 0, -> không dùng gửi 0
+  "minPrice": "string", -> không dùng gửi 0
+  "maxPrice": "string" -> không dùng gửi 0
+II)Product details
+1. /data/get-product-detail
+  "productId": 0
+2. /data/get-comment-product
+  "productId": 0,
+  "page": 0
+3. /data/get-related-products
+  "productId": 0
+Lấy các sản phẩm liên quan theo kiểu random đề xuất cho người dùng
+IV)Cart
+1. /cart/post-user-infor
+  "userId": 0, -> tùy vào người đó có đăng nhập hay không
+  "name": "string",
+  "phone": "string",
+  "email": "string",
+  "address": "string",
+  "deliveryOption": "string", -> GHN Express, Viettel Post, Viet Nam Post
+  "totalPrice": 0, -> tổng giá được tính sẳn tại front end theo đơn hàng
+  "paymentMethod": "string" -> paypal hoặc cash
+2. /cart/post-order-detail 
+gọi API này n lần theo số loại sản phẩm
+  "orderId": 0,
+  "productId": 0,
+  "productName": "string",
+  "productPrice": 0, -> giá của sản phẩm tại thời điểm mua đó
+  "quantity": 0
+3. /payment/create-payment
+  "orderId": 0
+kiểm tra $payment->status == "pay" || "cash"
+nếu status là cash sẽ trả về thông tin đơn hàng cho người dùng báo thành công
+nếu status là pay trả về thông tin đặt hàng, sử dụng link chuyển tiếp cho user ->links[1]->href
+Tại đây user đăng nhập tài khoản paypal và bấm nút continue sẽ chuyển đến ExecutePayment.php?success=true
+hoặc ExecutePayment.php?success=false
+http://localhost:800/ExecutePayment.php?success=true&paymentId=PAYID-L2WPR6Q0CN96016G4609693K&token=EC-6RV74227DK869212Y&PayerID=9C65CJTTZ55DA
+Khúc này bạn code file này nếu false hiển bị giao diện lỗi và quay về trang home
+Nếu trả về true bạn lưu lại paypalId, payerId trên param và hiển thị cái xoay xoay wating gọi API tiếp theo
+4. /payment/execute-payment
+  "orderId": 0,
+  "paypalId": "string",
+  "payerId": "string"
+Tới khúc này truyền vào 2 biến đã lưu ở trên vào body luôn :>> với cái orderId nữa là thanh toán ok
+orderId mình để lưu thông tin thanh toán paypal theo đơn hàng để admin tra thanh toán cho nó dễ thôi
+Kết quả trả về của API này là 1 cái cục to đùng tùy bạn lấy gì lấy thôi chủ yếu là màn hình thành công

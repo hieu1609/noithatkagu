@@ -274,6 +274,10 @@ return [
             'required' => 'max_price_required',
             'string' => 'max_price_string',
         ],
+        'deliveryOption' => [
+            'required' => 'deliver_option_required',
+            'string' => 'delivery_option_string',
+        ],
     ],
 
     /*

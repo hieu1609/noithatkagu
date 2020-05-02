@@ -81,12 +81,17 @@ class PaymentController extends BaseApiController
             if (!$checkOrderId) {
                 return $this->responseErrorCustom("order_id_not_found", 404);
             }
-            if ($checkOrderId->payment_method != "paypal") {
-                return $this->responseErrorCustom("payment_method_not_valid", 403);
-            }
             if ($checkOrderId->paid == 1) {
                 return $this->responseErrorCustom("the_order_has_been_paid", 403);
             }
+            if ($checkOrderId->payment_method == "cash") {
+                $orderInfor = OrderUserInfor::getOrderInfor($request->orderId);
+                return $orderInfor;
+            }
+            if ($checkOrderId->payment_method != "paypal") {
+                return $this->responseErrorCustom("payment_method_not_valid", 403);
+            }
+
             $orderDetail = OrderDetail::getOrderDetail($request->orderId);
 
             $payer = new Payer();
@@ -134,7 +139,8 @@ class PaymentController extends BaseApiController
                 ->setTransactions(array($transaction));
             
             $payment->create($this->apiContext);
-            return $payment;
+            $payment->status = "pay";
+            return $payment->links[1]->href;
         } catch (\Exception $exception) {
             return $this->responseErrorException($exception->getMessage(), $exception->getCode(), 500);
         }
