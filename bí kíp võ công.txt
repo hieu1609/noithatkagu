@@ -9,14 +9,14 @@ II)Search && Get product by category id
 1. /data/search-product
   "keyword": "string",
   "page": 0,
-  "sort": 0,
+  "sort": 0, -> 0|1|2|3 = id(default)|new|price: ascending|decrease
   "rating": 0, -> không dùng gửi 0
   "minPrice": "string", -> không dùng gửi 0 (kiểu string do số lớn quá)
   "maxPrice": "string" -> không dùng gửi 0
 2. /data/get-product-by-category-id
   "categoryId": 0,
   "page": 0,
-  "sort": 0,
+  "sort": 0, -> 0|1|2|3 = id(default)|new|price: ascending|decrease
   "rating": 0, -> không dùng gửi 0
   "minPrice": "string", -> không dùng gửi 0
   "maxPrice": "string" -> không dùng gửi 0
