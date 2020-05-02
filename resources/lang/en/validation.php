@@ -282,10 +282,6 @@ return [
             'required' => 'product_color_required',
             'string' => 'pproduct_color_string',
         ],
-        'description' => [
-            'required' => 'infor_required',
-            'string' => 'infor_string',
-        ],
         'slideShowId' => [
             'required' => 'slideshow_id_required',
             'integer' => 'slideshow_id_integer',
@@ -305,6 +301,18 @@ return [
         'productImageId' => [
             'required' => 'product_image_id_required',
             'integer' => 'product_image_id_integer',
+        ],
+        'minPrice' => [
+            'required' => 'min_price_required',
+            'string' => 'min_price_string',
+        ],
+        'maxPrice' => [
+            'required' => 'max_price_required',
+            'string' => 'max_price_string',
+        ],
+        'deliveryOption' => [
+            'required' => 'deliver_option_required',
+            'string' => 'delivery_option_string',
         ],
     ],
 

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\OrderDetail;
 
 class OrderUserInfor extends BaseModel
 {
@@ -17,6 +18,7 @@ class OrderUserInfor extends BaseModel
             'name' => 'required|string',
             'phone' => 'required|string|regex:/^[0-9\-\+]{9,15}$/',
             'address' => 'required|string',
+            'deliveryOption' => 'required|string',
             'email' => 'required|regex:/^[a-z][a-z0-9_\.]{2,}@[a-z0-9]{2,}(\.[a-z0-9]{2,}){1,2}$/',
             'totalPrice' => 'required|integer',
             'paymentMethod' => 'required|string',
@@ -32,5 +34,14 @@ class OrderUserInfor extends BaseModel
         ->orderBy('order_id', 'desc')
         ->limit(1)
         ->get();
+    }
+
+    public static function getOrderInfor($orderId) {
+        $data = OrderUserInfor::where('order_id', $orderId)
+        ->get();
+        $orderInfor = $data[0];
+        $orderInfor->detail = OrderDetail::getOrderDetail($orderId);
+        $orderInfor->status = "order";
+        return $orderInfor;
     }
 }

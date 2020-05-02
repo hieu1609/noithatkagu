@@ -19,7 +19,10 @@ class Product extends BaseModel
         'Get_Product' => [
             'categoryId' => 'required|integer',
             'page' => 'required|integer',
-            'sort' => 'required|integer'
+            'sort' => 'required|integer',
+            'rating' => 'required|integer',
+            'minPrice' => 'required|string',
+            'maxPrice' => 'required|string'
         ],
         'Get_Product_Detail' => [
             'productId' => 'required|integer',
@@ -30,7 +33,10 @@ class Product extends BaseModel
         'Search_Product' => [
             'keyword' => 'required|string',
             'page' => 'required|integer',
-            'sort' => 'required|integer'
+            'sort' => 'required|integer',
+            'rating' => 'required|integer',
+            'minPrice' => 'required|string',
+            'maxPrice' => 'required|string'
         ],
         'Add_Product' => [
             'productName' => 'required|string',
@@ -62,9 +68,8 @@ class Product extends BaseModel
             'page' => 'required|integer'
         ],
     );
-
-    public static function getProductByCategoryId($categoryId, $page, $sort) {
-        //0|1|2|3 = id|new|price: ascending|decrease
+    public static function getProductByCategoryId($categoryId, $page, $sort, $rating, $minPrice, $maxPrice) {
+        //$sort = 0|1|2|3 = id|new|price: ascending|decrease
         $orderBy1 = 'product_id';
         $orderBy2 = 'asc';
         switch ($sort) {
@@ -84,18 +89,54 @@ class Product extends BaseModel
                 $orderBy1 = 'product_id';
                 $orderBy2 = 'asc';
         }
-        $limit = 6;
-        $space = ($page - 1) * $limit;
-        $data = Product::where('cat_id', $categoryId)
+        $data = Product::where([['cat_id', $categoryId]])
         ->orderBy($orderBy1, $orderBy2)
-        ->limit($limit)
-        ->offset($space)
         ->get();
+
+        $data1 = array();
+        $data2 = array();
+        $data3 = array();
+        if ($rating != 0) {
+            foreach ($data as $key => $value) {
+                if($value['rating'] >= $rating)
+                    array_push($data1, $value);
+            }
+            $data = $data1;
+        }
+
+        if ($minPrice != 0) {
+            foreach ($data as $key => $value) {
+                if($value['product_price'] >= $minPrice)
+                    array_push($data2, $value);
+            }
+            $data = $data2;
+        }
+
+        if ($maxPrice != 0) {
+            foreach ($data as $key => $value) {
+                if($value['product_price'] <= $maxPrice)
+                    array_push($data3, $value);
+            }
+            $data = $data3;
+        }
+
         foreach ($data as $key => $value) {
             $data[$key]['image'] = ProductImage::where('product_image.product_id', $value['product_id'])->get();
             $data[$key]['commentNumber'] = ProductReviews::where('product_reviews.product_id', $value['product_id'])->count();
         }
-        return $data;
+
+        $limit = 6;
+        $offset = ($page - 1) * $limit;
+        $result['numPage'] = ceil(count($data)/$limit);
+        $result['total'] = count($data);
+        if(is_array($data)) {
+            $result['data'] = array_slice($data, $offset, $limit);
+        }
+        else {
+            $result['data'] = array_slice($data->toArray(), $offset, $limit);
+        }
+
+        return $result;
     }
 
     public static function getNewProduct() {
@@ -109,7 +150,7 @@ class Product extends BaseModel
         return $data;
     }
 
-    public static function searchProduct($keyword, $page, $sort) {
+    public static function searchProduct($keyword, $page, $sort, $rating, $minPrice, $maxPrice) {
         //0|1|2|3 = id|new|price: ascending|decrease
         $orderBy1 = 'product_id';
         $orderBy2 = 'asc';
@@ -130,20 +171,54 @@ class Product extends BaseModel
                 $orderBy1 = 'product_id';
                 $orderBy2 = 'asc';
         }
-        $limit = 6;
-        $space = ($page - 1) * $limit;
         $data = Product::where('product_name', 'like', "%{$keyword}%")
         ->orWhere('tag', 'like', "%{$keyword}%")
         ->orderBy($orderBy1, $orderBy2)
-        ->limit($limit)
-        ->offset($space)
         ->get();
         
+        $data1 = array();
+        $data2 = array();
+        $data3 = array();
+        if ($rating != 0) {
+            foreach ($data as $key => $value) {
+                if($value['rating'] >= $rating)
+                    array_push($data1, $value);
+            }
+            $data = $data1;
+        }
+
+        if ($minPrice != 0) {
+            foreach ($data as $key => $value) {
+                if($value['product_price'] >= $minPrice)
+                    array_push($data2, $value);
+            }
+            $data = $data2;
+        }
+
+        if ($maxPrice != 0) {
+            foreach ($data as $key => $value) {
+                if($value['product_price'] <= $maxPrice)
+                    array_push($data3, $value);
+            }
+            $data = $data3;
+        }
+
         foreach ($data as $key => $value) {
             $data[$key]['image'] = ProductImage::where('product_image.product_id', $value['product_id'])->get();
             $data[$key]['commentNumber'] = ProductReviews::where('product_reviews.product_id', $value['product_id'])->count();
         }
-        return $data;
+
+        $limit = 6;
+        $offset = ($page - 1) * $limit;
+        $result['numPage'] = ceil(count($data)/$limit);
+        $result['total'] = count($data);
+        if(is_array($data)) {
+            $result['data'] = array_slice($data, $offset, $limit);
+        }
+        else {
+            $result['data'] = array_slice($data->toArray(), $offset, $limit);
+        }
+        return $result;
     }
 
     public static function getProductDetail($productId) {

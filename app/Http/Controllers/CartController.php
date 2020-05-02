@@ -42,6 +42,10 @@ class CartController extends BaseApiController
      *                  property="address",
      *                  type="string",
      *              ),
+     *               @SWG\property(
+     *                  property="deliveryOption",
+     *                  type="string",
+     *              ),
      *              @SWG\property(
      *                  property="totalPrice",
      *                  type="integer",
@@ -73,6 +77,7 @@ class CartController extends BaseApiController
             $userInfor->phone = $request->phone;
             $userInfor->email = $request->email;
             $userInfor->address = $request->address;
+            $userInfor->delivery_option = $request->deliveryOption;
             $userInfor->total_price = $request->totalPrice;
             $userInfor->payment_method = $request->paymentMethod;
             $userInfor->save();

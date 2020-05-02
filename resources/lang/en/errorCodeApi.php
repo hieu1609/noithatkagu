@@ -140,6 +140,12 @@ $ApiErrorMessages = array(
     'image_description_string' => 'The image description must be string',
     'product_image_id_required' =>  'The product image id is required',
     'product_image_id_integer' => 'The product image id must be integer',
+    'min_price_required' => 'The min price is required',
+    'min_price_string' => 'The min price must be string',
+    'max_price_required' => 'The max price is required',
+    'max_price_string' => 'The max price must be string',
+    'deliver_option_required' => 'The deliver option is required',
+    'delivery_option_string' => 'The deliver option must be string',
 );
 $ApiErrorCodes = array(
 
@@ -283,6 +289,13 @@ $ApiErrorCodes = array(
     'image_description_string' => 8063,
     'product_image_id_required' => 8064,
     'product_image_id_integer' => 8065,
+    'id_integer' => 8066,
+    'min_price_required' => 8067,
+    'min_price_string' => 8068,
+    'max_price_required' => 8069,
+    'max_price_string' => 8070,
+    'deliver_option_required' => 8071,
+    'delivery_option_string' => 8072,
 );
 
 $ApiCodes['ApiErrorMessages'] = $ApiErrorMessages;
