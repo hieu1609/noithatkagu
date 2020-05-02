@@ -89,5 +89,16 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('send-notification-for-all-users', 'AdminController@sendNotificationForAllUsers');
         Route::put('notification/{notificationId}', 'AdminController@editNotification');
         Route::delete('notification/{notificationId}', 'AdminController@deleteNotification');
+        //Product
+        Route::post('get-product-admin', 'AdminController@getProductAdmin');
+        Route::get('get-all-product-admin', 'AdminController@getAllProductAdmin');
+        Route::post('add-product', 'AdminController@addProduct');
+        Route::put('product/{productId}', 'AdminController@editProduct');
+        Route::delete('product/{productId}', 'AdminController@deleteProduct');
+        //Slide show
+        Route::post('get-slide-showAdmin', 'AdminController@getSlideShowAdmin');
+        Route::post('add-slide-show', 'AdminController@addSlideShow');
+        Route::put('slideshow/{slideShowId}', 'AdminController@editSlideShow');
+        Route::delete('slideshow/{slideShowId}', 'AdminController@deleteSlideShow');        
     });
 });

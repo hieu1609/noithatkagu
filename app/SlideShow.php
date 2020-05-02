@@ -12,7 +12,21 @@ class SlideShow extends BaseModel
     ];
 
     public static $rules = array(
-
+        'Get_Slide_Show_Admin' => [
+            'page' => 'required|integer'
+        ],
+        'Add_Slide_Show' => [
+            'image' => 'required|string',
+            'title' => 'required|string',
+        ],
+        'Edit_Slide_Show' => [
+            'slideShowId' => 'required|integer',
+            'image' => 'required|string',
+            'title' => 'required|string',
+        ],
+        'Delete_Slide_Show' => [
+            'slideShowId' => 'required|integer'
+        ],
     );
 
     public static function getSlideShow() {

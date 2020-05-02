@@ -12,7 +12,7 @@ class Product extends BaseModel
     protected $primaryKey = 'product_id';
     protected $table = 'product';
     protected $fillable = [
-        'product_id', 'product_name', 'product_price', 'infor', 'tag', 'cat_id', 'rating',
+        'product_id', 'product_name', 'product_price', 'material', 'size', 'color', 'infor', 'tag', 'cat_id', 'rating',
     ];
 
     public static $rules = array(
@@ -35,17 +35,25 @@ class Product extends BaseModel
         'Add_Product' => [
             'productName' => 'required|string',
             'productPrice' => 'required|integer',
-            'productImage' => 'required|string',
-            'description' => 'required|string',
+            'productMaterial' => 'required|string',
+            'productSize' => 'required|string',
+            'productColor' => 'required|string',
+            'infor' => 'required|string',
             'categoryId' => 'required|integer',
+            'rating' => 'required|integer',
+            'tag' => 'required|string',
         ],
         'Edit_Product' => [
             'productId' => 'required|string',
             'productName' => 'required|string',
             'productPrice' => 'required|integer',
-            'productImage' => 'required|string',
-            'description' => 'required|string',
+            'productMaterial' => 'required|string',
+            'productSize' => 'required|string',
+            'productColor' => 'required|string',
+            'infor' => 'required|string',
             'categoryId' => 'required|integer',
+            'rating' => 'required|integer',
+            'tag' => 'required|string',
         ],
         'Delete_Product' => [
             'productId' => 'required|string',

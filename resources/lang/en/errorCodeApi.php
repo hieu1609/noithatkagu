@@ -122,6 +122,18 @@ $ApiErrorMessages = array(
     'payer_id_string' => 'The payer id must be string',
     'id_required' => 'The id is required',
     'id_integer' => 'The id must be integer',
+    'infor_required' => 'The description id is required',
+    'infor_string' => 'The description must be string',
+    'product_size_required' => 'The description id is required',
+    'product_size_string' => 'The description must be string',
+    'product_material__required' => 'The description id is required',
+    'product_material__string' => 'The description must be string',
+    'product_color__required' => 'The description id is required',
+    'product_color__string' => 'The description must be string',
+    'slideshow_id_required' => 'The slideshow id is required',
+    'slideshow_id_integer' => 'The slideshow id must be string',
+    'image_required' => 'The image id is required',
+    'image_string' => 'The image id must be string',
 );
 
 $ApiErrorCodes = array(
@@ -246,6 +258,20 @@ $ApiErrorCodes = array(
     'notification_string' => 8043,
     'id_required' => 8044,
     'id_integer' =>8045,
+    'infor_required' => 8046,
+    'infor_string' => 8047,
+    'product_image_required' => 8048,
+    'product_image_string' => 8049,
+    'product_material_required' => 8050,
+    'product_material_string' => 8051,
+    'product_color_required' => 8052,
+    'product_color_string' => 8053,
+    'product_size_required' => 8054,
+    'product_size_string' => 8055,
+    'slideshow_id_required' => 8056,
+    'slideshow_id_integer' => 8057,
+    'image_required' => 8058,
+    'image_string' => 8059,
 );
 
 $ApiCodes['ApiErrorMessages'] = $ApiErrorMessages;

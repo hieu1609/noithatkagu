@@ -266,6 +266,34 @@ return [
             'required' => 'id_required',
             'integer' => 'id_integer',
         ],
+        'infor' => [
+            'required' => 'infor_required',
+            'string' => 'infor_string',
+        ],
+        'productMaterial' => [
+            'required' => 'product_material_required',
+            'string' => 'product_material_string',
+        ],
+        'productSize' => [
+            'required' => 'product_size_required',
+            'string' => 'product_size_string',
+        ],
+        'productColor' => [
+            'required' => 'product_color_required',
+            'string' => 'pproduct_color_string',
+        ],
+        'description' => [
+            'required' => 'infor_required',
+            'string' => 'infor_string',
+        ],
+        'slideShowId' => [
+            'required' => 'slideshow_id_required',
+            'integer' => 'slideshow_id_integer',
+        ],
+        'image' => [
+            'required' => 'image_required',
+            'string' => 'image_string',
+        ],
     ],
 
     /*
