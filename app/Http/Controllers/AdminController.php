@@ -13,6 +13,7 @@ use App\TransactionPaypal;
 use App\TopProducts;
 use App\Product;
 use App\Category;
+use App\ProductImage;
 use App\ProductNumber;
 use App\SlideShow;
 
@@ -1171,5 +1172,169 @@ class AdminController extends BaseApiController
             return $this->responseErrorException($exception->getMessage(), 99999, 500);
         }
     }
+    /**
+     * @SWG\Post(
+     *     path="/admin/add-product-image",
+     *     description="Add product image",
+     *     tags={"Admin"},
+     *     summary="Add product image",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Add product image",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="productId",
+     *                  type="integer",
+     *              ),
+     *              @SWG\property(
+     *                  property="productImage",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="imageDescription",
+     *                  type="string",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
 
+    public function addProductImage(Request $request)
+    {
+        try {
+            $validator = ProductImage::validate($request->all(), 'Add_Image');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $productImage = new ProductImage;
+            $productImage->product_id = $request->productId;
+            $productImage->product_image = $request->productImage;
+            $productImage->image_description = $request->imageDescription;
+            $productImage->save();
+            return $this->responseSuccess("Add Product Image successfully");
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Put(
+     *     path="/admin/image/{id}",
+     *     description="Edit product image",
+     *     tags={"Admin"},
+     *     summary="Edit product image",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *         description="ID product image",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         type="integer",
+     *         format="int64"
+     *     ),
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Edit product image",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="productId",
+     *                  type="integer",
+     *              ),
+     *              @SWG\property(
+     *                  property="productImage",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="imageDescription",
+     *                  type="string",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function editProductImage(Request $request)
+    {
+        try {
+            $input = $request->all();
+            $input['productImageId'] = $request->id;
+
+            $validator = ProductImage::validate($input, 'Edit_Product_Image');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+
+            $productImageId = $request->id;
+            $productImage = ProductImage::where(['id' => $productImageId])->first();
+            if (!$productImage) {
+                return $this->responseErrorCustom("product_image_not_found", 404);
+            }
+            $productImage->product_id = $request->productId;
+            $productImage->product_image = $request->productImage;
+            $productImage->image_description = $request->imageDescription;
+            $productImage->save();
+            return $this->responseSuccess($productImage);
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Delete(
+     *     path="/admin/image/{id}",
+     *     description="Delete product image",
+     *     tags={"Admin"},
+     *     summary="Delete product image",
+     *     security={{"jwt":{}}},
+     *     @SWG\Parameter(
+     *         description="ID product image delete",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         type="integer",
+     *         format="int64"
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+    public function deleteProductImage(Request $request)
+    {
+
+        try {
+            $validator = ProductImage::validate(["productImageId" => $request->id], 'Delete_Product_Image');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+
+            $productImageId = $request->id; //only for easy to under what is $request->id.
+            $productImage = ProductImage::where(['id' => $productImageId])->first();
+            if (!$productImage) {
+                return $this->responseErrorCustom("product_image_not_found", 404);
+            }
+            $productImage->delete();
+            return $this->responseSuccess("Delete Product Image successfully");
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
 }

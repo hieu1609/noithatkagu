@@ -134,8 +134,13 @@ $ApiErrorMessages = array(
     'slideshow_id_integer' => 'The slideshow id must be string',
     'image_required' => 'The image id is required',
     'image_string' => 'The image id must be string',
+    'product_image_required' => 'The product image is required',
+    'product_image_string' => 'The product image must be string',
+    'image_description_required' => 'The image description is required',
+    'image_description_string' => 'The image description must be string',
+    'product_image_id_required' =>  'The product image id is required',
+    'product_image_id_integer' => 'The product image id must be integer',
 );
-
 $ApiErrorCodes = array(
 
     // User Errors code: using 1xxx /
@@ -272,6 +277,12 @@ $ApiErrorCodes = array(
     'slideshow_id_integer' => 8057,
     'image_required' => 8058,
     'image_string' => 8059,
+    'product_image_required' => 8060,
+    'product_image_string' => 8061,
+    'image_description_required' => 8062,
+    'image_description_string' => 8063,
+    'product_image_id_required' => 8064,
+    'product_image_id_integer' => 8065,
 );
 
 $ApiCodes['ApiErrorMessages'] = $ApiErrorMessages;

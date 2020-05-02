@@ -294,6 +294,18 @@ return [
             'required' => 'image_required',
             'string' => 'image_string',
         ],
+        'productImage' => [
+            'required' => 'product_image_required',
+            'string' => 'product_image_string',
+        ],
+        'imageDescription' => [
+            'required' => 'image_description_required',
+            'string' => 'image_description_string',
+        ],
+        'productImageId' => [
+            'required' => 'product_image_id_required',
+            'integer' => 'product_image_id_integer',
+        ],
     ],
 
     /*
