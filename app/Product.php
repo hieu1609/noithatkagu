@@ -121,9 +121,12 @@ class Product extends BaseModel
         $offset = ($page - 1) * $limit;
         $result['numPage'] = ceil(count($data)/$limit);
         $result['total'] = count($data);
-        if(!is_array($data))
-            $data->toArray();
-        $result['data'] = array_slice($data, $offset, $limit);
+        if(is_array($data)) {
+            $result['data'] = array_slice($data, $offset, $limit);
+        }
+        else {
+            $result['data'] = array_slice($data->toArray(), $offset, $limit);
+        }
 
         return $result;
     }
@@ -201,10 +204,12 @@ class Product extends BaseModel
         $offset = ($page - 1) * $limit;
         $result['numPage'] = ceil(count($data)/$limit);
         $result['total'] = count($data);
-        if(!is_array($data))
-            $data->toArray();
-        $result['data'] = array_slice($data, $offset, $limit);
-
+        if(is_array($data)) {
+            $result['data'] = array_slice($data, $offset, $limit);
+        }
+        else {
+            $result['data'] = array_slice($data->toArray(), $offset, $limit);
+        }
         return $result;
     }
 
