@@ -122,6 +122,12 @@ $ApiErrorMessages = array(
     'payer_id_string' => 'The payer id must be string',
     'id_required' => 'The id is required',
     'id_integer' => 'The id must be integer',
+    'min_price_required' => 'The min price is required',
+    'min_price_string' => 'The min price must be string',
+    'max_price_required' => 'The max price is required',
+    'max_price_string' => 'The max price must be string',
+    'deliver_option_required' => 'The deliver option is required',
+    'delivery_option_string' => 'The deliver option must be string',
 );
 
 $ApiErrorCodes = array(
@@ -245,7 +251,13 @@ $ApiErrorCodes = array(
     'notification_required' => 8042,
     'notification_string' => 8043,
     'id_required' => 8044,
-    'id_integer' =>8045,
+    'id_integer' => 8045,
+    'min_price_required' => 8046,
+    'min_price_string' => 8047,
+    'max_price_required' => 8048,
+    'max_price_string' => 8049,
+    'deliver_option_required' => 8050,
+    'delivery_option_string' => 8051,
 );
 
 $ApiCodes['ApiErrorMessages'] = $ApiErrorMessages;

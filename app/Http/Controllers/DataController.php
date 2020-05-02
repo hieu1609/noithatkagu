@@ -77,7 +77,19 @@ class DataController extends BaseApiController
      *              @SWG\property(
      *                  property="sort",
      *                  type="integer",
-     *                  description="1|2|3 = new|price: ascending|decrease",
+     *                  description="0|1|2|3 = new|price: ascending|decrease",
+     *              ),
+     *              @SWG\property(
+     *                  property="rating",
+     *                  type="integer",
+     *              ),
+     *              @SWG\property(
+     *                  property="minPrice",
+     *                  type="string",
+     *              ),
+     *              @SWG\property(
+     *                  property="maxPrice",
+     *                  type="string",
      *              ),
      *          ),
      *      ),
@@ -99,7 +111,8 @@ class DataController extends BaseApiController
             if (!$checkCategoryId) {
                 return $this->responseErrorCustom("category_id_not_found", 404);
             }
-            $dataProduct = Product::getProductByCategoryId($request->categoryId, $request->page, $request->sort);
+            $dataProduct = Product::getProductByCategoryId($request->categoryId, 
+            $request->page, $request->sort, $request->rating, $request->minPrice, $request->maxPrice);
             return $this->responseSuccess($dataProduct);
         } catch (\Exception $exception) {
             return $this->responseErrorException($exception->getMessage(), 99999, 500);
@@ -262,7 +275,7 @@ class DataController extends BaseApiController
      * @SWG\Post(
      *     path="/data/search-product",
      *     description="Search product by name or tag",
-     *     tags={"Home page"},
+     *     tags={"Search"},
      *     summary="Search product by name or tag",
      *
      *      @SWG\Parameter(
@@ -282,7 +295,19 @@ class DataController extends BaseApiController
      *              @SWG\property(
      *                  property="sort",
      *                  type="integer",
-     *                  description="1|2|3 = new|price: ascending|decrease",
+     *                  description="0|1|2|3 = new|price: ascending|decrease",
+     *              ),
+     *              @SWG\property(
+     *                  property="rating",
+     *                  type="integer",
+     *              ),
+     *              @SWG\property(
+     *                  property="minPrice",
+     *                  type="string",
+     *              ),
+     *              @SWG\property(
+     *                  property="maxPrice",
+     *                  type="string",
      *              ),
      *          ),
      *      ),
@@ -300,7 +325,8 @@ class DataController extends BaseApiController
             if ($validator) {
                 return $this->responseErrorValidator($validator, 422);
             }
-            $data = Product::searchProduct($request->keyword, $request->page, $request->sort);
+            $data = Product::searchProduct($request->keyword, $request->page, $request->sort,
+            $request->rating, $request->minPrice, $request->maxPrice);
             return $this->responseSuccess($data);
         } catch (\Exception $exception) {
             return $this->responseErrorException($exception->getMessage(), $exception->getCode(), 500);

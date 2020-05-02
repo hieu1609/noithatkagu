@@ -20,6 +20,7 @@ class CreateOrderUserInforTable extends Migration
             $table->string('phone', 50);
             $table->string('email', 50);
             $table->string('address', 255);
+            $table->string('delivery_option', 100);
             $table->decimal('total_price', 15, 2);
             $table->string('payment_method'); //cash|paypal
             $table->boolean('paid')->default(0);
