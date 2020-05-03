@@ -12,7 +12,16 @@ class ProductNumber extends BaseModel
     ];
 
     public static $rules = array(
-
+        'Add_Number' => [
+            'productId' => 'required|integer',
+            'productNumber' => 'required|integer',
+        ],
+        'Delete_Product_Number' => [
+        ],
+        'Edit_Product_Number' => [
+            'productNumber' => 'required|integer',
+        ],
     );
+    
 
 }

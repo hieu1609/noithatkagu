@@ -146,6 +146,10 @@ $ApiErrorMessages = array(
     'max_price_string' => 'The max price must be string',
     'deliver_option_required' => 'The deliver option is required',
     'delivery_option_string' => 'The deliver option must be string',
+    'product_number_required' =>  'The product number is required',
+    'product_number_integer' => 'The product number must be integer',
+    'product_comment_required' => 'The product comment is required',
+    'product_comment_string' => 'The product number must be string',
 );
 $ApiErrorCodes = array(
 
@@ -296,6 +300,10 @@ $ApiErrorCodes = array(
     'max_price_string' => 8070,
     'deliver_option_required' => 8071,
     'delivery_option_string' => 8072,
+    'product_number_required' => 8073,
+    'product_number_integer' => 8074,
+    'product_comment_required' => 8075,
+    'product_comment_string' => 8076,
 );
 
 $ApiCodes['ApiErrorMessages'] = $ApiErrorMessages;
