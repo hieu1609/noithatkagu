@@ -11,6 +11,11 @@ use App\Feedback;
 use App\OrderDetail;
 use App\TransactionPaypal;
 use App\TopProducts;
+use App\Product;
+use App\Category;
+use App\ProductImage;
+use App\ProductNumber;
+use App\SlideShow;
 
 class AdminController extends BaseApiController
 {
@@ -649,6 +654,685 @@ class AdminController extends BaseApiController
 
             $checkNotification->delete();
             return $this->responseSuccess("Delete notification successfully");
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Post(
+     *     path="/admin/get-product-admin",
+     *     description="Get product",
+     *     tags={"Admin"},
+     *     summary="Get product",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Get product",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\property(
+     *                  property="page",
+     *                  type="integer",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful operation"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function getProductAdmin(Request $request)
+    {
+
+        try {
+            $validator = Product::validate($request->all(), 'Get_Product_Admin');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $result['data'] = Product::getProductAdmin($request->page);
+            $result['numPage'] = ceil(Product::count()/10);
+            $result['total'] = Product::count();
+            return $this->responseSuccess($result);
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Get(
+     *     path="/admin/get-all-product-admin",
+     *     description="Get all product",
+     *     tags={"Admin"},
+     *     summary="Get all product",
+     *     security={{"jwt":{}}},
+     * 
+     *      @SWG\Response(response=200, description="Successful operation"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function getAllProductAdmin(Request $request)
+    {
+
+        try {
+            $result = Product::get();
+            return $this->responseSuccess($result);
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Post(
+     *     path="/admin/add-product",
+     *     description="Add product",
+     *     tags={"Admin"},
+     *     summary="Add product",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Add product",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="productName",
+     *                  type="string",
+     *              ),
+     *              @SWG\property(
+     *                  property="productPrice",
+     *                  type="integer",
+     *              ),
+     *              @SWG\Property(
+     *                  property="productMaterial",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="productSize",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="productColor",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="tag",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="infor",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="categoryId",
+     *                  type="integer",
+     *              ),
+     *              @SWG\Property(
+     *                  property="rating",
+     *                  type="integer",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function addProduct(Request $request)
+    {
+
+        try {
+            $validator = Product::validate($request->all(), 'Add_Product');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $checkCategoryId = Category::where(['cat_id' => $request->categoryId])->first();
+            if (!$checkCategoryId) {
+                return $this->responseErrorCustom("category_id_not_found", 404);
+            }
+            $product = new Product;
+            $product->product_name = $request->productName;
+            $product->product_price = $request->productPrice;
+            $product->material = $request->productMaterial;
+            $product->size = $request->productSize;
+            $product->color = $request->productColor;
+            $product->infor = $request->infor;
+            $product->tag = $request->tag;
+            $product->cat_id = $request->categoryId;
+            $product->rating = $request->rating;
+            $product->save();
+            return $this->responseSuccess("Add product successfully");
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Put(
+     *     path="/admin/product/{productId}",
+     *     description="Edit product",
+     *     tags={"Admin"},
+     *     summary="Edit product",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *         description="ID product to edit",
+     *         in="path",
+     *         name="productId",
+     *         required=true,
+     *         type="integer",
+     *         format="int64"
+     *     ),
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Edit product",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="productName",
+     *                  type="string",
+     *              ),
+     *              @SWG\property(
+     *                  property="productPrice",
+     *                  type="integer",
+     *              ),
+     *              @SWG\Property(
+     *                  property="productMaterial",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="productSize",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="productColor",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="tag",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="infor",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="categoryId",
+     *                  type="integer",
+     *              ),
+     *              @SWG\Property(
+     *                  property="rating",
+     *                  type="integer",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */    
+    public function editProduct(Request $request)
+    {
+
+        try {
+            $input = $request->all();
+            $input['productId'] = $request->productId;
+            $validator = Product::validate($input, 'Edit_Product');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $checkCategoryId = Category::where(['cat_id' => $request->categoryId])->first();
+            if (!$checkCategoryId) {
+                return $this->responseErrorCustom("category_id_not_found", 404);
+            }
+            $checkProductId = Product::where(['product_id' => $request->productId])->first();
+            if (!$checkProductId) {
+                return $this->responseErrorCustom("product_id_not_found", 404);
+            }
+            $checkProductId->product_name = $request->productName;
+            $checkProductId->product_price = $request->productPrice;
+            $checkProductId->material = $request->productMaterial;
+            $checkProductId->size = $request->productSize;
+            $checkProductId->color = $request->productColor;
+            $checkProductId->infor = $request->infor;
+            $checkProductId->tag = $request->tag;
+            $checkProductId->cat_id = $request->categoryId;
+            $checkProductId->rating = $request->rating;
+            $checkProductId->save();
+            return $this->responseSuccess($checkProductId);
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Delete(
+     *     path="/admin/product/{productId}",
+     *     description="Delete product",
+     *     tags={"Admin"},
+     *     summary="Delete product",
+     *     security={{"jwt":{}}},
+     *     @SWG\Parameter(
+     *         description="ID product to delete",
+     *         in="path",
+     *         name="productId",
+     *         required=true,
+     *         type="integer",
+     *         format="int64"
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function deleteProduct(Request $request)
+    {
+
+        try {
+            $input['productId'] = $request->productId;
+            $validator = Product::validate($input, 'Delete_Product');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $checkProductId = Product::where(['product_id' => $request->productId])->first();
+            if (!$checkProductId) {
+                return $this->responseErrorCustom("product_id_not_found", 404);
+            }
+            $checkOrderProduct = OrderDetail::where(['product_id' => $request->productId])->first();
+            if ($checkOrderProduct) {
+                return $this->responseErrorCustom("could_not_delete_product", 403);
+            }
+            $productReview = ProductReviews::where(['product_id' => $request->productId])->first();
+            if ($productReview) {
+                return $this->responseErrorCustom("already_in_product_reviews_table", 403);
+            }
+            $productNumber = ProductNumber::where(['product_id' => $request->productId])->first();
+            if ($productNumber) {
+                $productNumber ->delete();
+            }
+            $topProduct = TopProducts::where(['product_id' => $request->productId])->first();
+            if ($topProduct) {
+                $topProduct->delete();
+            }
+            $checkProductId->delete();
+            return $this->responseSuccess("Delete product successfully");
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Post(
+     *     path="/admin/get-slide-show-admin",
+     *     description="Get slide show",
+     *     tags={"Admin"},
+     *     summary="Get slide show",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Get slide show",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\property(
+     *                  property="page",
+     *                  type="integer",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful operation"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+    public function getSlideShowAdmin(Request $request)
+    {
+        try {
+            $validator = SlideShow::validate($request->all(), 'Get_Slide_Show_Admin');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $result['data'] = SlideShow::getSlideShowAdmin($request->page);
+            $result['numPage'] = ceil(SlideShow::count()/10);
+            $result['total'] = SlideShow::count();
+            return $this->responseSuccess($result);
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), $exception->getCode(), 500);
+        }
+    }
+    /**
+     * @SWG\Post(
+     *     path="/admin/addSlideShow",
+     *     description="Add slide show",
+     *     tags={"Admin"},
+     *     summary="Add slide show",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Add slide show",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="image",
+     *                  type="string",
+     *              ),
+     *              @SWG\property(
+     *                  property="title",
+     *                  type="string",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+   
+    public function addSlideShow(Request $request)
+    {
+
+        try {
+            $validator = SlideShow::validate($request->all(), 'Add_Slide_Show');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+
+            $slideShow = new SlideShow;
+            $slideShow->image = $request->image;
+            $slideShow->title = $request->title;
+            $slideShow->save();
+            return $this->responseSuccess("Add slide show successfully");
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Put(
+     *     path="/admin/slideshow/{slideShowId}",
+     *     description="Edit slide show",
+     *     tags={"Admin"},
+     *     summary="Edit slide show",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *         description="ID slide show to edit",
+     *         in="path",
+     *         name="slideShowId",
+     *         required=true,
+     *         type="integer",
+     *         format="int64"
+     *     ),
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Edit slide show",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="image",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="title",
+     *                  type="string",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function editSlideShow(Request $request)
+    {
+
+        try {
+            $input = $request->all();
+            $input['slideShowId'] = $request->slideShowId;
+            $validator = SlideShow::validate($input, 'Edit_Slide_Show');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+
+            $checkSlideShowId = SlideShow::where(['id' => $request->slideShowId])->first();
+            if (!$checkSlideShowId) {
+                return $this->responseErrorCustom("slide_show_id_not_found", 404);
+            }
+
+            $checkSlideShowId->image = $request->image;
+            $checkSlideShowId->title = $request->title;
+            $checkSlideShowId->save();
+            return $this->responseSuccess($checkSlideShowId);
+
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Delete(
+     *     path="/admin/slideshow/{slideShowId}",
+     *     description="Delete slide show",
+     *     tags={"Admin"},
+     *     summary="Delete slide show",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *         description="ID slide show to delete",
+     *         in="path",
+     *         name="slideShowId",
+     *         required=true,
+     *         type="integer",
+     *         format="int64"
+     *     ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     *)
+     */
+    public function deleteSlideShow(Request $request)
+    {
+
+        try {
+            $input['slideShowId'] = $request->slideShowId;
+            $validator = SlideShow::validate($input, 'Delete_Slide_Show');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $checkSlideShowId = SlideShow::where(['id' => $request->slideShowId])->first();
+            if (!$checkSlideShowId) {
+                return $this->responseErrorCustom("slide_show_id_not_found", 404);
+            }
+            $checkSlideShowId->delete();
+            return $this->responseSuccess("Delete slide show successfully");
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Post(
+     *     path="/admin/add-product-image",
+     *     description="Add product image",
+     *     tags={"Admin"},
+     *     summary="Add product image",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Add product image",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="productId",
+     *                  type="integer",
+     *              ),
+     *              @SWG\property(
+     *                  property="productImage",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="imageDescription",
+     *                  type="string",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function addProductImage(Request $request)
+    {
+        try {
+            $validator = ProductImage::validate($request->all(), 'Add_Image');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $productImage = new ProductImage;
+            $productImage->product_id = $request->productId;
+            $productImage->product_image = $request->productImage;
+            $productImage->image_description = $request->imageDescription;
+            $productImage->save();
+            return $this->responseSuccess("Add Product Image successfully");
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Put(
+     *     path="/admin/image/{id}",
+     *     description="Edit product image",
+     *     tags={"Admin"},
+     *     summary="Edit product image",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *         description="ID product image",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         type="integer",
+     *         format="int64"
+     *     ),
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Edit product image",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="productId",
+     *                  type="integer",
+     *              ),
+     *              @SWG\property(
+     *                  property="productImage",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="imageDescription",
+     *                  type="string",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function editProductImage(Request $request)
+    {
+        try {
+            $input = $request->all();
+            $input['productImageId'] = $request->id;
+
+            $validator = ProductImage::validate($input, 'Edit_Product_Image');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+
+            $productImageId = $request->id;
+            $productImage = ProductImage::where(['id' => $productImageId])->first();
+            if (!$productImage) {
+                return $this->responseErrorCustom("product_image_not_found", 404);
+            }
+            $productImage->product_id = $request->productId;
+            $productImage->product_image = $request->productImage;
+            $productImage->image_description = $request->imageDescription;
+            $productImage->save();
+            return $this->responseSuccess($productImage);
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Delete(
+     *     path="/admin/image/{id}",
+     *     description="Delete product image",
+     *     tags={"Admin"},
+     *     summary="Delete product image",
+     *     security={{"jwt":{}}},
+     *     @SWG\Parameter(
+     *         description="ID product image delete",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         type="integer",
+     *         format="int64"
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+    public function deleteProductImage(Request $request)
+    {
+
+        try {
+            $validator = ProductImage::validate(["productImageId" => $request->id], 'Delete_Product_Image');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+
+            $productImageId = $request->id; //only for easy to under what is $request->id.
+            $productImage = ProductImage::where(['id' => $productImageId])->first();
+            if (!$productImage) {
+                return $this->responseErrorCustom("product_image_not_found", 404);
+            }
+            $productImage->delete();
+            return $this->responseSuccess("Delete Product Image successfully");
         } catch (\Exception $exception) {
             return $this->responseErrorException($exception->getMessage(), 99999, 500);
         }

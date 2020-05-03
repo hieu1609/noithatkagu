@@ -12,7 +12,19 @@ class ProductImage extends BaseModel
     ];
 
     public static $rules = array(
-
+        'Add_Image' => [
+            'productId' => 'required|integer',
+            'productImage' => 'required|string',
+            'imageDescription' => 'required|string'
+        ],
+        'Edit_Product_Image' => [
+            'productId' => 'required|integer',
+            'productImage' => 'required|string',
+            'imageDescription' => 'required|string'
+        ],
+        'Delete_Product_Image' => [
+            'productImageId' => 'required|integer'
+        ],
     );
 
 }
