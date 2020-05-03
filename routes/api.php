@@ -33,6 +33,7 @@ Route::group(['prefix' => 'data'], function () {
 
     //Home page
     Route::get('get-slide-show', 'DataController@getSlideShow'); //0
+    Route::get('get-best-selling-products', 'DataController@getBestSellingProducts'); //0
     Route::get('get-product-category', 'DataController@getProductCategory'); //0
     Route::get('get-new-product', 'DataController@getNewProduct'); //0
     Route::post('get-product-by-category-id', 'DataController@getProductByCategoryId'); //1

@@ -1610,6 +1610,26 @@
                 }
             }
         },
+        "/data/get-best-selling-products": {
+            "get": {
+                "tags": [
+                    "Home page"
+                ],
+                "summary": "get best selling products",
+                "description": "get best selling products",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
         "/data/get-product-category": {
             "get": {
                 "tags": [
