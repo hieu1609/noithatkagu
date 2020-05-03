@@ -14,4 +14,10 @@ class TopProducts extends BaseModel
     public static $rules = array(
 
     );
+
+    public static function getBestSellingProducts() {
+        return TopProducts::orderBy('total_products', 'desc')
+        ->limit(4)
+        ->get();
+    }
 }

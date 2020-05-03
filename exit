@@ -1,0 +1,302 @@
+[33mcommit 97dcb4ea7bf93c27bd78c3464e47b6dbdee76945[m[33m ([m[1;36mHEAD -> [m[1;32mhieu[m[33m, [m[1;31morigin/hieu[m[33m)[m
+Author: Hieu Nguyen <16521675@gm.uit.edu.vn>
+Date:   Sat May 2 21:55:23 2020 +0700
+
+    fix search, get product by cat id
+
+[33mcommit 56feed94492ae3343d638a94138e4df0669764ff[m
+Author: Hieu Nguyen <16521675@gm.uit.edu.vn>
+Date:   Sat May 2 14:23:27 2020 +0700
+
+    update delivery option, num page search, cat id
+
+[33mcommit 66a2cc3b2869c478b2977012e0292e2a463aca03[m
+Author: Hieu Nguyen <16521675@gm.uit.edu.vn>
+Date:   Thu Apr 30 20:52:47 2020 +0700
+
+    update filter rating, price
+
+[33mcommit e77a4c366c1b83f624852c7ef790de61b2891455[m
+Merge: b3de527 554faec
+Author: Hieu Nguyen <16521675@gm.uit.edu.vn>
+Date:   Thu Apr 30 00:46:35 2020 +0700
+
+    Merge branch 'master' of https://github.com/hieu1609/noithatkagu into hieu
+
+[33mcommit b3de5278cdc084ceac484632ccf86114069c2298[m
+Author: Hieu Nguyen <16521675@gm.uit.edu.vn>
+Date:   Thu Apr 30 00:46:13 2020 +0700
+
+    update
+
+[33mcommit 554faec9e68e97dbd3bad12a6ee61be73b474c45[m[33m ([m[1;31morigin/master[m[33m)[m
+Merge: 4f2a071 9392424
+Author: Hiếu hihi <54834977+hieu1609@users.noreply.github.com>
+Date:   Thu Apr 30 00:45:19 2020 +0700
+
+    Merge pull request #10 from hieu1609/quan
+    
+    update noti api
+
+[33mcommit 939242480f0a5b5a4cf0848d69ca993b9121d110[m
+Author: lqazsillus <giahieua2ltv@gmail.com>
+Date:   Thu Apr 30 00:28:03 2020 +0700
+
+    update noti api
+
+[33mcommit 4f2a0711061fe6809cb48ec1046fe99f526aa622[m
+Merge: 72dc2df 5ccdbf9
+Author: azsillus <54838611+azsillus@users.noreply.github.com>
+Date:   Wed Apr 29 21:39:12 2020 +0700
+
+    Merge pull request #9 from hieu1609/quan
+    
+    Quan
+
+[33mcommit 5ccdbf9bfb49bcd052937c74b905a0c3c4923eff[m
+Merge: b18c09b 72dc2df
+Author: lqazsillus <giahieua2ltv@gmail.com>
+Date:   Wed Apr 29 21:37:19 2020 +0700
+
+    update payment controller
+
+[33mcommit 72dc2dfe9ef1d9d96e28a50e5238d351adf1b7e1[m
+Merge: 2cfb5a2 18867ac
+Author: Hiếu hihi <54834977+hieu1609@users.noreply.github.com>
+Date:   Wed Apr 29 21:18:00 2020 +0700
+
+    Merge pull request #8 from hieu1609/hieu
+    
+    Payment controller version 1
+
+[33mcommit 18867ac97caeababcc1807fc3c673a9afca5486a[m
+Author: Hieu Nguyen <16521675@gm.uit.edu.vn>
+Date:   Wed Apr 29 21:16:57 2020 +0700
+
+    Payment controller version 1
+
+[33mcommit b18c09b7e9885a5d557bf3c46318e7a1a75ca240[m
+Author: lqazsillus <giahieua2ltv@gmail.com>
+Date:   Sun Apr 26 23:33:51 2020 +0700
+
+    update image database
+
+[33mcommit fb4ee705301c41ef4d0a356409f1033acc2dee03[m
+Merge: 8eff734 2cfb5a2
+Author: lqazsillus <giahieua2ltv@gmail.com>
+Date:   Sat Apr 25 17:31:37 2020 +0700
+
+    update database noti
+
+[33mcommit 8eff734d9b0fe1c6a8fff646bb3249d9ff7696f8[m
+Author: lqazsillus <giahieua2ltv@gmail.com>
+Date:   Sat Apr 25 15:12:21 2020 +0700
+
+    update
+
+[33mcommit 2cfb5a2b9fe4576511d472f87e949d91d5e0d4c4[m
+Merge: 5617165 2f67b6a
+Author: Hiếu hihi <54834977+hieu1609@users.noreply.github.com>
+Date:   Sat Apr 25 11:57:44 2020 +0700
+
+    Merge pull request #7 from hieu1609/hieu
+    
+    add cart controller, payment controller
+
+[33mcommit 2f67b6aed3d45ec0e55f782a6881159e290c3137[m
+Author: Hieu Nguyen <16521675@gm.uit.edu.vn>
+Date:   Sat Apr 25 11:56:55 2020 +0700
+
+    add cart controller, payment controller
+
+[33mcommit 561716564d79db60526eae75109f8c46820a2163[m
+Merge: d2a2163 70d6025
+Author: Hiếu hihi <54834977+hieu1609@users.noreply.github.com>
+Date:   Fri Apr 24 12:47:45 2020 +0700
+
+    Merge pull request #6 from hieu1609/hieu
+    
+    update API related products, sort Swagger, add number product in prod…
+
+[33mcommit 70d6025e314427a07fa1ca3cdb4768b69260f96a[m
+Author: Hieu Nguyen <16521675@gm.uit.edu.vn>
+Date:   Fri Apr 24 12:47:01 2020 +0700
+
+    update API related products, sort Swagger, add number product in product detail
+
+[33mcommit d2a2163e9d7ea8c96a9e8884679050a59a646f53[m
+Merge: 8e59aa5 e2493e8
+Author: azsillus <54838611+azsillus@users.noreply.github.com>
+Date:   Fri Apr 24 00:20:17 2020 +0700
+
+    Merge pull request #5 from hieu1609/quan
+    
+    Quan
+
+[33mcommit e2493e8a53a1d67b664213424ad903fc27db80ae[m
+Merge: c2c98fa 8e59aa5
+Author: lqazsillus <giahieua2ltv@gmail.com>
+Date:   Fri Apr 24 00:17:56 2020 +0700
+
+    update to merge
+
+[33mcommit c2c98fa0d799ad7398fc4de863c2363afd7be2f1[m
+Merge: ea1d334 4334de0
+Author: lqazsillus <giahieua2ltv@gmail.com>
+Date:   Fri Apr 24 00:03:06 2020 +0700
+
+    feedback, post review, edit user profile
+
+[33mcommit 8e59aa530dd2f7c1277ba3a0c0750e28a0892efd[m
+Merge: 4334de0 2a417f5
+Author: Hiếu hihi <54834977+hieu1609@users.noreply.github.com>
+Date:   Fri Apr 24 00:02:53 2020 +0700
+
+    Merge pull request #4 from hieu1609/hieu
+    
+    update search, sort
+
+[33mcommit 2a417f58d8193f46ed367a03b89020fe2c56038e[m
+Author: Hieu Nguyen <16521675@gm.uit.edu.vn>
+Date:   Fri Apr 24 00:02:22 2020 +0700
+
+    update search, sort
+
+[33mcommit 4334de05d7903feae20a180251799b3ca3ef2754[m
+Merge: 49a4080 12c5518
+Author: Hiếu hihi <54834977+hieu1609@users.noreply.github.com>
+Date:   Thu Apr 23 21:56:44 2020 +0700
+
+    Merge pull request #3 from hieu1609/hieu
+    
+    Hieu
+
+[33mcommit ea1d334417b102e76e7028a6c8166e8a31a0ce84[m
+Author: lqazsillus <giahieua2ltv@gmail.com>
+Date:   Thu Apr 23 21:56:21 2020 +0700
+
+    usercontroller
+
+[33mcommit 12c5518c259cd2f994eab16501c5009394cdd024[m
+Author: Hieu Nguyen <16521675@gm.uit.edu.vn>
+Date:   Thu Apr 23 21:55:51 2020 +0700
+
+    update search
+
+[33mcommit 9d328bb728f73b1b1576a59e6bcb8899cf76849a[m
+Merge: 3b3bcc4 49a4080
+Author: Hieu Nguyen <16521675@gm.uit.edu.vn>
+Date:   Thu Apr 23 21:06:47 2020 +0700
+
+    Merge branch 'master' of https://github.com/hieu1609/noithatkagu into hieu
+
+[33mcommit 49a4080d845fc2608f70d943dea5b3fbdc41b6fa[m
+Merge: bc038a5 f764448
+Author: Hiếu hihi <54834977+hieu1609@users.noreply.github.com>
+Date:   Thu Apr 23 21:06:35 2020 +0700
+
+    Merge pull request #2 from hieu1609/quan
+    
+    Quan
+
+[33mcommit 3b3bcc4d3eb632c0ed38ea10985c744636994bd8[m
+Merge: 6bef268 bc038a5
+Author: Hieu Nguyen <16521675@gm.uit.edu.vn>
+Date:   Thu Apr 23 21:05:37 2020 +0700
+
+    Merge branch 'master' of https://github.com/hieu1609/noithatkagu into hieu
+
+[33mcommit 6bef2689eacdf12c6224ceb09a87eda09f36e1fa[m
+Author: Hieu Nguyen <16521675@gm.uit.edu.vn>
+Date:   Thu Apr 23 21:05:00 2020 +0700
+
+    update search not done
+
+[33mcommit 55a47f6573f2899035870e2ab1216ec0d7eb9b5a[m
+Author: Hieu Nguyen <16521675@gm.uit.edu.vn>
+Date:   Thu Apr 23 11:45:31 2020 +0700
+
+    edit database
+
+[33mcommit f7644488d48cbd7c37bcf99644fc8b5c0cb85e16[m
+Author: lqazsillus <giahieua2ltv@gmail.com>
+Date:   Thu Apr 23 00:28:48 2020 +0700
+
+    update product database
+
+[33mcommit 47c05d21c57208d8c8aab288980c8d48eeb8cf88[m
+Merge: 7c48cfb bc038a5
+Author: lqazsillus <giahieua2ltv@gmail.com>
+Date:   Wed Apr 22 22:38:53 2020 +0700
+
+    Merge branch 'master' of https://github.com/hieu1609/noithatkagu into quan
+
+[33mcommit 7c48cfb16a4b648aebd889c7e27ba2ec3940775e[m
+Author: lqazsillus <giahieua2ltv@gmail.com>
+Date:   Wed Apr 22 22:38:22 2020 +0700
+
+    update to pull
+
+[33mcommit bc038a5ca3ccc1d645c89df28bbbf142c83a1129[m
+Merge: 1eec32a b0d59b2
+Author: Hiếu hihi <54834977+hieu1609@users.noreply.github.com>
+Date:   Wed Apr 22 22:27:03 2020 +0700
+
+    Merge pull request #1 from hieu1609/hieu
+    
+    Datacontroller
+
+[33mcommit b0d59b24ac3c25e78b7da6a2f909d93dd31fb360[m
+Author: Hieu Nguyen <16521675@gm.uit.edu.vn>
+Date:   Wed Apr 22 22:25:59 2020 +0700
+
+    Datacontroller
+
+[33mcommit 1eec32aa47742d07b65854ecfb6699518edef2a9[m[33m ([m[1;32mmaster[m[33m)[m
+Author: Hieu Nguyen <16521675@gm.uit.edu.vn>
+Date:   Wed Apr 22 12:27:58 2020 +0700
+
+    update migrations
+
+[33mcommit 868fec33d03856d556813edd6dd5146a311b8f7c[m
+Merge: 8198e63 cba2e81
+Author: lqazsillus <giahieua2ltv@gmail.com>
+Date:   Tue Apr 21 00:04:55 2020 +0700
+
+    Merge branch 'master' of https://github.com/hieu1609/noithatkagu into quan
+
+[33mcommit 8198e63777d4904accb3b6ea09053d063ea49c71[m
+Author: lqazsillus <giahieua2ltv@gmail.com>
+Date:   Mon Apr 20 23:56:57 2020 +0700
+
+    first
+
+[33mcommit cba2e81eeab6243082b91c275fa68faf61490c4e[m
+Author: Hieu Nguyen <16521675@gm.uit.edu.vn>
+Date:   Mon Apr 20 23:53:15 2020 +0700
+
+    update seed
+
+[33mcommit e8e0c6915822fdce43aa99dbc54fd05fc618793d[m
+Author: Hieu Nguyen <16521675@gm.uit.edu.vn>
+Date:   Fri Apr 17 23:08:05 2020 +0700
+
+    update AuthenAPI, Mail
+
+[33mcommit d0eb5bc04b4715a4aaa16295f8ba0362862ad4fc[m
+Author: Hieu Nguyen <16521675@gm.uit.edu.vn>
+Date:   Fri Apr 17 00:04:42 2020 +0700
+
+    update database, error code file
+
+[33mcommit ecc7c9f29a4d0a941e5c9d6afcdc1dbb6e170c16[m
+Author: Hieu Nguyen <16521675@gm.uit.edu.vn>
+Date:   Tue Apr 7 22:19:50 2020 +0700
+
+    jwt and swagger
+
+[33mcommit 9d73e3384a351ed8b318e4a89a80c6aaa8e11512[m
+Author: Hieu Nguyen <16521675@gm.uit.edu.vn>
+Date:   Tue Apr 7 20:41:44 2020 +0700
+
+    first commit

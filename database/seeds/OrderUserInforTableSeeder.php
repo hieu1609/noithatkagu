@@ -39,6 +39,32 @@ class OrderUserInforTableSeeder extends Seeder
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
+            [
+                'user_id' => 3,
+                'name' => 'Quân',
+                'phone' => '0399295198',
+                'email' => 'quan@gmail.com',
+                'address' => 'Buôn Hô, Đắk Lắk',
+                'delivery_option' => 'VietNam Post',
+                'total_price' => 8000000,
+                'payment_method' => 'cash',
+                'paid' => 1,
+                "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
+                "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+                'user_id' => 2,
+                'name' => 'Đức',
+                'phone' => '0942013068',
+                'email' => 'duc@gmail.com',
+                'address' => 'Buôn Hô, Đắk Lắk',
+                'delivery_option' => 'VietNam Post',
+                'total_price' => 14000000,
+                'payment_method' => 'paypal',
+                'paid' => 0,
+                "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
+                "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
+            ],
         ];
         
         foreach ($orderUserInfors as $key => $orderUserInfor) {
