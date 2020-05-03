@@ -117,7 +117,7 @@ class Product extends BaseModel
             $data[$key]['commentNumber'] = ProductReviews::where('product_reviews.product_id', $value['product_id'])->count();
         }
 
-        $limit = 6;
+        $limit = 8;
         $offset = ($page - 1) * $limit;
         $result['numPage'] = ceil(count($data)/$limit);
         $result['total'] = count($data);
@@ -200,7 +200,7 @@ class Product extends BaseModel
             $data[$key]['commentNumber'] = ProductReviews::where('product_reviews.product_id', $value['product_id'])->count();
         }
 
-        $limit = 6;
+        $limit = 8;
         $offset = ($page - 1) * $limit;
         $result['numPage'] = ceil(count($data)/$limit);
         $result['total'] = count($data);
