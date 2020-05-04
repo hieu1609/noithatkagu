@@ -1337,4 +1337,351 @@ class AdminController extends BaseApiController
             return $this->responseErrorException($exception->getMessage(), 99999, 500);
         }
     }
+    /**
+     * @SWG\Post(
+     *     path="/admin/add-product-number",
+     *     description="Add product number",
+     *     tags={"Admin"},
+     *     summary="Add product number",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Add product number",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="productId",
+     *                  type="integer",
+     *              ),
+     *              @SWG\property(
+     *                  property="productNumber",
+     *                  type="integer",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function addProductNumber(Request $request)
+    {
+        try {
+            $validator = ProductNumber::validate($request->all(), 'Add_Number');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $checkProductId = ProductNumber::where('product_id', $request->productId)->first();
+            if ($checkProductId) {
+                return $this->responseErrorCustom("product_id_has_already_existed", 403);
+            }
+            $productNumber = new ProductNumber;
+            $productNumber->product_id = $request->productId;
+            $productNumber->product_number = $request->productNumber;
+            $productNumber->save();
+            return $this->responseSuccess("Add Product number successfully");
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Put(
+     *     path="/admin/number/{id}",
+     *     description="Edit product number",
+     *     tags={"Admin"},
+     *     summary="Edit product number",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *         description="ID product number",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         type="integer",
+     *         format="int64"
+     *     ),
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Edit product number",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\property(
+     *                  property="productNumber",
+     *                  type="integer",
+     *              ),
+     * 
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function editProductNumber(Request $request)
+    {
+        try {
+            $input = $request->all();
+            $input['productNumberId'] = $request->id;
+            $validator = ProductNumber::validate($input, 'Edit_Product_Number');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $productNumberId = $request->id;
+            $productNumber = ProductNumber::where(['product_id' => $productNumberId])->first();
+            if (!$productNumber) {
+                return $this->responseErrorCustom("product_number_not_found", 403);
+            }
+            $productNumber->product_number = $request->productNumber;
+            $productNumber->save();
+            return $this->responseSuccess("Edit Product number successfully");
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Delete(
+     *     path="/admin/number/{id}",
+     *     description="Delete product number",
+     *     tags={"Admin"},
+     *     summary="Delete product number",
+     *     security={{"jwt":{}}},
+     *     @SWG\Parameter(
+     *         description="ID product number you want to delete",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         type="integer",
+     *         format="int64"
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+    public function deleteProductNumber(Request $request)
+    {
+
+        try {
+            $validator = ProductNumber::validate(["productId" => $request->id], 'Delete_Product_Number');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+
+            $productNumberId = $request->id; //only for easy to under what is $request->id.
+            $productNumber = ProductNumber::where(['id' => $productNumberId])->first();
+            if (!$productNumber) {
+                return $this->responseErrorCustom("product_number_not_found", 403);
+            }
+            $productNumber->delete();
+            return $this->responseSuccess("Delete Product number successfully");
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Post(
+     *     path="/admin/add-product-review",
+     *     description="Add product review",
+     *     tags={"Admin"},
+     *     summary="Add product review",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Add product review",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="userId",
+     *                  type="integer",
+     *              ),
+     *              @SWG\Property(
+     *                  property="productId",
+     *                  type="integer",
+     *              ),
+     *              @SWG\Property(
+     *                  property="rating",
+     *                  type="integer",
+     *              ),
+     *              @SWG\property(
+     *                  property="comment",
+     *                  type="string",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function addProductReview(Request $request)
+    {
+        try {
+            $validator = ProductReviews::validate($request->all(), 'Add_Review');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $checkUserId = User::where('id', $request->userId)->first();
+            if (!$checkUserId) {
+                return $this->responseErrorCustom("user_not_found", 403);
+            }
+            $checkProductId = Product::where('product_id', $request->productId)->first();
+            if (!$checkProductId) {
+                return $this->responseErrorCustom("product_not_found", 403);
+            }
+            if($request->rating > 5 or $request->rating < 1) {
+                return $this->responseErrorCustom("rating_incorrect", 403);
+            }
+            $productReview = new ProductReviews;
+            $productReview->user_id = $request->userId;
+            $productReview->product_id = $request->productId;
+            $productReview->rating = $request->rating;
+            $productReview->comment = $request->comment;            
+            $productReview->save();
+            return $this->responseSuccess("Add Product Review successfully");
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Put(
+     *     path="/admin/review/{id}",
+     *     description="Edit product review",
+     *     tags={"Admin"},
+     *     summary="Edit product review",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *         description="ID product review",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         type="integer",
+     *         format="int64"
+     *     ),
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Edit product review",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="userId",
+     *                  type="integer",
+     *              ),
+     *              @SWG\Property(
+     *                  property="productId",
+     *                  type="integer",
+     *              ),
+     *              @SWG\Property(
+     *                  property="rating",
+     *                  type="integer",
+     *              ),
+     *              @SWG\property(
+     *                  property="comment",
+     *                  type="string",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function editProductReview(Request $request)
+    {
+        try {
+            $input = $request->all();
+            $input['productReviewId'] = $request->id;
+            $validator = ProductReviews::validate($input, 'Edit_Product_Review');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $productReviewId = $request->id;
+            $productReview = ProductReviews::where(['id' => $productReviewId])->first();
+            if (!$productReview) {
+                return $this->responseErrorCustom("product_review_not_found", 403);
+            }
+            $checkUserId = User::where('id', $request->userId)->first();
+            if (!$checkUserId) {
+                return $this->responseErrorCustom("user_not_found", 403);
+            }
+            $checkProductId = Product::where('product_id', $request->productId)->first();
+            if (!$checkProductId) {
+                return $this->responseErrorCustom("product_not_found", 403);
+            }
+            if($request->rating > 5 or $request->rating < 1) {
+                return $this->responseErrorCustom("rating_incorrect", 403);
+            }
+            $productReview->user_id = $request->userId;
+            $productReview->product_id = $request->productId;
+            $productReview->rating = $request->rating;
+            $productReview->comment = $request->comment;            
+            $productReview->save();
+            return $this->responseSuccess("Edit Product Review successfully");
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+        /**
+     * @SWG\Delete(
+     *     path="/admin/review/{id}",
+     *     description="Delete product review",
+     *     tags={"Admin"},
+     *     summary="Delete product review",
+     *     security={{"jwt":{}}},
+     *     @SWG\Parameter(
+     *         description="ID product review you want to delete",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         type="integer",
+     *         format="int64"
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+    public function deleteProductReview(Request $request)
+    {
+
+        try {
+            $validator = ProductReviews::validate(["id" => $request->id], 'Delete_Product_Review');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $productReviewId = $request->id; //only for easy to under what is $request->id.
+            $productReview = ProductReviews::where(['id' => $productReviewId])->first();
+            if (!$productReview) {
+                return $this->responseErrorCustom("product_number_not_found", 403);
+            }
+            $productReview->delete();
+            return $this->responseSuccess("Delete Product number successfully");
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
 }

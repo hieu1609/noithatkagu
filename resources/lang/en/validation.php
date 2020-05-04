@@ -314,6 +314,14 @@ return [
             'required' => 'deliver_option_required',
             'string' => 'delivery_option_string',
         ],
+        'productNumber' => [
+            'required' => 'product_number_required',
+            'integer' => 'product_number_integer',
+        ],
+        'comment' => [
+            'required' => 'product_comment_required',
+            'string' => 'product_comment_string',
+        ],
     ],
 
     /*

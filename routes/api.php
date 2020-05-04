@@ -111,5 +111,14 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('add-product-image', 'AdminController@addProductImage');
         Route::put('image/{id}', 'AdminController@editProductImage');
         Route::delete('image/{id}', 'AdminController@deleteProductImage');
+        //Product Number
+        Route::post('add-product-number', 'AdminController@addProductNumber');
+        Route::put('number/{id}', 'AdminController@editProductNumber');
+        Route::delete('number/{id}', 'AdminController@deleteProductNumber');
+        //ProductReview
+        Route::post('add-product-review', 'AdminController@addProductReview');
+        Route::put('review/{id}', 'AdminController@editProductReview');
+        Route::delete('review/{id}', 'AdminController@deleteProductReview');
+
     });
 });
