@@ -15,42 +15,36 @@ class SlideShowTableSeeder extends Seeder
     {
         $slideShows = [
             [
-                'image' => 'https://i.ibb.co/d5FhQqw/gmdn2019.jpg',
-                'title' => 'gmdn2019',
+                'image' => 'https://i.ibb.co/2txhbHJ/outdoor.jpg',
+                'title' => 'outdoor',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
-                'image' => 'https://i.ibb.co/fnBGVTN/camon.jpg',
-                'title' => 'camon',
+                'image' => 'https://i.ibb.co/vxcZN0p/furiture.png',
+                'title' => 'furiture',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
 
             ],
             [
-                'image' => 'https://i.ibb.co/qm74xM4/tuyenthanhvien.jpg',
-                'title' => 'tuyenthanhvien',
+                'image' => 'https://i.ibb.co/1K39fMW/bedroom.jpg',
+                'title' => 'bedroom',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
-                'image' => 'https://i.ibb.co/K9ZT5r5/tramkyuc.jpg',
-                'title' => 'tramkyuc',
+                'image' => 'https://i.ibb.co/BTXDNrp/indoor.jpg',
+                'title' => 'indoor',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
-                'image' => 'https://i.ibb.co/GWHmFbv/quengopsach.png',
-                'title' => 'quyengopsach',
+                'image' => 'https://i.ibb.co/LnFbB4L/livingroom.jpg',
+                'title' => 'livingroom',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
-            [
-                'image' => 'https://i.ibb.co/fDHKPHM/cfs.jpg',
-                'title' => 'cfs',
-                "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
-                "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
-            ]
         ];
         
         foreach ($slideShows as $key => $slideShow) {
