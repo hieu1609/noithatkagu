@@ -25,7 +25,7 @@ class ProductTableSeeder extends Seeder
                 'color' => '',
                 'tag' => 'giường, giường đơn, giường gỗ, gỗ',
                 'cat_id' => 1,
-                'rating' => 0,
+                'rating' => 4.5,
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -40,7 +40,7 @@ class ProductTableSeeder extends Seeder
                 'color' => '',
                 'tag' => 'giường, giường đôi, giường gỗ, gỗ',
                 'cat_id' => 1,
-                'rating' => 0,
+                'rating' => 3,
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],

@@ -20,6 +20,18 @@ class ProductReviews extends BaseModel
             'productId' => 'required|integer',
             'page' => 'required|integer',
         ],
+        'Add_Review' => [
+            'productId' => 'required|integer',
+            'rating' => 'required|integer',
+            'comment' => 'required|string',
+        ],
+        'Edit_Product_Review' => [
+            'productId' => 'required|integer',
+            'rating' => 'required|integer',
+            'comment' => 'required|string',
+        ],
+        'Delete_Product_Review' => [
+        ],
     );
     
     public static function getAVGRatingProduct($productId) {
