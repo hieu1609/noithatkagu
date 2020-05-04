@@ -5,6 +5,8 @@ I)Home
 2. ​/data​/get-product-category
 
 3. /data/get-new-product
+
+4. /data​/get-best-selling-products
 II)Search && Get product by category id
 1. /data/search-product
   "keyword": "string",

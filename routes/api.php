@@ -33,6 +33,7 @@ Route::group(['prefix' => 'data'], function () {
 
     //Home page
     Route::get('get-slide-show', 'DataController@getSlideShow'); //0
+    Route::get('get-best-selling-products', 'DataController@getBestSellingProducts'); //0
     Route::get('get-product-category', 'DataController@getProductCategory'); //0
     Route::get('get-new-product', 'DataController@getNewProduct'); //0
     Route::post('get-product-by-category-id', 'DataController@getProductByCategoryId'); //1
@@ -79,27 +80,33 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('add-user', 'AdminController@addUser');
         Route::put('/{id}', 'AdminController@editUser');
         Route::delete('/{id}', 'AdminController@deleteUser');
+
         //Order
         Route::delete('order/{id}', 'AdminController@deletePurchasesAdmin');;
+
         //Feedback
         Route::post('get-feedback-admin', 'AdminController@getFeedbackAdmin');
+
         //Notifications
         Route::post('get-notifications-admin', 'AdminController@getNotificationsAdmin');
         Route::post('send-notification', 'AdminController@sendNotification');
         Route::post('send-notification-for-all-users', 'AdminController@sendNotificationForAllUsers');
         Route::put('notification/{notificationId}', 'AdminController@editNotification');
         Route::delete('notification/{notificationId}', 'AdminController@deleteNotification');
+
         //Product
         Route::post('get-product-admin', 'AdminController@getProductAdmin');
         Route::get('get-all-product-admin', 'AdminController@getAllProductAdmin');
         Route::post('add-product', 'AdminController@addProduct');
         Route::put('product/{productId}', 'AdminController@editProduct');
         Route::delete('product/{productId}', 'AdminController@deleteProduct');
+
         //Slide show
         Route::post('get-slide-showAdmin', 'AdminController@getSlideShowAdmin');
         Route::post('add-slide-show', 'AdminController@addSlideShow');
         Route::put('slideshow/{slideShowId}', 'AdminController@editSlideShow');
-        Route::delete('slideshow/{slideShowId}', 'AdminController@deleteSlideShow');  
+        Route::delete('slideshow/{slideShowId}', 'AdminController@deleteSlideShow'); 
+         
         //Product Image
         Route::post('add-product-image', 'AdminController@addProductImage');
         Route::put('image/{id}', 'AdminController@editProductImage');

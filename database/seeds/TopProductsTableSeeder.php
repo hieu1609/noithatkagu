@@ -33,6 +33,12 @@ class TopProductsTableSeeder extends Seeder
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
+            [
+                'product_id' => 36,
+                'total_products' => 1,
+                "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
+                "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
+            ],
         ];
         
         foreach ($topProducts as $key => $topProduct) {

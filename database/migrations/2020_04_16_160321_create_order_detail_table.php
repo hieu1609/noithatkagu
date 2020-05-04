@@ -18,7 +18,7 @@ class CreateOrderDetailTable extends Migration
             $table->integer('order_id')->unsigned()->index();
             $table->integer('product_id')->unsigned()->index();
             $table->string('product_name', 255);
-            $table->decimal('product_price', 15, 2);
+            $table->integer('product_price');
             $table->integer('quantity');
             $table->string('status')->default("none"); //none|confirmed|shipping|finished
             $table->timestamps();

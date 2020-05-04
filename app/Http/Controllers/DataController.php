@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
 use App\SlideShow;
+use App\TopProducts;
 use App\ProductReviews;
 
 class DataController extends BaseApiController
@@ -27,6 +28,28 @@ class DataController extends BaseApiController
         try {
             $dataSlideShow = SlideShow::getSlideShow();
             return $this->responseSuccess($dataSlideShow);
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), $exception->getCode(), 500);
+        }
+    }
+
+    /**
+     * @SWG\Get(
+     *     path="/data/get-best-selling-products",
+     *     description="get best selling products",
+     *     tags={"Home page"},
+     *     summary="get best selling products",
+     *
+     *      @SWG\Response(response=200, description="Successful operation"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+    public function getBestSellingProducts(Request $request)
+    {
+        try {
+            $result = TopProducts::getBestSellingProducts();
+            return $this->responseSuccess($result);
         } catch (\Exception $exception) {
             return $this->responseErrorException($exception->getMessage(), $exception->getCode(), 500);
         }
