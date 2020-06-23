@@ -15,32 +15,32 @@ class SlideShowTableSeeder extends Seeder
     {
         $slideShows = [
             [
-                'image' => 'https://i.ibb.co/2txhbHJ/outdoor.jpg',
+                'image' => 'http://noithatkagu.store/image/carousel/outdoor.jpg',
                 'title' => 'outdoor',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
-                'image' => 'https://i.ibb.co/vxcZN0p/furiture.png',
+                'image' => 'http://noithatkagu.store/image/carousel/furiture.png',
                 'title' => 'furiture',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
 
             ],
             [
-                'image' => 'https://i.ibb.co/1K39fMW/bedroom.jpg',
+                'image' => 'http://noithatkagu.store/image/carousel/bedroom.jpg',
                 'title' => 'bedroom',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
-                'image' => 'https://i.ibb.co/BTXDNrp/indoor.jpg',
+                'image' => 'http://noithatkagu.store/image/carousel/indoor.jpg',
                 'title' => 'indoor',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
-                'image' => 'https://i.ibb.co/LnFbB4L/livingroom.jpg',
+                'image' => 'http://noithatkagu.store/image/carousel/livingroom.jpg',
                 'title' => 'livingroom',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
