@@ -197,21 +197,21 @@ class ProductImageTableSeeder extends Seeder
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],            [
                 'product_id' => 10,
-                'product_image' => 'http://noithatkagu.store/public/image/giuong/guongngumelamine/guongngumelamine.jpg',
+                'product_image' => 'http://noithatkagu.store/public/image/giuong/giuonggomelamaine/guongngumelamine.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 10,
-                'product_image' => 'http://noithatkagu.store/public/image/giuong/guongngumelamine/guongmelamain1.jpg',
+                'product_image' => 'http://noithatkagu.store/public/image/giuong/giuonggomelamaine/guongmelamain1.jpg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 10,
-                'product_image' => 'http://noithatkagu.store/public/image/giuong/guongngumelamine/giuongmelamain2.jpg',
+                'product_image' => 'http://noithatkagu.store/public/image/giuong/giuonggomelamaine/giuongmelamain2.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
