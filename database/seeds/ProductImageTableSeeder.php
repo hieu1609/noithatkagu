@@ -77,21 +77,21 @@ class ProductImageTableSeeder extends Seeder
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],            [
                 'product_id' => 4,
-                'product_image' => 'http://noithatkagu.store/image/giuong/giươngngugodon1hockeo/giuongdon1hoc.jpg',
+                'product_image' => 'http://noithatkagu.store/image/giuong/giuongngugodon1hockeo/giuongdon1hoc.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 4,
-                'product_image' => 'http://noithatkagu.store/image/giuong/giươngngugodon1hockeo/giuongdon1hoc1.jpg',
+                'product_image' => 'http://noithatkagu.store/image/giuong/giuongngugodon1hockeo/giuongdon1hoc1.jpg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 4,
-                'product_image' => 'http://noithatkagu.store/image/giuong/giươngngugodon1hockeo/giuongdon1hoc2.jpg',
+                'product_image' => 'http://noithatkagu.store/image/giuong/giuongngugodon1hockeo/giuongdon1hoc2.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
@@ -343,7 +343,7 @@ class ProductImageTableSeeder extends Seeder
                 'product_id' => 17,
                 /////////////////////////////////////////////////////////////
                 /////////////////////////////// File Anh Tieng Viet
-                'product_image' => 'http://noithatkagu.store/image/banghean/bobanan6ghemautunhien/bộbanan6gmautunhien.jpg',
+                'product_image' => 'http://noithatkagu.store/image/banghean/bobanan6ghemautunhien/bobanan6gmautunhien.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
