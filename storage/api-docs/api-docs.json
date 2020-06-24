@@ -666,6 +666,9 @@
                                 "productName": {
                                     "type": "string"
                                 },
+                                "productFkPrice": {
+                                    "type": "integer"
+                                },
                                 "productPrice": {
                                     "type": "integer"
                                 },
@@ -746,6 +749,9 @@
                             "properties": {
                                 "productName": {
                                     "type": "string"
+                                },
+                                "productFkPrice": {
+                                    "type": "integer"
                                 },
                                 "productPrice": {
                                     "type": "integer"
