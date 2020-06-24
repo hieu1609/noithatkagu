@@ -150,6 +150,8 @@ $ApiErrorMessages = array(
     'product_number_integer' => 'The product number must be integer',
     'product_comment_required' => 'The product comment is required',
     'product_comment_string' => 'The product number must be string',
+    'product_fk_price_required' => 'The product fake price is required',
+    'product_fk_price_integer' => 'The product fake price must be integer',
 );
 $ApiErrorCodes = array(
 
@@ -304,6 +306,8 @@ $ApiErrorCodes = array(
     'product_number_integer' => 8074,
     'product_comment_required' => 8075,
     'product_comment_string' => 8076,
+    'product_fk_price_required' => 8077,
+    'product_fk_price_integer' => 8078,
 );
 
 $ApiCodes['ApiErrorMessages'] = $ApiErrorMessages;

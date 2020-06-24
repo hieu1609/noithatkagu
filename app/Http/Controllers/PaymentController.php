@@ -20,6 +20,7 @@ use App\Services\PayPalService;
 use App\TransactionPaypal;
 use App\OrderDetail;
 use App\OrderUserInfor;
+use Response;
 
 class PaymentController extends BaseApiController
 {
@@ -127,10 +128,10 @@ class PaymentController extends BaseApiController
                 ->setDescription("Payment description")
                 ->setInvoiceNumber(uniqid());
             
-            $baseUrl = "http://localhost:4200";
+            $baseUrl = "http://noithatkagu.store";
             $redirectUrls = new RedirectUrls();
-            $redirectUrls->setReturnUrl("$baseUrl/ExecutePayment.php?success=true")
-                ->setCancelUrl("$baseUrl/ExecutePayment.php?success=false");
+            $redirectUrls->setReturnUrl("$baseUrl/xu-ly-thanh-toan?success=true")
+                ->setCancelUrl("$baseUrl/xu-ly-thanh-toan?success=false");
 
             $payment = new Payment();
             $payment->setIntent("sale")
@@ -139,8 +140,8 @@ class PaymentController extends BaseApiController
                 ->setTransactions(array($transaction));
             
             $payment->create($this->apiContext);
-            $payment->status = "pay";
-            return $payment->links[1]->href;
+            $href = $payment->links[1]->href;
+            return Response::json([$href], 200);
         } catch (\Exception $exception) {
             return $this->responseErrorException($exception->getMessage(), $exception->getCode(), 500);
         }
@@ -218,7 +219,7 @@ class PaymentController extends BaseApiController
                 $checkOrderId->paid = 1;
                 $checkOrderId->save();
 
-                return $result;
+                return Response::json(['Successful'], 200);
             } 
             catch (PayPal\Exception\PayPalConnectionException $ex) {
                 return $ex;

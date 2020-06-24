@@ -44,14 +44,14 @@ class ProductImageTableSeeder extends Seeder
             ],
             [
                 'product_id' => 2,
-                'product_image' => 'http://noithatkagu.store/image/giuong/giuonggiadinhgosoi/giuonggiadinhgosoi.jpg2',
+                'product_image' => 'http://noithatkagu.store/image/giuong/giuonggiadinhgosoi/giuonggiadinhgosoi1.jpg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 2,
-                'product_image' => 'http://noithatkagu.store/image/giuong/giuonggiadinhgosoi/giuonggiadinhgosoi.jpg3',
+                'product_image' => 'http://noithatkagu.store/image/giuong/giuonggiadinhgosoi/giuonggiadinhgosoi2.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
@@ -157,7 +157,7 @@ class ProductImageTableSeeder extends Seeder
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],            [
                 'product_id' => 8,
-                'product_image' => 'http://noithatkagu.store/image/giuong/giuongngu2tanggothong/giuongtanggothong.jpgg',
+                'product_image' => 'http://noithatkagu.store/image/giuong/giuongngu2tanggothong/giuongtanggothong.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
@@ -197,21 +197,21 @@ class ProductImageTableSeeder extends Seeder
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],            [
                 'product_id' => 10,
-                'product_image' => 'http://noithatkagu.store/image/giuong/guongngumelamine/guongngumelamine.jpg',
+                'product_image' => 'http://noithatkagu.store/image/giuong/giuonggomelamaine/guongngumelamine.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 10,
-                'product_image' => 'http://noithatkagu.store/image/giuong/guongngumelamine/guongmelamain1.jpg',
+                'product_image' => 'http://noithatkagu.store/image/giuong/giuonggomelamaine/guongmelamain1.jpg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 10,
-                'product_image' => 'http://noithatkagu.store/image/giuong/guongngumelamine/giuongmelamain2.jpg',
+                'product_image' => 'http://noithatkagu.store/image/giuong/giuonggomelamaine/giuongmelamain2.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
@@ -251,7 +251,7 @@ class ProductImageTableSeeder extends Seeder
             ],
             [
                 'product_id' => 12,
-                'product_image' => 'http://noithatkagu.store/image/banghean/bobanan4ghe/bobanan4ghe1.jpg',
+                'product_image' => 'http://noithatkagu.store/image/banghean/bobanan4ghe/banan4ghe1.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
@@ -299,7 +299,7 @@ class ProductImageTableSeeder extends Seeder
             ],            
             [
                 'product_id' => 15,
-                'product_image' => 'http://noithatkagu.store/image/banghean/bobanantuatron/bananghetuatron.jpeg',
+                'product_image' => 'http://noithatkagu.store/image/banghean/bobanantuatron/bobananghetuatron.jpeg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
@@ -320,21 +320,21 @@ class ProductImageTableSeeder extends Seeder
             ],           
             [
                 'product_id' => 16,
-                'product_image' => 'http://noithatkagu.store/image/banghean/bobanachangosoi/bobanachangosoi.jpg',
+                'product_image' => 'http://noithatkagu.store/image/banghean/bobananchangosoi/bobanachangosoi.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 16,
-                'product_image' => 'http://noithatkagu.store/image/banghean/bobanachangosoi/changosoi1.jpeg',
+                'product_image' => 'http://noithatkagu.store/image/banghean/bobananchangosoi/changosoi1.jpeg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 16,
-                'product_image' => 'http://noithatkagu.store/image/banghean/bobanachangosoi/changosoi2.jpeg',
+                'product_image' => 'http://noithatkagu.store/image/banghean/bobananchangosoi/changosoi2.jpeg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
@@ -504,7 +504,7 @@ class ProductImageTableSeeder extends Seeder
             ],
             [
                 'product_id' => 24,
-                'product_image' => 'http://noithatkagu.store/image/sofa/bosofa5mon/sofa5mon2.png',
+                'product_image' => 'http://noithatkagu.store/image/sofa/bosofa5mon/sofa5mon2.jpg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')

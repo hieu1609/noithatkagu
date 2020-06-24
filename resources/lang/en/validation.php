@@ -322,6 +322,10 @@ return [
             'required' => 'product_comment_required',
             'string' => 'product_comment_string',
         ],
+        'productFkPrice' => [
+            'required' => 'product_fk_price_required',
+            'integer' => 'product_fk_price_integer',
+        ],
     ],
 
     /*

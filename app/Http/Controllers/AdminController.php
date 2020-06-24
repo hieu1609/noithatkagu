@@ -745,6 +745,10 @@ class AdminController extends BaseApiController
      *                  type="string",
      *              ),
      *              @SWG\property(
+     *                  property="productFkPrice",
+     *                  type="integer",
+     *              ),
+     *              @SWG\property(
      *                  property="productPrice",
      *                  type="integer",
      *              ),
@@ -801,6 +805,7 @@ class AdminController extends BaseApiController
             }
             $product = new Product;
             $product->product_name = $request->productName;
+            $product->product_fk_price = $request->productFkPrice;
             $product->product_price = $request->productPrice;
             $product->material = $request->productMaterial;
             $product->size = $request->productSize;
@@ -839,6 +844,10 @@ class AdminController extends BaseApiController
      *              @SWG\Property(
      *                  property="productName",
      *                  type="string",
+     *              ),
+     *              @SWG\property(
+     *                  property="productFkPrice",
+     *                  type="integer",
      *              ),
      *              @SWG\property(
      *                  property="productPrice",
@@ -901,6 +910,7 @@ class AdminController extends BaseApiController
                 return $this->responseErrorCustom("product_id_not_found", 404);
             }
             $checkProductId->product_name = $request->productName;
+            $checkProductId->product_fk_price = $request->productFkPrice;
             $checkProductId->product_price = $request->productPrice;
             $checkProductId->material = $request->productMaterial;
             $checkProductId->size = $request->productSize;
