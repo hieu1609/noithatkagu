@@ -2561,7 +2561,7 @@
         "jwt": {
             "type": "apiKey",
             "description": "Example Format: Bearer Your-Token",
-            "name": "authorization",
+            "name": "Authorization",
             "in": "header"
         }
     }
