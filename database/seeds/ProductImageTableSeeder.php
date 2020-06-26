@@ -637,21 +637,21 @@ class ProductImageTableSeeder extends Seeder
             ],
             [
                 'product_id' => 31,
-                'product_image' => '/assets/tuquanao/tuquanaoMFC/1.jpg',
+                'product_image' => '/assets/tuquanao/tuquanaomfc/1.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 31,
-                'product_image' => '/assets/tuquanao/tuquanaoMFC/2.jpg',
+                'product_image' => '/assets/tuquanao/tuquanaomfc/2.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 31,
-                'product_image' => '/assets/tuquanao/tuquanaoMFC/3.jpg',
+                'product_image' => '/assets/tuquanao/tuquanaomfc/3.jpg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
