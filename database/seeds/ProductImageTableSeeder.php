@@ -16,202 +16,202 @@ class ProductImageTableSeeder extends Seeder
         $images = [
             [
                 'product_id' => 1,
-                'product_image' => '/assets/giuong/giuongdongosoi/1.jpg',
+                'product_image' => '/assets/giuong/dongosoi/1.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 1,
-                'product_image' => '/assets/giuong/giuongdongosoi/2.jpg',
+                'product_image' => '/assets/giuong/dongosoi/2.jpg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 1,
-                'product_image' => '/assets/giuong/giuongdongosoi/3.jpg',
+                'product_image' => '/assets/giuong/dongosoi/3.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 2,
-                'product_image' => '/assets/giuong/giuonggiadinhgosoi/1.jpg',
+                'product_image' => '/assets/giuong/giadinhgosoi/1.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 2,
-                'product_image' => '/assets/giuong/giuonggiadinhgosoi/2.jpg',
+                'product_image' => '/assets/giuong/giadinhgosoi/2.jpg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 2,
-                'product_image' => '/assets/giuong/giuonggiadinhgosoi/3.jpg',
+                'product_image' => '/assets/giuong/giadinhgosoi/3.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],            [
                 'product_id' => 3,
-                'product_image' => '/assets/giuong/giuongdoigosoi/1.jpg',
+                'product_image' => '/assets/giuong/doigosoi/1.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 3,
-                'product_image' => '/assets/giuong/giuongdoigosoi/2.jpg',
+                'product_image' => '/assets/giuong/doigosoi/2.jpg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 3,
-                'product_image' => '/assets/giuong/giuongdoigosoi/3.jpg',
+                'product_image' => '/assets/giuong/doigosoi/3.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],            [
                 'product_id' => 4,
-                'product_image' => '/assets/giuong/giuongngugodon1hockeo/1.jpg',
+                'product_image' => '/assets/giuong/godon1hockeo/1.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 4,
-                'product_image' => '/assets/giuong/giuongngugodon1hockeo/2.jpg',
+                'product_image' => '/assets/giuong/godon1hockeo/2.jpg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 4,
-                'product_image' => '/assets/giuong/giuongngugodon1hockeo/3.jpg',
+                'product_image' => '/assets/giuong/godon1hockeo/3.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],            [
                 'product_id' => 5,
-                'product_image' => '/assets/giuong/giuonggodon2nganhockeo/1.jpg',
+                'product_image' => '/assets/giuong/godon2nganhockeo/1.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 5,
-                'product_image' => '/assets/giuong/giuonggodon2nganhockeo/2.jpg',
+                'product_image' => '/assets/giuong/godon2nganhockeo/2.jpg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 5,
-                'product_image' => '/assets/giuong/giuonggodon2nganhockeo/3.jpg',
+                'product_image' => '/assets/giuong/godon2nganhockeo/3.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],            [
                 'product_id' => 6,
-                'product_image' => '/assets/giuong/giuonggo1nganhockeo/1.jpg',
+                'product_image' => '/assets/giuong/go1nganhockeo/1.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 6,
-                'product_image' => '/assets/giuong/giuonggo1nganhockeo/2.jpg',
+                'product_image' => '/assets/giuong/go1nganhockeo/2.jpg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 6,
-                'product_image' => '/assets/giuong/giuonggo1nganhockeo/3.jpg',
+                'product_image' => '/assets/giuong/go1nganhockeo/3.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],            [
                 'product_id' => 7,
-                'product_image' => '/assets/giuong/giuonggo2nganhockeo/1.jpg',
+                'product_image' => '/assets/giuong/go2nganhockeo/1.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 7,
-                'product_image' => '/assets/giuong/giuonggo2nganhockeo/2.jpg',
+                'product_image' => '/assets/giuong/go2nganhockeo/2.jpg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 7,
-                'product_image' => '/assets/giuong/giuonggo2nganhockeo/3.jpg',
+                'product_image' => '/assets/giuong/go2nganhockeo/3.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],            [
                 'product_id' => 8,
-                'product_image' => '/assets/giuong/giuongngu2tanggothong/1.jpg',
+                'product_image' => '/assets/giuong/2tanggothong/1.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 8,
-                'product_image' => '/assets/giuong/giuongngu2tanggothong/2.jpg',
+                'product_image' => '/assets/giuong/2tanggothong/2.jpg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 8,
-                'product_image' => '/assets/giuong/giuongngu2tanggothong/3.jpg',
+                'product_image' => '/assets/giuong/2tanggothong/3.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],            [
                 'product_id' => 9,
-                'product_image' => '/assets/giuong/giuongtanggotunhien/1.jpg',
+                'product_image' => '/assets/giuong/tanggotunhien/1.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 9,
-                'product_image' => '/assets/giuong/giuongtanggotunhien/2.jpg',
+                'product_image' => '/assets/giuong/tanggotunhien/2.jpg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 9,
-                'product_image' => '/assets/giuong/giuongtanggotunhien/3.jpg',
+                'product_image' => '/assets/giuong/tanggotunhien/3.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],            [
                 'product_id' => 10,
-                'product_image' => '/assets/giuong/giuonggomelamaine/1.jpg',
+                'product_image' => '/assets/giuong/gomelamaine/1.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 10,
-                'product_image' => '/assets/giuong/giuonggomelamaine/2.jpg',
+                'product_image' => '/assets/giuong/gomelamaine/2.jpg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 10,
-                'product_image' => '/assets/giuong/giuonggomelamaine/3.jpg',
+                'product_image' => '/assets/giuong/gomelamaine/3.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
