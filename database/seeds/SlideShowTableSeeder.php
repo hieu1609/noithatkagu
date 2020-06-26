@@ -15,32 +15,32 @@ class SlideShowTableSeeder extends Seeder
     {
         $slideShows = [
             [
-                'image' => 'http://noithatkagu.store/image/carousel/outdoor.jpg',
+                'image' => '/assets/carousel/outdoor.jpg',
                 'title' => 'outdoor',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
-                'image' => 'http://noithatkagu.store/image/carousel/furiture.png',
+                'image' => '/assets/carousel/furiture.png',
                 'title' => 'furiture',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
 
             ],
             [
-                'image' => 'http://noithatkagu.store/image/carousel/bedroom.jpg',
+                'image' => '/assets/carousel/bedroom.jpg',
                 'title' => 'bedroom',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
-                'image' => 'http://noithatkagu.store/image/carousel/indoor.jpg',
+                'image' => '/assets/carousel/indoor.jpg',
                 'title' => 'indoor',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
-                'image' => 'http://noithatkagu.store/image/carousel/livingroom.jpg',
+                'image' => '/assets/carousel/livingroom.jpg',
                 'title' => 'livingroom',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
