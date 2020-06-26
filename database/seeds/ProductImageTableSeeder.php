@@ -57,41 +57,41 @@ class ProductImageTableSeeder extends Seeder
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],            [
                 'product_id' => 3,
-                'product_image' => '/assets/giuong/doigosoi/1.jpg',
+                'product_image' => '/assets/giuong/giuongdoisoi/1.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 3,
-                'product_image' => '/assets/giuong/doigosoi/2.jpg',
+                'product_image' => '/assets/giuong/giuongdoisoi/2.jpg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 3,
-                'product_image' => '/assets/giuong/doigosoi/3.jpg',
+                'product_image' => '/assets/giuong/giuongdoisoi/3.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],            [
                 'product_id' => 4,
-                'product_image' => '/assets/giuong/godon1hockeo/1.jpg',
+                'product_image' => '/assets/giuong/don1keo/1.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 4,
-                'product_image' => '/assets/giuong/godon1hockeo/2.jpg',
+                'product_image' => '/assets/giuong/don1keo/2.jpg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 4,
-                'product_image' => '/assets/giuong/godon1hockeo/3.jpg',
+                'product_image' => '/assets/giuong/don1keo/3.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
@@ -364,21 +364,21 @@ class ProductImageTableSeeder extends Seeder
             ],            
             [
                 'product_id' => 18,
-                'product_image' => '/assets/banghean/bobananmaytre/1.jpg',
+                'product_image' => '/assets/banghean/bananmaytre/1.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 18,
-                'product_image' => '/assets/banghean/bobananmaytre/2.jpg',
+                'product_image' => '/assets/banghean/bananmaytre/2.jpg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 18,
-                'product_image' => '/assets/banghean/bobananmaytre/3.jpg',
+                'product_image' => '/assets/banghean/bananmaytre/3.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
@@ -448,21 +448,21 @@ class ProductImageTableSeeder extends Seeder
             ],
             [
                 'product_id' => 22,
-                'product_image' => '/assets/sofa/sofagiuongkethopbantra/1.jpg',
+                'product_image' => '/assets/sofa/sofagiuongtra/1.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 22,
-                'product_image' => '/assets/sofa/sofagiuongkethopbantra/2.jpg',
+                'product_image' => '/assets/sofa/sofagiuongtra/2.jpg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 22,
-                'product_image' => '/assets/sofa/sofagiuongkethopbantra/3.jpg',
+                'product_image' => '/assets/sofa/sofagiuongtra/3.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
@@ -490,21 +490,21 @@ class ProductImageTableSeeder extends Seeder
             ],
             [
                 'product_id' => 24,
-                'product_image' => '/assets/sofa/bosofa5mon/1.jpg',
+                'product_image' => '/assets/sofa/sofa5mon/1.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 24,
-                'product_image' => '/assets/sofa/bosofa5mon/2.jpg',
+                'product_image' => '/assets/sofa/sofa5mon/2.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 24,
-                'product_image' => '/assets/sofa/bosofa5mon/3.jpg',
+                'product_image' => '/assets/sofa/sofa5mon/3.jpg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
@@ -553,21 +553,21 @@ class ProductImageTableSeeder extends Seeder
             ],
             [
                 'product_id' => 27,
-                'product_image' => '/assets/sofa/sofagiuonggokagu/1.jpg',
+                'product_image' => '/assets/sofa/sofagiuongngu/1.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 27,
-                'product_image' => '/assets/sofa/sofagiuonggokagu/2.jpg',
+                'product_image' => '/assets/sofa/sofagiuongngu/2.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 27,
-                'product_image' => '/assets/sofa/sofagiuonggokagu/3.jpg',
+                'product_image' => '/assets/sofa/sofagiuongngu/3.jpg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
@@ -637,21 +637,21 @@ class ProductImageTableSeeder extends Seeder
             ],
             [
                 'product_id' => 31,
-                'product_image' => '/assets/tuquanao/tuquanaomfc/1.jpg',
+                'product_image' => '/assets/tuquanao/tuaomfc/1.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 31,
-                'product_image' => '/assets/tuquanao/tuquanaomfc/2.jpg',
+                'product_image' => '/assets/tuquanao/tuaomfc/2.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'product_id' => 31,
-                'product_image' => '/assets/tuquanao/tuquanaomfc/3.jpg',
+                'product_image' => '/assets/tuquanao/tuaomfc/3.jpg',
                 'image_description' => 'mat sau 1',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
