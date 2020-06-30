@@ -15,32 +15,32 @@ class SlideShowTableSeeder extends Seeder
     {
         $slideShows = [
             [
-                'image' => '/assets/carousel/outdoor.jpg',
+                'image' => '/assets/carousel/outdoor.webp',
                 'title' => 'outdoor',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
-                'image' => '/assets/carousel/furiture.png',
+                'image' => '/assets/carousel/furiture.webp',
                 'title' => 'furiture',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
 
             ],
             [
-                'image' => '/assets/carousel/bedroom.jpg',
+                'image' => '/assets/carousel/bedroom.webp',
                 'title' => 'bedroom',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
-                'image' => '/assets/carousel/indoor.jpg',
+                'image' => '/assets/carousel/indoor.webp',
                 'title' => 'indoor',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
-                'image' => '/assets/carousel/livingroom.jpg',
+                'image' => '/assets/carousel/livingroom.webp',
                 'title' => 'livingroom',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
