@@ -47,6 +47,14 @@ class CartController extends BaseApiController
      *                  type="string",
      *              ),
      *              @SWG\property(
+     *                  property="discountCode",
+     *                  type="string",
+     *              ),
+     *              @SWG\property(
+     *                  property="firstPrice",
+     *                  type="integer",
+     *              ),
+     *              @SWG\property(
      *                  property="totalPrice",
      *                  type="integer",
      *              ),
@@ -78,6 +86,8 @@ class CartController extends BaseApiController
             $userInfor->email = $request->email;
             $userInfor->address = $request->address;
             $userInfor->delivery_option = $request->deliveryOption;
+            $userInfor->discount = $request->discountCode;
+            $userInfor->first_price = $request->firstPrice;
             $userInfor->total_price = $request->totalPrice;
             $userInfor->payment_method = $request->paymentMethod;
             $userInfor->save();

@@ -21,6 +21,8 @@ class CreateOrderUserInforTable extends Migration
             $table->string('email', 50);
             $table->string('address', 255);
             $table->string('delivery_option', 100);
+            $table->string('discount')->nullable();
+            $table->integer('first_price');
             $table->integer('total_price');
             $table->string('payment_method'); //cash|paypal
             $table->boolean('paid')->default(0);

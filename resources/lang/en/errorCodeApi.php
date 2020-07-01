@@ -74,6 +74,8 @@ $ApiErrorMessages = array(
     'tokens_reset_password_invalid_credentials' => 'The token is invalid credentials',
 
     'tokens_create_user_invalid' => 'The token is invalid. Please check email again',
+    'discount_not_found' => 'The discount is not found.',
+    'discount_code_not_found' => 'The discount code is not found.',
 
     //custom error
     'email_password_invalid' => 'The email or password are invalid',
@@ -152,6 +154,20 @@ $ApiErrorMessages = array(
     'product_comment_string' => 'The product number must be string',
     'product_fk_price_required' => 'The product fake price is required',
     'product_fk_price_integer' => 'The product fake price must be integer',
+    'discount_code_required' => 'The discount code is required',
+    'discount_code_string' => 'The discount code must be string',
+    'total_money_required' => 'The total money is required',
+    'total_money_integer' => 'The total money must be integer',
+    'first_price_required' => 'The first price is required',
+    'first_price_integer' => 'The first price must be integer',
+    'description_required' => 'The description is required',
+    'description_string' => 'The description must be string',
+    'code_required' => 'The code is required',
+    'code_string' => 'The code must be string',
+    'values_required' => 'The values is required',
+    'values_integer' => 'The values must be integer',
+    'time_required' => 'The time is required',
+    'time_integer' => 'The time must be integer',
 );
 $ApiErrorCodes = array(
 
@@ -227,6 +243,8 @@ $ApiErrorCodes = array(
     'tokens_reset_password_invalid_credentials' => 3055,
 
     'tokens_create_user_invalid' => 3056,
+    'discount_not_found' => 3057,
+    'discount_code_not_found' => 3058,
 
     //custom error
     'email_password_invalid' => 8000,
@@ -308,6 +326,20 @@ $ApiErrorCodes = array(
     'product_comment_string' => 8076,
     'product_fk_price_required' => 8077,
     'product_fk_price_integer' => 8078,
+    'discount_code_required' => 8079,
+    'discount_code_string' => 8080,
+    'total_money_required' => 8081,
+    'total_money_integer' => 8082,
+    'first_price_required' => 8083,
+    'first_price_integer' => 8084,
+    'description_required' => 8085,
+    'description_string' => 8086,
+    'code_required' => 8087,
+    'code_string' => 8088,
+    'values_required' => 8089,
+    'values_integer' => 8090,
+    'time_required' => 8091,
+    'time_integer' => 8092,
 );
 
 $ApiCodes['ApiErrorMessages'] = $ApiErrorMessages;
