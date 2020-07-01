@@ -16,6 +16,8 @@ use App\Category;
 use App\ProductImage;
 use App\ProductNumber;
 use App\SlideShow;
+use App\DiscountCode;
+use Carbon\Carbon;
 
 class AdminController extends BaseApiController
 {
@@ -1140,6 +1142,7 @@ class AdminController extends BaseApiController
             return $this->responseErrorException($exception->getMessage(), 99999, 500);
         }
     }
+
     /**
      * @SWG\Delete(
      *     path="/admin/slideshow/{slideShowId}",
@@ -1182,6 +1185,7 @@ class AdminController extends BaseApiController
             return $this->responseErrorException($exception->getMessage(), 99999, 500);
         }
     }
+
     /**
      * @SWG\Post(
      *     path="/admin/add-product-image",
@@ -1217,7 +1221,6 @@ class AdminController extends BaseApiController
      *      @SWG\Response(response=500, description="Internal Server Error"),
      * )
      */
-
     public function addProductImage(Request $request)
     {
         try {
@@ -1235,6 +1238,7 @@ class AdminController extends BaseApiController
             return $this->responseErrorException($exception->getMessage(), 99999, 500);
         }
     }
+
     /**
      * @SWG\Put(
      *     path="/admin/image/{id}",
@@ -1278,7 +1282,6 @@ class AdminController extends BaseApiController
      *      @SWG\Response(response=500, description="Internal Server Error"),
      * )
      */
-
     public function editProductImage(Request $request)
     {
         try {
@@ -1304,6 +1307,7 @@ class AdminController extends BaseApiController
             return $this->responseErrorException($exception->getMessage(), 99999, 500);
         }
     }
+
     /**
      * @SWG\Delete(
      *     path="/admin/image/{id}",
@@ -1347,6 +1351,7 @@ class AdminController extends BaseApiController
             return $this->responseErrorException($exception->getMessage(), 99999, 500);
         }
     }
+
     /**
      * @SWG\Post(
      *     path="/admin/add-product-number",
@@ -1378,7 +1383,6 @@ class AdminController extends BaseApiController
      *      @SWG\Response(response=500, description="Internal Server Error"),
      * )
      */
-
     public function addProductNumber(Request $request)
     {
         try {
@@ -1399,6 +1403,7 @@ class AdminController extends BaseApiController
             return $this->responseErrorException($exception->getMessage(), 99999, 500);
         }
     }
+
     /**
      * @SWG\Put(
      *     path="/admin/number/{id}",
@@ -1435,7 +1440,6 @@ class AdminController extends BaseApiController
      *      @SWG\Response(response=500, description="Internal Server Error"),
      * )
      */
-
     public function editProductNumber(Request $request)
     {
         try {
@@ -1448,7 +1452,7 @@ class AdminController extends BaseApiController
             $productNumberId = $request->id;
             $productNumber = ProductNumber::where(['product_id' => $productNumberId])->first();
             if (!$productNumber) {
-                return $this->responseErrorCustom("product_number_not_found", 403);
+                return $this->responseErrorCustom("product_number_not_found", 404);
             }
             $productNumber->product_number = $request->productNumber;
             $productNumber->save();
@@ -1457,6 +1461,7 @@ class AdminController extends BaseApiController
             return $this->responseErrorException($exception->getMessage(), 99999, 500);
         }
     }
+
     /**
      * @SWG\Delete(
      *     path="/admin/number/{id}",
@@ -1492,7 +1497,7 @@ class AdminController extends BaseApiController
             $productNumberId = $request->id; //only for easy to under what is $request->id.
             $productNumber = ProductNumber::where(['id' => $productNumberId])->first();
             if (!$productNumber) {
-                return $this->responseErrorCustom("product_number_not_found", 403);
+                return $this->responseErrorCustom("product_number_not_found", 404);
             }
             $productNumber->delete();
             return $this->responseSuccess("Delete Product number successfully");
@@ -1500,6 +1505,7 @@ class AdminController extends BaseApiController
             return $this->responseErrorException($exception->getMessage(), 99999, 500);
         }
     }
+
     /**
      * @SWG\Post(
      *     path="/admin/add-product-review",
@@ -1539,7 +1545,6 @@ class AdminController extends BaseApiController
      *      @SWG\Response(response=500, description="Internal Server Error"),
      * )
      */
-
     public function addProductReview(Request $request)
     {
         try {
@@ -1549,11 +1554,11 @@ class AdminController extends BaseApiController
             }
             $checkUserId = User::where('id', $request->userId)->first();
             if (!$checkUserId) {
-                return $this->responseErrorCustom("user_not_found", 403);
+                return $this->responseErrorCustom("user_not_found", 404);
             }
             $checkProductId = Product::where('product_id', $request->productId)->first();
             if (!$checkProductId) {
-                return $this->responseErrorCustom("product_not_found", 403);
+                return $this->responseErrorCustom("product_not_found", 404);
             }
             if($request->rating > 5 or $request->rating < 1) {
                 return $this->responseErrorCustom("rating_incorrect", 403);
@@ -1569,6 +1574,7 @@ class AdminController extends BaseApiController
             return $this->responseErrorException($exception->getMessage(), 99999, 500);
         }
     }
+
     /**
      * @SWG\Put(
      *     path="/admin/review/{id}",
@@ -1616,7 +1622,6 @@ class AdminController extends BaseApiController
      *      @SWG\Response(response=500, description="Internal Server Error"),
      * )
      */
-
     public function editProductReview(Request $request)
     {
         try {
@@ -1629,15 +1634,15 @@ class AdminController extends BaseApiController
             $productReviewId = $request->id;
             $productReview = ProductReviews::where(['id' => $productReviewId])->first();
             if (!$productReview) {
-                return $this->responseErrorCustom("product_review_not_found", 403);
+                return $this->responseErrorCustom("product_review_not_found", 404);
             }
             $checkUserId = User::where('id', $request->userId)->first();
             if (!$checkUserId) {
-                return $this->responseErrorCustom("user_not_found", 403);
+                return $this->responseErrorCustom("user_not_found", 404);
             }
             $checkProductId = Product::where('product_id', $request->productId)->first();
             if (!$checkProductId) {
-                return $this->responseErrorCustom("product_not_found", 403);
+                return $this->responseErrorCustom("product_not_found", 404);
             }
             if($request->rating > 5 or $request->rating < 1) {
                 return $this->responseErrorCustom("rating_incorrect", 403);
@@ -1652,7 +1657,8 @@ class AdminController extends BaseApiController
             return $this->responseErrorException($exception->getMessage(), 99999, 500);
         }
     }
-        /**
+
+    /**
      * @SWG\Delete(
      *     path="/admin/review/{id}",
      *     description="Delete product review",
@@ -1686,10 +1692,185 @@ class AdminController extends BaseApiController
             $productReviewId = $request->id; //only for easy to under what is $request->id.
             $productReview = ProductReviews::where(['id' => $productReviewId])->first();
             if (!$productReview) {
-                return $this->responseErrorCustom("product_number_not_found", 403);
+                return $this->responseErrorCustom("product_number_not_found", 404);
             }
             $productReview->delete();
             return $this->responseSuccess("Delete Product number successfully");
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+
+    /**
+     * @SWG\Post(
+     *     path="/admin/add-discount-code",
+     *     description="Add discount code",
+     *     tags={"Admin"},
+     *     summary="Add discount code",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Add discount code",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="description",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="code",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="values",
+     *                  type="integer",
+     *              ),
+     *              @SWG\property(
+     *                  property="time",
+     *                  type="integer",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function addDiscountCode(Request $request)
+    {
+        try {
+            $validator = DiscountCode::validate($request->all(), 'Add_Discount_Code');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $expires_at = Carbon::now()->addDays($request->time);
+            $discountCode = new DiscountCode;
+            $discountCode->description = $request->description;
+            $discountCode->code = $request->code;
+            $discountCode->values = $request->values;
+            $discountCode->expires_at = $expires_at->format('Y-m-d H:i:s');            
+            $discountCode->save();
+            return $this->responseSuccess("Add discount code successfully");
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+
+    /**
+     * @SWG\Put(
+     *     path="/admin/discount/{id}",
+     *     description="Edit discount code",
+     *     tags={"Admin"},
+     *     summary="Edit discount code",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *         description="ID discount code",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         type="integer",
+     *         format="int64"
+     *     ),
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Edit discount code",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="description",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="code",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="values",
+     *                  type="integer",
+     *              ),
+     *              @SWG\property(
+     *                  property="time",
+     *                  type="integer",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+    public function editDiscountCode(Request $request)
+    {
+        try {
+            $input = $request->all();
+            $input['id'] = $request->id;
+            $validator = DiscountCode::validate($input, 'Edit_Discount_Code');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $discountCodeId = $request->id;
+            $checkDiscountCodeId = DiscountCode::where(['id' => $discountCodeId])->first();
+            if (!$checkDiscountCodeId) {
+                return $this->responseErrorCustom("discount_code_not_found", 404);
+            }
+            $expires_at = Carbon::now()->addDays($request->time);
+            $checkDiscountCodeId->description = $request->description;
+            $checkDiscountCodeId->code = $request->code;
+            $checkDiscountCodeId->values = $request->values;
+            $checkDiscountCodeId->expires_at = $expires_at->format('Y-m-d H:i:s');          
+            $checkDiscountCodeId->save();
+            return $this->responseSuccess("Edit discount code successfully");
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+
+    /**
+     * @SWG\Delete(
+     *     path="/admin/discount/{id}",
+     *     description="Delete discount code",
+     *     tags={"Admin"},
+     *     summary="Delete discount code",
+     *     security={{"jwt":{}}},
+     *     @SWG\Parameter(
+     *         description="ID discount code you want to delete",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         type="integer",
+     *         format="int64"
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+    public function deleteDiscountCode(Request $request)
+    {
+        try {
+            $validator = DiscountCode::validate(["id" => $request->id], 'Delete_Discount_Code');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $discountCodeId = $request->id;
+            $checkDiscountCodeId = DiscountCode::where(['id' => $discountCodeId])->first();
+            if (!$checkDiscountCodeId) {
+                return $this->responseErrorCustom("discount_code_not_found", 404);
+            }
+            $checkDiscountCodeId->delete();
+            return $this->responseSuccess("Delete discount code successfully");
         } catch (\Exception $exception) {
             return $this->responseErrorException($exception->getMessage(), 99999, 500);
         }

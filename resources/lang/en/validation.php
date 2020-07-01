@@ -326,6 +326,34 @@ return [
             'required' => 'product_fk_price_required',
             'integer' => 'product_fk_price_integer',
         ],
+        'discountCode' => [
+            'required' => 'discount_code_required',
+            'string' => 'discount_code_string',
+        ],
+        'totalMoney' => [
+            'required' => 'total_money_required',
+            'integer' => 'total_money_integer',
+        ],
+        'firstPrice' => [
+            'required' => 'first_price_required',
+            'integer' => 'first_price_integer',
+        ],
+        'description' => [
+            'required' => 'description_required',
+            'string' => 'description_string',
+        ],
+        'code' => [
+            'required' => 'code_required',
+            'string' => 'code_string',
+        ],
+        'values' => [
+            'required' => 'values_required',
+            'integer' => 'values_integer',
+        ],
+        'time' => [
+            'required' => 'time_required',
+            'integer' => 'time_integer',
+        ],
     ],
 
     /*

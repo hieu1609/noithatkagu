@@ -42,6 +42,10 @@ Route::group(['prefix' => 'data'], function () {
     Route::post('get-product-detail', 'DataController@getProductDetail'); //1
     Route::post('get-comment-product', 'DataController@getCommentByProductId'); //1
     Route::post('get-related-products', 'DataController@getRelatedProducts'); //1
+
+    //Discount code
+    Route::post('check-discount-code', 'DataController@checkDiscountCode'); //1
+    
 });
 //Route User
 Route::group(['prefix' => 'user'], function () {
@@ -102,23 +106,29 @@ Route::group(['prefix' => 'admin'], function () {
         Route::delete('product/{productId}', 'AdminController@deleteProduct');
 
         //Slide show
-        Route::post('get-slide-showAdmin', 'AdminController@getSlideShowAdmin');
+        Route::post('get-slide-show-admin', 'AdminController@getSlideShowAdmin');
         Route::post('add-slide-show', 'AdminController@addSlideShow');
         Route::put('slideshow/{slideShowId}', 'AdminController@editSlideShow');
         Route::delete('slideshow/{slideShowId}', 'AdminController@deleteSlideShow'); 
          
-        //Product Image
+        //Product image
         Route::post('add-product-image', 'AdminController@addProductImage');
         Route::put('image/{id}', 'AdminController@editProductImage');
         Route::delete('image/{id}', 'AdminController@deleteProductImage');
-        //Product Number
+
+        //Product number
         Route::post('add-product-number', 'AdminController@addProductNumber');
         Route::put('number/{id}', 'AdminController@editProductNumber');
         Route::delete('number/{id}', 'AdminController@deleteProductNumber');
-        //ProductReview
+
+        //Product review
         Route::post('add-product-review', 'AdminController@addProductReview');
         Route::put('review/{id}', 'AdminController@editProductReview');
         Route::delete('review/{id}', 'AdminController@deleteProductReview');
 
+        //Discount code
+        Route::post('add-discount-code', 'AdminController@addDiscountCode');
+        Route::put('discount/{id}', 'AdminController@editDiscountCode');
+        Route::delete('discount/{id}', 'AdminController@deleteDiscountCode');
     });
 });

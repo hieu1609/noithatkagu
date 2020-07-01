@@ -8,6 +8,7 @@ use App\Category;
 use App\SlideShow;
 use App\TopProducts;
 use App\ProductReviews;
+use App\DiscountCode;
 
 class DataController extends BaseApiController
 {
@@ -353,6 +354,57 @@ class DataController extends BaseApiController
             return $this->responseSuccess($data);
         } catch (\Exception $exception) {
             return $this->responseErrorException($exception->getMessage(), $exception->getCode(), 500);
+        }
+    }
+
+    /**
+     * @SWG\Post(
+     *     path="/data/check-discount-code",
+     *     description="Check discount code",
+     *     tags={"Discount"},
+     *     summary="Check discount code",
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Check discount code",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\property(
+     *                  property="discountCode",
+     *                  type="string",
+     *              ),
+     *              @SWG\property(
+     *                  property="totalMoney",
+     *                  type="string",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful operation"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+    public function checkDiscountCode(Request $request)
+    {
+        try {
+            $validator = DiscountCode::validate($request->all(), 'Check_Discount_Code');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $checkDiscountCode = DiscountCode::checkDiscount($request->discountCode);
+            if ($checkDiscountCode == 0) {
+                return $this->responseErrorCustom("discount_not_found", 404);
+            }
+            $result = new \stdClass();
+            $result->discountPercent = $checkDiscountCode;
+            $result->totalMoney = $request->totalMoney;
+            $result->discountMoney = $checkDiscountCode * $request->totalMoney / 100;
+            $result->lastMoney = $result->totalMoney - $result->discountMoney;
+            return $this->responseSuccess($result);
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
         }
     }
 }
