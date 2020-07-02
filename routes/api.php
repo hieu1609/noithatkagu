@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 //Route Authentication
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', 'AuthController@login');
+    Route::post('login-fg', 'AuthController@loginFG');
     Route::post('register', 'AuthController@register');
     Route::post('request/reset-password', 'AuthController@requestResetPassword');
     Route::post('accept/reset-password', 'AuthController@acceptResetPassword');

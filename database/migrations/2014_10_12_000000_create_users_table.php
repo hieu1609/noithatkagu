@@ -18,8 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('email', 50)->unique();
             $table->string('password', 255);
             $table->string('name', 50);
-            $table->string('phone', 50);
-            $table->string('address', 255);
+            $table->string('phone', 50)->nullable();
+            $table->string('address', 255)->nullable();
             $table->boolean('admin')->default(0);
             $table->timestamps();
         });

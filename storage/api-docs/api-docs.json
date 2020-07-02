@@ -1964,6 +1964,56 @@
                 }
             }
         },
+        "/auth/login-fg": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login FG",
+                "description": "Token will be return after login success",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Login FG",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
         "/cart/post-user-infor": {
             "post": {
                 "tags": [
