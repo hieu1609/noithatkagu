@@ -102,7 +102,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::delete('product/{productId}', 'AdminController@deleteProduct');
 
         //Slide show
-        Route::post('get-slide-showAdmin', 'AdminController@getSlideShowAdmin');
+        Route::post('get-slide-show-admin', 'AdminController@getSlideShowAdmin');
         Route::post('add-slide-show', 'AdminController@addSlideShow');
         Route::put('slideshow/{slideShowId}', 'AdminController@editSlideShow');
         Route::delete('slideshow/{slideShowId}', 'AdminController@deleteSlideShow'); 

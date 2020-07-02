@@ -34,4 +34,12 @@ class SlideShow extends BaseModel
         ->limit(5)
         ->get();
     }
+    public static function getSlideShowAdmin($page) {
+        $limit = 10;
+        $space = ($page - 1) * $limit;
+        return SlideShow::orderBy('id', 'desc')
+        ->limit($limit)
+        ->offset($space)
+        ->get();
+    }
 }
