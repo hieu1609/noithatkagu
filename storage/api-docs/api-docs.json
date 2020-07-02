@@ -229,7 +229,261 @@
                 ]
             }
         },
+        "/admin/get-new-order-admin": {
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Get product",
+                "description": "Get new order details",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Get product",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "page": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/admin/get-confirmed-order-admin": {
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Get product",
+                "description": "Get confirmed order details",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Get order",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "page": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/admin/get-shipping-order-admin": {
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Get product",
+                "description": "Get shipping order details",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Get order",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "page": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/admin/get-complete-order-admin": {
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Get product",
+                "description": "Get complete order details",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Get order",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "page": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
         "/admin/order/{id}": {
+            "put": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Edit order details",
+                "description": "Edit order details",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID order details to edit",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Edit order details",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "orderId": {
+                                    "type": "integer"
+                                },
+                                "productId": {
+                                    "type": "integer"
+                                },
+                                "productName": {
+                                    "type": "string"
+                                },
+                                "productPrice": {
+                                    "type": "integer"
+                                },
+                                "quantity": {
+                                    "type": "integer"
+                                },
+                                "status": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            },
             "delete": {
                 "tags": [
                     "Admin"
@@ -1527,6 +1781,172 @@
                 ]
             }
         },
+        "/admin/add-discount-code": {
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Add discount code",
+                "description": "Add discount code",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Add discount code",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "string"
+                                },
+                                "values": {
+                                    "type": "integer"
+                                },
+                                "time": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/admin/discount/{id}": {
+            "put": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Edit discount code",
+                "description": "Edit discount code",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID discount code",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Edit discount code",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "string"
+                                },
+                                "values": {
+                                    "type": "integer"
+                                },
+                                "time": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Delete discount code",
+                "description": "Delete discount code",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID discount code you want to delete",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
         "/auth/login": {
             "post": {
                 "tags": [
@@ -1798,6 +2218,56 @@
                 }
             }
         },
+        "/auth/login-fg": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login FG",
+                "description": "Token will be return after login success",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Login FG",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
         "/cart/post-user-infor": {
             "post": {
                 "tags": [
@@ -1830,6 +2300,12 @@
                                 },
                                 "deliveryOption": {
                                     "type": "string"
+                                },
+                                "discountCode": {
+                                    "type": "string"
+                                },
+                                "firstPrice": {
+                                    "type": "integer"
                                 },
                                 "totalPrice": {
                                     "type": "integer"
@@ -2209,6 +2685,50 @@
                                 },
                                 "maxPrice": {
                                     "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/data/check-discount-code": {
+            "post": {
+                "tags": [
+                    "Discount"
+                ],
+                "summary": "Check discount code",
+                "description": "Check discount code",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Check discount code",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "discountCode": {
+                                    "type": "string"
+                                },
+                                "totalMoney": {
+                                    "type": "integer"
                                 }
                             }
                         }

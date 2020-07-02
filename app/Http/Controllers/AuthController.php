@@ -364,4 +364,71 @@ class AuthController extends BaseApiController
             return $this->responseErrorException($exception->getMessage(), 99999, 500);
         }
     }
+
+    /**
+     * @SWG\Post(
+     *     path="/auth/login-fg",
+     *     description="Token will be return after login success",
+     *     tags={"Auth"},
+     *     summary="Login FG",
+     *     @SWG\Parameter(
+     *          name="body",
+     *          description="Login FG",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="email",
+     *                  type="string",
+     *              ),
+     *              @SWG\property(
+     *                  property="name",
+     *                  type="string",
+     *              )
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful operation"),
+     *      @SWG\Response(response=400, description="Bad request"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     *
+     */
+    public function loginFG(Request $request)
+    {
+        try {
+            $validator = User::validate($request->all(), 'Rule_Signin_FG');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+
+            $user = User::where(['email' => $request->email])->first();
+            if (!$user) {
+                $user = new User;
+                $user->email = $request->email;
+                $user->password = bcrypt($request->email);
+                $user->name = $request->name;
+                $user->save();
+            }
+            $user->password = $request->email;
+            $credentials = $user->only('email', 'password');
+
+            //create token
+            $token = JWTAuth::attempt($credentials);
+            if (!$token) {
+                return $this->responseErrorCustom("user_email_or_password_incorrect", 401);
+            }
+
+            $result = [
+                'user' => $user,
+                'token' => $token,
+            ];
+            return $this->responseSuccess($result);
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), $exception->getCode(), 500);
+        }
+    }
 }

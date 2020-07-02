@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 //Route Authentication
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', 'AuthController@login');
+    Route::post('login-fg', 'AuthController@loginFG');
     Route::post('register', 'AuthController@register');
     Route::post('request/reset-password', 'AuthController@requestResetPassword');
     Route::post('accept/reset-password', 'AuthController@acceptResetPassword');
@@ -42,6 +43,10 @@ Route::group(['prefix' => 'data'], function () {
     Route::post('get-product-detail', 'DataController@getProductDetail'); //1
     Route::post('get-comment-product', 'DataController@getCommentByProductId'); //1
     Route::post('get-related-products', 'DataController@getRelatedProducts'); //1
+
+    //Discount code
+    Route::post('check-discount-code', 'DataController@checkDiscountCode'); //1
+    
 });
 //Route User
 Route::group(['prefix' => 'user'], function () {
@@ -82,7 +87,13 @@ Route::group(['prefix' => 'admin'], function () {
         Route::delete('/{id}', 'AdminController@deleteUser');
 
         //Order
-        Route::delete('order/{id}', 'AdminController@deletePurchasesAdmin');;
+        Route::delete('order/{id}', 'AdminController@deletePurchasesAdmin');
+        Route::post('get-new-order-admin', 'AdminController@getNewOrderAdmin');
+        Route::post('get-confirmed-order-admin', 'AdminController@getConfirmedOrderAdmin');
+        Route::post('get-shipping-order-admin', 'AdminController@getShippingOrderAdmin');
+        Route::post('get-complete-order-admin', 'AdminController@getCompleteOrderAdmin');
+        Route::put('order/{id}', 'AdminController@editOrderDetail');
+        
 
         //Feedback
         Route::post('get-feedback-admin', 'AdminController@getFeedbackAdmin');
@@ -107,18 +118,24 @@ Route::group(['prefix' => 'admin'], function () {
         Route::put('slideshow/{slideShowId}', 'AdminController@editSlideShow');
         Route::delete('slideshow/{slideShowId}', 'AdminController@deleteSlideShow'); 
          
-        //Product Image
+        //Product image
         Route::post('add-product-image', 'AdminController@addProductImage');
         Route::put('image/{id}', 'AdminController@editProductImage');
         Route::delete('image/{id}', 'AdminController@deleteProductImage');
-        //Product Number
+
+        //Product number
         Route::post('add-product-number', 'AdminController@addProductNumber');
         Route::put('number/{id}', 'AdminController@editProductNumber');
         Route::delete('number/{id}', 'AdminController@deleteProductNumber');
-        //ProductReview
+
+        //Product review
         Route::post('add-product-review', 'AdminController@addProductReview');
         Route::put('review/{id}', 'AdminController@editProductReview');
         Route::delete('review/{id}', 'AdminController@deleteProductReview');
 
+        //Discount code
+        Route::post('add-discount-code', 'AdminController@addDiscountCode');
+        Route::put('discount/{id}', 'AdminController@editDiscountCode');
+        Route::delete('discount/{id}', 'AdminController@deleteDiscountCode');
     });
 });

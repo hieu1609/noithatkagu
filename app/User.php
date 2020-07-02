@@ -61,6 +61,10 @@ class User extends BaseModel  implements JWTSubject, Authenticatable
             'email' => 'required|regex:/^[a-z][a-z0-9_\.]{2,}@[a-z0-9]{2,}(\.[a-z0-9]{2,}){1,2}$/',
             'password' => 'required|string|min:6|max:16',
         ],
+        'Rule_Signin_FG' => [
+            'email' => 'required|regex:/^[a-z][a-z0-9_\.]{2,}@[a-z0-9]{2,}(\.[a-z0-9]{2,}){1,2}$/',
+            'name' => 'required|string',
+        ],
         'Rule_ChangPassword' => [
             'currentPassword' => 'required|string|min:6|max:16',
             'newPassword' => 'required|string|min:6|max:16',
