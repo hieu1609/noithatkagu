@@ -123,6 +123,8 @@ class Product extends BaseModel
         }
 
         foreach ($data as $key => $value) {
+            $data[$key]['priceFormat'] = number_format($value['product_price']);
+            $data[$key]['fakePriceFormat'] = number_format($value['product_fk_price']);
             $data[$key]['pricePercent'] = round(($value['product_fk_price'] - $value['product_price'])/$value['product_fk_price']*100);
             $data[$key]['image'] = ProductImage::where('product_image.product_id', $value['product_id'])->get();
             $data[$key]['commentNumber'] = ProductReviews::where('product_reviews.product_id', $value['product_id'])->count();
@@ -147,6 +149,8 @@ class Product extends BaseModel
         ->orderBy('product_id', 'desc')
         ->get();
         foreach ($data as $key => $value) {
+            $data[$key]['priceFormat'] = number_format($value['product_price']);
+            $data[$key]['fakePriceFormat'] = number_format($value['product_fk_price']);
             $data[$key]['pricePercent'] = round(($value['product_fk_price'] - $value['product_price'])/$value['product_fk_price']*100);
             $data[$key]['image'] = ProductImage::where('product_image.product_id', $value['product_id'])->get();
             $data[$key]['commentNumber'] = ProductReviews::where('product_reviews.product_id', $value['product_id'])->count();
@@ -208,6 +212,8 @@ class Product extends BaseModel
         }
 
         foreach ($data as $key => $value) {
+            $data[$key]['priceFormat'] = number_format($value['product_price']);
+            $data[$key]['fakePriceFormat'] = number_format($value['product_fk_price']);
             $data[$key]['pricePercent'] = round(($value['product_fk_price'] - $value['product_price'])/$value['product_fk_price']*100);
             $data[$key]['image'] = ProductImage::where('product_image.product_id', $value['product_id'])->get();
             $data[$key]['commentNumber'] = ProductReviews::where('product_reviews.product_id', $value['product_id'])->count();
@@ -229,6 +235,8 @@ class Product extends BaseModel
     public static function getProductDetail($productId) {
         $data = Product::where('product_id', $productId)
         ->get();
+        $data[0]['priceFormat'] = number_format($data[0]['product_price']);
+        $data[0]['fakePriceFormat'] = number_format($data[0]['product_fk_price']);
         $data[0]['pricePercent'] = round(($data[0]['product_fk_price'] - $data[0]['product_price'])/$data[0]['product_fk_price']*100);
         $data[0]['image'] = ProductImage::where('product_image.product_id', $data[0]['product_id'])->get();
         $data[0]['commentNumber'] = ProductReviews::where('product_reviews.product_id', $data[0]['product_id'])->count();
@@ -243,6 +251,8 @@ class Product extends BaseModel
         ->limit(4)
         ->get();
         foreach ($data as $key => $value) {
+            $data[$key]['priceFormat'] = number_format($value['product_price']);
+            $data[$key]['fakePriceFormat'] = number_format($value['product_fk_price']);
             $data[$key]['pricePercent'] = round(($value['product_fk_price'] - $value['product_price'])/$value['product_fk_price']*100);
             $data[$key]['image'] = ProductImage::where('product_image.product_id', $value['product_id'])->get();
             $data[$key]['commentNumber'] = ProductReviews::where('product_reviews.product_id', $value['product_id'])->count();

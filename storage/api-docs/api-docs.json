@@ -2424,7 +2424,7 @@
                                     "type": "string"
                                 },
                                 "totalMoney": {
-                                    "type": "string"
+                                    "type": "integer"
                                 }
                             }
                         }
