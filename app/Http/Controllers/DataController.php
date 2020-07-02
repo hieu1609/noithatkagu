@@ -375,7 +375,7 @@ class DataController extends BaseApiController
      *              ),
      *              @SWG\property(
      *                  property="totalMoney",
-     *                  type="string",
+     *                  type="integer",
      *              ),
      *          ),
      *      ),
@@ -400,8 +400,11 @@ class DataController extends BaseApiController
             $result = new \stdClass();
             $result->discountPercent = $checkDiscountCode;
             $result->totalMoney = $request->totalMoney;
+            $result->totalMoneyFormat = number_format($result->totalMoney);
             $result->discountMoney = $checkDiscountCode * $request->totalMoney / 100;
+            $result->discountMoneyFormat = number_format($result->discountMoney);
             $result->lastMoney = $result->totalMoney - $result->discountMoney;
+            $result->lastMoneyFormat = number_format($result->lastMoney);
             return $this->responseSuccess($result);
         } catch (\Exception $exception) {
             return $this->responseErrorException($exception->getMessage(), 99999, 500);

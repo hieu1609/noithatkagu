@@ -11,7 +11,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }
-
+//host="wobtqobo.nethost-3311.000nethost.com/api/public",
 /**
  * @SWG\Swagger(
  *     basePath="/api",

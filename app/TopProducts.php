@@ -25,6 +25,7 @@ class TopProducts extends BaseModel
         foreach ($data as $key => $value) {
             $data[$key]['image'] = ProductImage::where('product_image.product_id', $value['product_id'])->get();
             $data[$key]['commentNumber'] = ProductReviews::where('product_reviews.product_id', $value['product_id'])->count();
+            $data[$key]['priceFormat'] = number_format($value['product_price']);
         }
         return $data;
     }

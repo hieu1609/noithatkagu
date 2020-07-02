@@ -128,6 +128,7 @@ class PaymentController extends BaseApiController
                 ->setDescription("Payment description")
                 ->setInvoiceNumber(uniqid());
             
+            //$baseUrl = "http://localhost:4200/";
             $baseUrl = "http://noithatkagu.store";
             $redirectUrls = new RedirectUrls();
             $redirectUrls->setReturnUrl("$baseUrl/xu-ly-thanh-toan?success=true")
