@@ -282,6 +282,262 @@ class AdminController extends BaseApiController
         }
     }
     /**
+     * @SWG\Post(
+     *     path="/admin/get-new-order-admin",
+     *     description="Get new order details",
+     *     tags={"Admin"},
+     *     summary="Get product",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Get product",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\property(
+     *                  property="page",
+     *                  type="integer",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful operation"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function getNewOrderAdmin(Request $request)
+    {
+
+        try {
+            $validator = OrderDetail::validate($request->all(), 'Get_New_Order_Admin');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $result['data'] = OrderDetail::getNewOrderAdmin($request->page);
+            $result['numPage'] = ceil(OrderDetail::count()/10);
+            $result['total'] = OrderDetail::count();
+            return $this->responseSuccess($result);
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Post(
+     *     path="/admin/get-confirmed-order-admin",
+     *     description="Get confirmed order details",
+     *     tags={"Admin"},
+     *     summary="Get product",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Get order",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\property(
+     *                  property="page",
+     *                  type="integer",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful operation"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function getConfirmedOrderAdmin(Request $request)
+    {
+
+        try {
+            $validator = OrderDetail::validate($request->all(), 'Get_Confirmed_Order_Admin');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $result['data'] = OrderDetail::getConfirmedOrderAdmin($request->page);
+            $result['numPage'] = ceil(OrderDetail::count()/10);
+            $result['total'] = OrderDetail::count();
+            return $this->responseSuccess($result);
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Post(
+     *     path="/admin/get-shipping-order-admin",
+     *     description="Get shipping order details",
+     *     tags={"Admin"},
+     *     summary="Get product",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Get order",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\property(
+     *                  property="page",
+     *                  type="integer",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful operation"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function getShippingOrderAdmin(Request $request)
+    {
+
+        try {
+            $validator = OrderDetail::validate($request->all(), 'Get_Shipping_Order_Admin');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $result['data'] = OrderDetail::getShippingOrderAdmin($request->page);
+            $result['numPage'] = ceil(OrderDetail::count()/10);
+            $result['total'] = OrderDetail::count();
+            return $this->responseSuccess($result);
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
+     * @SWG\Post(
+     *     path="/admin/get-complete-order-admin",
+     *     description="Get complete order details",
+     *     tags={"Admin"},
+     *     summary="Get product",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Get order",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\property(
+     *                  property="page",
+     *                  type="integer",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful operation"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function getCompleteOrderAdmin(Request $request)
+    {
+
+        try {
+            $validator = OrderDetail::validate($request->all(), 'Get_Complete_Order_Admin');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+            $result['data'] = OrderDetail::getCompleteOrderAdmin($request->page);
+            $result['numPage'] = ceil(OrderDetail::count()/10);
+            $result['total'] = OrderDetail::count();
+            return $this->responseSuccess($result);
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+        /**
+     * @SWG\Put(
+     *     path="/admin/order/{id}",
+     *     description="Edit order details",
+     *     tags={"Admin"},
+     *     summary="Edit order details",
+     *     security={{"jwt":{}}},
+     *      @SWG\Parameter(
+     *         description="ID order details to edit",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         type="integer",
+     *         format="int64"
+     *     ),
+     *      @SWG\Parameter(
+     *          name="body",
+     *          description="Edit order details",
+     *          required=true,
+     *          in="body",
+     *          @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="orderId",
+     *                  type="integer",
+     *              ),
+     *              @SWG\Property(
+     *                  property="productId",
+     *                  type="integer",
+     *              ),
+     *              @SWG\Property(
+     *                  property="productName",
+     *                  type="string",
+     *              ),
+     *              @SWG\Property(
+     *                  property="productPrice",
+     *                  type="integer",
+     *              ),
+     *              @SWG\Property(
+     *                  property="quantity",
+     *                  type="integer",
+     *              ),
+     *              @SWG\Property(
+     *                  property="status",
+     *                  type="string",
+     *              ),
+     *          ),
+     *      ),
+     *      @SWG\Response(response=200, description="Successful"),
+     *      @SWG\Response(response=401, description="Unauthorized"),
+     *      @SWG\Response(response=403, description="Forbidden"),
+     *      @SWG\Response(response=404, description="Not Found"),
+     *      @SWG\Response(response=422, description="Unprocessable Entity"),
+     *      @SWG\Response(response=500, description="Internal Server Error"),
+     * )
+     */
+
+    public function editOrderDetail(Request $request)
+    {
+        try {
+            $input = $request->all();
+            $input['orderId'] = $request->id;
+
+            $validator = OrderDetail::validate($input, 'Rule_Edit_Order_Detail');
+            if ($validator) {
+                return $this->responseErrorValidator($validator, 422);
+            }
+
+            $order_detail_id = $request->id;
+            $order = OrderDetail::where(['id' => $order_detail_id])->first();
+            if (!$order) {
+                return $this->responseErrorCustom("order_details_id_not_found", 404);
+            }
+            $order->order_id = $request->orderId;
+            $order->product_id = $request->productId;
+            $order->product_name = $request->productName;
+            $order->product_price = $request->productPrice;
+            $order->quantity = $request->quantity;
+            $order->status = $request->status;
+            $order->save();
+            return $this->responseSuccess($order);
+        } catch (\Exception $exception) {
+            return $this->responseErrorException($exception->getMessage(), 99999, 500);
+        }
+    }
+    /**
      * @SWG\Delete(
      *     path="/admin/order/{id}",
      *     description="Delete purchases admin",

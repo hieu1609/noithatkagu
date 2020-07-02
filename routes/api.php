@@ -87,7 +87,13 @@ Route::group(['prefix' => 'admin'], function () {
         Route::delete('/{id}', 'AdminController@deleteUser');
 
         //Order
-        Route::delete('order/{id}', 'AdminController@deletePurchasesAdmin');;
+        Route::delete('order/{id}', 'AdminController@deletePurchasesAdmin');
+        Route::post('get-new-order-admin', 'AdminController@getNewOrderAdmin');
+        Route::post('get-confirmed-order-admin', 'AdminController@getConfirmedOrderAdmin');
+        Route::post('get-shipping-order-admin', 'AdminController@getShippingOrderAdmin');
+        Route::post('get-complete-order-admin', 'AdminController@getCompleteOrderAdmin');
+        Route::put('order/{id}', 'AdminController@editOrderDetail');
+        
 
         //Feedback
         Route::post('get-feedback-admin', 'AdminController@getFeedbackAdmin');

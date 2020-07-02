@@ -41,5 +41,5 @@ class SlideShow extends BaseModel
         ->limit($limit)
         ->offset($space)
         ->get();
-        }
+    }
 }
