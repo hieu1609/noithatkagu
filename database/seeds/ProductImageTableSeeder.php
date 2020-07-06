@@ -37,7 +37,7 @@ class ProductImageTableSeeder extends Seeder
             ],
             [
                 'product_id' => 2,
-                'product_image' => '/assets/giuong/giadinhgosoi/1.jpg',
+                'product_image' => '/assets/giuong/giadinhgosoi/4.jpg',
                 'image_description' => 'mat truoc fa-rotate-180',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')
@@ -950,7 +950,7 @@ class ProductImageTableSeeder extends Seeder
             ],
             [
                 'product_id' => 47,
-                'product_image' => '/assets/ketivigiasach/ketrangtrigo/1.jpg',
+                'product_image' => '/assets/ketivigiasach/ketrangtrigo/4.jpg',
                 'image_description' => 'mat truoc 2',
                 "created_at"=> Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"=> Carbon::now()->format('Y-m-d H:i:s')

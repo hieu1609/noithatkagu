@@ -21,13 +21,12 @@ class TopProducts extends BaseModel
         $data = TopProducts::join('product', 'top_products.product_id', '=', 'product.product_id')
         ->orderBy('top_products.total_products', 'desc')
         ->limit(4)
-        ->get();
+        ->get(['product.product_id', 'product.product_name', 'product.product_fk_price', 'product.product_price', 'product.rating']);
         foreach ($data as $key => $value) {
             $data[$key]['priceFormat'] = number_format($value['product_price']);
             $data[$key]['fakePriceFormat'] = number_format($value['product_fk_price']);
             $data[$key]['pricePercent'] = round(($value['product_fk_price'] - $value['product_price'])/$value['product_fk_price']*100);
-            $data[$key]['image'] = ProductImage::where('product_image.product_id', $value['product_id'])->get();
-            $data[$key]['commentNumber'] = ProductReviews::where('product_reviews.product_id', $value['product_id'])->count();
+            $data[$key]['image'] = ProductImage::where('product_image.product_id', $value['product_id'])->limit(1)->get(['id', 'product_id', 'product_image', 'image_description']);
         }
         return $data;
     }
