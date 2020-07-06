@@ -145,15 +145,14 @@ class Product extends BaseModel
     }
 
     public static function getNewProduct() {
-        $data = Product::limit(8)
+        $data = Product::limit(4)
         ->orderBy('product_id', 'desc')
-        ->get();
+        ->get(['product_id', 'product_name', 'product_fk_price', 'product_price', 'rating']);
         foreach ($data as $key => $value) {
             $data[$key]['priceFormat'] = number_format($value['product_price']);
             $data[$key]['fakePriceFormat'] = number_format($value['product_fk_price']);
             $data[$key]['pricePercent'] = round(($value['product_fk_price'] - $value['product_price'])/$value['product_fk_price']*100);
-            $data[$key]['image'] = ProductImage::where('product_image.product_id', $value['product_id'])->get();
-            $data[$key]['commentNumber'] = ProductReviews::where('product_reviews.product_id', $value['product_id'])->count();
+            $data[$key]['image'] = ProductImage::where('product_image.product_id', $value['product_id'])->limit(1)->get(['id', 'product_id', 'product_image', 'image_description']);
         }
         return $data;
     }

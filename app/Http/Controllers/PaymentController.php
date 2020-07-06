@@ -106,9 +106,9 @@ class PaymentController extends BaseApiController
                 $item->setName(TransactionPaypal::utf8convert($value->product_name));
                 $item->setCurrency('USD');
                 $item->setQuantity($value->quantity);
-                $item->setPrice($value->product_price/23463);
+                $item->setPrice($value->product_price/23000);
                 $itemList->addItem($item);
-                $subtotal += ($value->quantity) * ($value->product_price/23463);
+                $subtotal += ($value->quantity) * ($value->product_price/23000);
             }
 
             $subtotal = round ($subtotal , 2);

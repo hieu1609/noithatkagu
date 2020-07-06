@@ -20,7 +20,6 @@ class OrderUserInfor extends BaseModel
             'address' => 'required|string',
             'deliveryOption' => 'required|string',
             'email' => 'required|regex:/^[a-z][a-z0-9_\.]{2,}@[a-z0-9]{2,}(\.[a-z0-9]{2,}){1,2}$/',
-            'discountCode' => 'required|string',
             'firstPrice' => 'required|integer',
             'totalPrice' => 'required|integer',
             'paymentMethod' => 'required|string',

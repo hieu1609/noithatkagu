@@ -74,8 +74,8 @@ $ApiErrorMessages = array(
     'tokens_reset_password_invalid_credentials' => 'The token is invalid credentials',
 
     'tokens_create_user_invalid' => 'The token is invalid. Please check email again',
-    'discount_not_found' => 'The discount is not found.',
-    'discount_code_not_found' => 'The discount code is not found.',
+    'discount_not_found' => 'Không tìm thấy mã giảm giá.',
+    'discount_code_not_found' => 'Không tìm thấy mã giảm giá.',
 
     //custom error
     'email_password_invalid' => 'The email or password are invalid',
