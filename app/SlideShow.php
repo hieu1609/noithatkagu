@@ -32,7 +32,7 @@ class SlideShow extends BaseModel
     public static function getSlideShow() {
         return SlideShow::orderBy('id', 'desc')
         ->limit(5)
-        ->get();
+        ->get(['id', 'image', 'title']);
     }
     public static function getSlideShowAdmin($page) {
         $limit = 10;
